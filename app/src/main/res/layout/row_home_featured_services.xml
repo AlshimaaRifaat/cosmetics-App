@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_featured_services"
+            android:layout_width="@dimen/_142sdp"
+            android:layout_height="@dimen/_97sdp"
+            android:scaleType="fitXY"
+            android:background="#fff"
+            />
+        <RelativeLayout
+            android:layout_width="@dimen/_117sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:layout_marginTop="@dimen/_67sdp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="@dimen/_25sdp"
+            android:alpha=".7"
+            android:background="#000"
+
+            >
+
+                <TextView
+                    android:id="@+id/T_title_featured_services"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:text="سلطه خضراء"
+                    android:layout_centerVertical="true"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold" />
+
+        </RelativeLayout>
+
+</RelativeLayout>

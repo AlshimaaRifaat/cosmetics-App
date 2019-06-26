@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="StyleCosmetics">Style Cosmetics</string>
+    <string name="BeautyCenter">Beauty Center</string>
+    <string name="Email">Email</string>
+    <string name="Password">Password</string>
+    <string name="Login">Login</string>
+    <string name="Donthaveaccount">Don\'t have account?</string>
+    <string name="SignUp">Sign Up</string>
+    <string name="Home">Home</string>
+    <string name="Products">Products</string>
+    <string name="MyOrders">My Orders</string>
+    <string name="More">More</string>
+    <string name="FeaturedServices">Featured Services</string>
+    <string name="FeaturedProducts">Featured Products</string>
+    <string name="View_all">View all</string>
+</resources>
