@@ -17,4 +17,8 @@
     <string name="FeaturedServices">Featured Services</string>
     <string name="FeaturedProducts">Featured Products</string>
     <string name="View_all">View all</string>
+    <string name="BeautySalon">Beauty Salon</string>
+    <string name="Add_to_cart">Add  to  cart</string>
+    <string name="Product">Product</string>
+    <string name="Rate_product">Rate product</string>
 </resources>

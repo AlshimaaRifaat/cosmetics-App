@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,14 +8,19 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-        <RelativeLayout
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="@dimen/_140sdp"
+            android:background="@drawable/copy">
+        </ImageView>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_slider"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_155sdp"
+            android:layout_marginTop="@dimen/_42sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
             ></android.support.v7.widget.RecyclerView>
             <TextView
                 android:id="@+id/T_label_featured_services"
@@ -33,7 +38,7 @@
                 android:id="@+id/T_label_beauty_salon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/FeaturedServices"
+                android:text="@string/BeautySalon"
                 android:textColor="#c53b88"
                 android:textStyle="bold"
                 android:layout_below="@+id/recycler_slider"
@@ -78,21 +83,34 @@
                 android:id="@+id/T_label2_beauty_salon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/FeaturedServices"
+                android:text="@string/BeautySalon"
                 android:textColor="#c53b88"
                 android:textStyle="bold"
                 android:layout_below="@+id/recycler_home_featured_services"
                 android:layout_toEndOf="@+id/T_label_featured_products"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:textSize="@dimen/_12sdp"/>
+            <Button
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_17sdp"
+                android:layout_toEndOf="@+id/T_label2_beauty_salon"
+                android:layout_below="@+id/recycler_home_featured_services"
+                android:layout_marginTop="@dimen/_11sdp"
+                android:id="@+id/btn_view_all_products"
+                android:text="@string/View_all"
+                android:textSize="@dimen/_8sdp"
+                android:textAllCaps="false"
+                android:background="@drawable/btn_view_all"
+                android:layout_marginStart="@dimen/_2sdp"></Button>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_home_featured_products"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/T_label_featured_products"
+                android:layout_below="@+id/btn_view_all_products"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_4sdp"
                 ></android.support.v7.widget.RecyclerView>
-        </RelativeLayout>
 
 
-</FrameLayout>
+
+</RelativeLayout>
