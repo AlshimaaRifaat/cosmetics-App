@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_27sdp"
+    android:layout_marginLeft="@dimen/_4sdp"
+    android:layout_marginRight="@dimen/_4sdp"
+    android:background="#fff">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="@dimen/_68sdp"
+            android:layout_height="@dimen/_68sdp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginStart="@dimen/_4sdp"
+            app:civ_border_width="@dimen/_2sdp"
+            app:civ_border_color="#fff"
+            android:background="#c40d0d"
+            android:layout_marginBottom="@dimen/_4sdp"
+
+            />
+        <TextView
+            android:id="@+id/T_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_9sdp"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:textColor="#838383"
+            android:textSize="@dimen/_12sdp"
+            android:layout_toEndOf="@+id/img"
+            android:maxLines="1"/>
+        <TextView
+            android:id="@+id/T_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1000$"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_9sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:textColor="#838383"
+            android:textSize="@dimen/_12sdp"
+            android:maxLines="1"
+            android:layout_alignParentEnd="true"/>
+
+
+        <TextView
+            android:id="@+id/T_items_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="item numbers"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:textColor="#838383"
+            android:textSize="@dimen/_12sdp"
+            android:layout_toEndOf="@+id/img"
+            android:layout_below="@+id/T_user_name"
+            />
+        <TextView
+            android:id="@+id/T_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="status"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:layout_marginStart="@dimen/_1sdp"
+            android:textColor="#838383"
+            android:textSize="@dimen/_12sdp"
+            android:layout_toEndOf="@+id/T_items_number"
+            android:layout_below="@+id/T_user_name"
+            />
+        <TextView
+            android:id="@+id/T_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="date"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:textColor="#838383"
+            android:textSize="@dimen/_12sdp"
+            android:layout_toEndOf="@+id/img"
+            android:layout_below="@+id/T_items_number"
+            />
+        />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_4sdp"
+    android:layout_marginLeft="@dimen/_4sdp"
+    android:layout_marginRight="@dimen/_4sdp"
+    android:background="#fff">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_55sdp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginStart="@dimen/_4sdp"
+            app:civ_border_width="@dimen/_2sdp"
+            app:civ_border_color="#cdcdcd"
+            android:background="#c40d0d"
+            android:layout_marginBottom="@dimen/_18sdp"
+
+            />
+        <TextView
+            android:id="@+id/T_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_9sdp"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:textColor="#959595"
+            android:textSize="@dimen/_12sdp"
+            android:layout_toEndOf="@+id/img"
+            android:maxLines="1"/>
+
+
+        <TextView
+            android:id="@+id/T_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="description"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_9sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:textColor="#b3b3b3"
+            android:textSize="@dimen/_12sdp"
+            android:layout_toEndOf="@+id/img"
+            android:layout_below="@+id/T_user_name"
+            />
+
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

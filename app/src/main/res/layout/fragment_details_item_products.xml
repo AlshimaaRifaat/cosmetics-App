@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".fragment.DetailsItemProductsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_140sdp"
+        android:background="@drawable/copy">
+    </ImageView>
+
+        <!-- TODO: Update blank fragment layout -->
+
+        <!--<ImageView
+            android:id="@+id/producer_families_image_favrite_heart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/favorite_heart_button"
+            />-->
+
+        <TextView
+            android:id="@id/T_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="title"
+            android:layout_centerHorizontal="true"
+            android:textColor="#fff"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/_12sdp"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_slider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_155sdp"
+        android:layout_marginTop="@dimen/_42sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+
+        ></android.support.v7.widget.RecyclerView>
+    <RelativeLayout
+        android:id="@+id/relaive_rating"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_below="@id/recycler_slider"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:background="#fff"
+
+        >
+        <RatingBar
+            android:id="@+id/rating_bar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:stepSize="1.0"
+            android:rating="1.0"
+            android:gravity="left|center"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:progressTint="#C6488E"
+            android:transformPivotX="0dp"
+            android:progressBackgroundTint="#000"
+
+
+            />
+
+        <TextView
+            android:id="@+id/T_review_numbers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:text="review nums"
+            android:textColor="#939292"
+            android:textSize="@dimen/_10sdp"
+            android:layout_below="@id/rating_bar"
+            />
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_below="@id/relaive_rating"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:background="#fff"
+            android:id="@+id/relative_about"
+            >
+            <TextView
+                android:id="@+id/T_title"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="#939292"
+                android:text="title"
+                />
+
+            <TextView
+                android:id="@+id/T_nabza"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:text="nabza"
+                android:textColor="#939292"
+                android:textSize="@dimen/_12sdp"
+                android:layout_below="@id/T_title"
+                />
+            <TextView
+                android:id="@+id/T_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:text="price"
+                android:textColor="#939292"
+                android:textSize="@dimen/_12sdp"
+                android:layout_below="@id/T_title"
+                />
+            <TextView
+                android:id="@+id/T_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:text="description"
+                android:textColor="#939292"
+                android:textSize="@dimen/_9sdp"
+                android:layout_below="@id/T_nabza"
+                android:layout_marginBottom="@dimen/_10sdp"
+                />
+        </RelativeLayout>
+        <Button
+            android:id="@+id/btn_add_to_cart"
+            android:layout_width="@dimen/_145sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@drawable/btn_login"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textSize="@dimen/_13sdp"
+            android:textColor="#fff"
+            android:text="@string/Add_to_cart"
+            android:textAllCaps="false"
+            android:layout_below="@id/relative_about"
+            android:clickable="true"
+            />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_comments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_add_to_cart"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            ></android.support.v7.widget.RecyclerView>
+
+  <!--  <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_90sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_4sdp"
+        android:layout_below="@id/btn_add_to_cart"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:background="#fff"
+        android:id="@+id/Et_comment"
+
+        ></EditText>-->
+
+       <!-- <RelativeLayout
+            android:id="@+id/relaive_evaluation"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_below="@id/Et_comment"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:background="#fff"
+
+            >
+            <RatingBar
+                android:id="@+id/rating_bar_evaluate"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:stepSize="1.0"
+                android:rating="1.0"
+                android:gravity="left|center"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:progressTint="#C6488E"
+                android:transformPivotX="0dp"
+                android:progressBackgroundTint="#000"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:id="@+id/T_evaluation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="evaluation"
+                android:textColor="#939292"
+                android:textSize="@dimen/_12sdp"
+                android:layout_toEndOf="@id/rating_bar_evaluate"
+                android:layout_centerVertical="true"
+                />
+            <TextView
+                android:id="@+id/T_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/Product"
+                android:textColor="#939292"
+                android:textSize="@dimen/_12sdp"
+                android:layout_toEndOf="@id/T_evaluation"
+                android:layout_centerVertical="true"
+                />
+        </RelativeLayout>-->
+
+</RelativeLayout>
+</RelativeLayout>
