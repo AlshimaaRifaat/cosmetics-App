@@ -4,15 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f7f1f5"
+    android:id="@+id/relative_home"
     tools:context=".fragment.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="@dimen/_140sdp"
             android:background="@drawable/copy">
         </ImageView>
+    <ImageView
+        android:id="@+id/icon_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shopping_cart"
+        android:layout_alignParentEnd="true"
+        android:textColor="#fff"
+        android:textSize="@dimen/_14sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/_12sdp"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_slider"
