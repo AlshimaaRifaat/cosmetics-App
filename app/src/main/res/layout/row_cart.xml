@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_21sdp"
+    android:layout_marginStart="@dimen/_13sdp"
+    android:layout_marginEnd="@dimen/_13sdp"
+   >
+
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_104sdp"
+        android:scaleType="fitXY"
+        android:background="#be293d"
+        />
+
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/img">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_marginTop="@dimen/_4sdp"
+
+        android:layout_marginBottom="@dimen/_3sdp"
+        android:background="#fff"
+        android:id="@+id/relative_product"
+
+        >
+        <RelativeLayout
+            android:layout_width="@dimen/_145sdp"
+            android:layout_height="wrap_content"
+            android:id="@+id/relative_name">
+        <TextView
+            android:id="@+id/T_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="title"
+            android:textColor="#939292"
+            android:textSize="@dimen/_11sdp"
+            android:textStyle="bold"
+
+            />
+
+        <TextView
+            android:id="@+id/T_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:text="description"
+            android:textColor="#939292"
+            android:textSize="@dimen/_11sdp"
+            android:textStyle="bold"
+            android:layout_below="@id/T_title"
+            />
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/relative_name">
+
+            <TextView
+                android:id="@+id/T_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="quantity"
+                android:textColor="#939292"
+                android:textSize="@dimen/_11sdp"
+                android:textStyle="bold"
+
+                />
+
+            <TextView
+                android:id="@+id/T_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:text="price"
+                android:textColor="#939292"
+                android:textSize="@dimen/_11sdp"
+                android:textStyle="bold"
+                android:layout_below="@id/T_quantity"
+                />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="@dimen/_77sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_53sdp"
+        android:text="1000"
+        android:textSize="@dimen/_9sdp"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:background="@drawable/txt_price"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:id="@+id/T_total_price"></TextView>
+
+    <Button
+        android:id="@+id/btn_plus"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_53sdp"
+        android:text="+"
+        android:textSize="@dimen/_12sdp"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:background="@drawable/txt_price"
+        android:layout_marginStart="@dimen/_209sdp"
+        ></Button>
+    <TextView
+        android:id="@+id/T_changed_quantity"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_53sdp"
+        android:text="12"
+        android:textSize="@dimen/_12sdp"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:background="@drawable/txt_price"
+        android:layout_marginStart="@dimen/_3sdp"
+        android:layout_toEndOf="@+id/btn_plus"
+        ></TextView>
+
+    <Button
+        android:id="@+id/btn_minus"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_53sdp"
+        android:text="-"
+        android:textSize="@dimen/_12sdp"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:background="@drawable/txt_price"
+        android:layout_marginStart="@dimen/_3sdp"
+        android:layout_toEndOf="@+id/T_changed_quantity"
+        ></Button>
+
+
+</RelativeLayout>
+
+</RelativeLayout>

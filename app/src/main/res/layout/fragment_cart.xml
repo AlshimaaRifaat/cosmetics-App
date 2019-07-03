@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f7f1f5"
+    tools:context=".fragment.CartFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background">
+
+        <TextView
+            android:id="@id/T_title_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="title"
+            android:layout_centerHorizontal="true"
+            android:textColor="#7d7c7e"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/_12sdp"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_cart"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_330sdp"
+            android:layout_margin="@dimen/_4sdp"
+            android:layout_below="@+id/T_title_bar"
+            ></android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/T_sub_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="#747474"
+            android:text="1000$"
+            android:textStyle="bold"
+            android:layout_below="@id/recycler_cart"
+
+            />
+        <TextView
+            android:id="@+id/T_tax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="#747474"
+            android:text="taxes"
+            android:textStyle="bold"
+            android:layout_below="@id/T_sub_total"
+
+            />
+        <TextView
+            android:id="@+id/T_delivery_fees"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="#747474"
+            android:text="fees"
+            android:textStyle="bold"
+            android:layout_below="@id/T_tax"
+            android:layout_marginBottom="@dimen/_4sdp"
+            />
+
+
+    </RelativeLayout>
+
+</FrameLayout>
