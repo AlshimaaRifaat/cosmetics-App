@@ -3,12 +3,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f7f1f5"
     tools:context=".fragment.MoreFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="more" />
+        android:background="@drawable/background">
+        <TextView
+            android:id="@id/T_title_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/More"
+            android:layout_centerHorizontal="true"
+            android:textColor="#7d7c7e"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/_12sdp"/>
 
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:layout_centerInParent="true"
+        android:layout_below="@id/relaive_rating"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:background="#fff"
+        android:id="@+id/relative_about"
+        >
+        <TextView
+            android:id="@+id/T_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_11sdp"
+            android:layout_marginEnd="@dimen/_11sdp"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="#939292"
+            android:textStyle="bold"
+            android:text="@string/Profile"
+            />
+
+        <TextView
+            android:id="@+id/T_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_11sdp"
+            android:layout_marginEnd="@dimen/_11sdp"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:text="@string/Favorite"
+            android:textColor="#939292"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            android:layout_below="@id/T_profile"
+            />
+
+        <TextView
+            android:id="@+id/T_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_11sdp"
+            android:layout_marginEnd="@dimen/_11sdp"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:text="@string/Language"
+            android:textColor="#939292"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            android:layout_below="@id/T_favorite"
+
+            />
+        <TextView
+            android:id="@+id/T_log_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_11sdp"
+            android:layout_marginEnd="@dimen/_11sdp"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:text="@string/Logout"
+            android:textColor="#939292"
+            android:textSize="@dimen/_14sdp"
+            android:layout_below="@id/T_language"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/_14sdp"
+            />
+    </RelativeLayout>
+    </RelativeLayout>
 </RelativeLayout>

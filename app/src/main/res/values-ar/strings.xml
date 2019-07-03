@@ -18,4 +18,9 @@
     <string name="Add_to_cart">Add  to  cart</string>
     <string name="Product">Product</string>
     <string name="Rate_product">Rate product</string>
+    <string name="Say_some_thing_about_products">Say some thing about products</string>
+    <string name="Profile">Profile</string>
+    <string name="Favorite">Favorite</string>
+    <string name="Language">Language</string>
+    <string name="Logout">Log out</string>
 </resources>
