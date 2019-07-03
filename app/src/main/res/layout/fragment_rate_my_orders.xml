@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f7f1f5"
+    tools:context=".fragment.RateMyOrdersFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background">
+
+        <TextView
+            android:id="@id/T_title_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/MyOrders"
+            android:layout_centerHorizontal="true"
+            android:textColor="#7d7c7e"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/_12sdp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_93sdp"
+        android:layout_marginTop="@dimen/_155sdp"
+        android:layout_marginBottom="@dimen/_4sdp"
+        android:layout_below="@id/btn_add_to_cart"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:background="#fff"
+        android:gravity="top"
+        android:paddingTop="@dimen/_6sdp"
+        android:paddingBottom="@dimen/_6sdp"
+        android:paddingStart="@dimen/_4sdp"
+        android:paddingEnd="@dimen/_4sdp"
+        android:hint="@string/Say_some_thing_about_products"
+        android:textColorHint="#d2d2d2"
+        android:textSize="@dimen/_11sdp"
+        android:id="@+id/Et_comment"
+        ></EditText>
+        <RelativeLayout
+            android:id="@+id/relaive_evaluation"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_below="@id/Et_comment"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:background="#fff"
+
+            >
+            <RatingBar
+                android:id="@+id/rating_bar_evaluate"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:stepSize="1.0"
+                android:rating="1.0"
+                android:gravity="left|center"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:progressTint="#C6488E"
+                android:transformPivotX="0dp"
+                android:progressBackgroundTint="#000"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:id="@+id/T_evaluation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_112sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="excellent"
+                android:textColor="#C6488E"
+                android:textSize="@dimen/_12sdp"
+                android:layout_toEndOf="@id/rating_bar_evaluate"
+                android:layout_centerVertical="true"
+                />
+            <TextView
+                android:id="@+id/T_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_1sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/Product"
+                android:layout_alignParentEnd="true"
+                android:textColor="#939292"
+                android:textSize="@dimen/_12sdp"
+                android:layout_toEndOf="@id/T_evaluation"
+                android:layout_centerVertical="true"
+                />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</FrameLayout>

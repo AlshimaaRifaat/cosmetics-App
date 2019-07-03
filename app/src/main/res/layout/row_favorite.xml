@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/relative_img"
+        android:layout_width="@dimen/_144sdp"
+        android:layout_height="wrap_content"
+        >
+        <ImageView
+            android:id="@+id/row_prod_family_image"
+            android:layout_width="@dimen/_140sdp"
+            android:layout_height="@dimen/_95sdp"
+            android:layout_margin="@dimen/_3sdp"
+
+            android:scaleType="fitXY"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="@dimen/_144sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_below="@id/relative_img"
+        android:layout_marginBottom="@dimen/_3sdp"
+        android:background="#fff"
+        >
+        <TextView
+            android:id="@+id/T_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="title"
+            android:textColor="#939292"
+            android:textSize="@dimen/_11sdp"
+            android:textStyle="bold"
+            />
+        <ImageView
+            android:id="@+id/icon_favorite"
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_27sdp"
+            android:background="@drawable/favorite_heart_button"
+            />
+       <!-- <TextView
+            android:id="@+id/T_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:text="quantity"
+            android:textColor="#939292"
+            android:textSize="@dimen/_11sdp"
+            android:textStyle="bold"
+            android:layout_below="@id/T_title"
+            />-->
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
