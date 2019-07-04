@@ -20,6 +20,10 @@ import butterknife.Unbinder;
 public class MoreFragment extends Fragment {
     @BindView(R.id.T_favorite)
     TextView favoriteTxt;
+
+    @BindView(R.id.T_profile)
+    TextView profileTxt;
+
     Unbinder unbinder;
 
     public MoreFragment() {
@@ -38,6 +42,13 @@ View view;
             @Override
             public void onClick(View v) {
                 getFragmentManager().beginTransaction().replace(R.id.relative_more,new FavoriteFragment())
+                        .addToBackStack(null).commit();
+            }
+        });
+        profileTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().replace(R.id.relative_more,new ProfileFragment())
                         .addToBackStack(null).commit();
             }
         });

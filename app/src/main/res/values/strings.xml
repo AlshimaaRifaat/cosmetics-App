@@ -26,4 +26,9 @@
     <string name="Favorite">Favorite</string>
     <string name="Language">Language</string>
     <string name="Logout">Log out</string>
+    <string name="Full_name">Full name</string>
+    <string name="Phone">Phone</string>
+    <string name="ForgotPassword">Forgot Password?</string>
+    <string name="Continue_as_guest">Continue as guest</string>
+    <string name="or_login_with">Or Login With</string>
 </resources>
