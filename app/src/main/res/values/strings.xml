@@ -31,4 +31,6 @@
     <string name="ForgotPassword">Forgot Password?</string>
     <string name="Continue_as_guest">Continue as guest</string>
     <string name="or_login_with">Or Login With</string>
+    <string name="Category">Category</string>
+    <string name="Brands">Brands</string>
 </resources>
