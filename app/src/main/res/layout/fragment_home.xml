@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f7f1f5"
-    android:id="@+id/relative_home"
     tools:context=".fragment.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f7f1f5"
+        android:id="@+id/relative_home">
 
         <ImageView
             android:layout_width="match_parent"
@@ -99,7 +103,7 @@
                 android:text="@string/BeautySalon"
                 android:textColor="#c53b88"
                 android:textStyle="bold"
-                android:layout_below="@+id/recycler_home_featured_services"
+                android:layout_below="@+id/recycler_latest_products"
                 android:layout_toEndOf="@+id/T_label_featured_products"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:textSize="@dimen/_12sdp"/>
@@ -107,7 +111,7 @@
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_17sdp"
                 android:layout_toEndOf="@+id/T_label2_beauty_salon"
-                android:layout_below="@+id/recycler_home_featured_services"
+                android:layout_below="@+id/recycler_latest_products"
                 android:layout_marginTop="@dimen/_11sdp"
                 android:id="@+id/btn_view_all_products"
                 android:text="@string/View_all"
@@ -116,7 +120,7 @@
                 android:background="@drawable/btn_view_all"
                 android:layout_marginStart="@dimen/_2sdp"></Button>
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_home_featured_products"
+                android:id="@+id/recycler_featured_products"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/btn_view_all_products"
@@ -124,6 +128,6 @@
                 android:layout_marginBottom="@dimen/_4sdp"
                 ></android.support.v7.widget.RecyclerView>
 
+    </RelativeLayout>
 
-
-</RelativeLayout>
+</ScrollView>

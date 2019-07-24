@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="@dimen/_132sdp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_3sdp">
 
         <ImageView
             android:id="@+id/img"
@@ -31,7 +32,8 @@
                     android:text="سلطه خضراء"
                     android:layout_centerVertical="true"
                     android:textColor="#fff"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_11sdp"
+                    android:singleLine="true"
                     android:textStyle="bold" />
 
         </RelativeLayout>

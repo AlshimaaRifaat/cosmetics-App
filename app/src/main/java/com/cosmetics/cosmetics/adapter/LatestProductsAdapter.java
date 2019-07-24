@@ -15,7 +15,7 @@ import com.cosmetics.cosmetics.model.LatestProductsData;
 
 import java.util.List;
 
-public class LatestProductsAdapter  extends RecyclerView.Adapter<LatestProductsAdapter.ViewHolder> {
+public class LatestProductsAdapter extends RecyclerView.Adapter<LatestProductsAdapter.ViewHolder> {
 
     Context context;
     List<LatestProductsData> latestProductsDataList;

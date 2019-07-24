@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 
 import com.cosmetics.cosmetics.R;
+import com.cosmetics.cosmetics.adapter.FeatureProductsAdapter;
 import com.cosmetics.cosmetics.adapter.LatestProductsAdapter;
 import com.cosmetics.cosmetics.model.LatestProductsData;
 import com.cosmetics.cosmetics.viewmodel.LatestProductsViewModel;
@@ -39,6 +40,11 @@ public class HomeFragment extends Fragment {
     LatestProductsViewModel latestProductsViewModel;
     LatestProductsAdapter latestProductsAdapter;
 
+    @BindView(R.id.recycler_featured_products)
+    RecyclerView recycler_featured_products;
+
+    FeatureProductsAdapter featureProductsAdapter;
+
     View view;
 
     public HomeFragment() {
@@ -53,6 +59,7 @@ public class HomeFragment extends Fragment {
         view= inflater.inflate(R.layout.fragment_home, container, false);
         unbinder= ButterKnife.bind(this,view);
         getLatestProducts();
+        getFeatureProducts();
         iconCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,12 +73,25 @@ public class HomeFragment extends Fragment {
     public void getLatestProducts() {
         latestProductsViewModel = ViewModelProviders.of(this).get(LatestProductsViewModel.class);
         //check "ar"
-        latestProductsViewModel.getLatestProducts("ar",getContext()).observe(this, new Observer<List<LatestProductsData>>() {
+        latestProductsViewModel.getlatestProducts("ar",getContext()).observe(this, new Observer<List<LatestProductsData>>() {
             @Override
             public void onChanged(@Nullable List<LatestProductsData> latestProductsData) {
                 latestProductsAdapter = new LatestProductsAdapter(getActivity(),latestProductsData);
                 recycler_latest_products.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
                 recycler_latest_products.setAdapter(latestProductsAdapter);
+            }
+        });
+    }
+
+    public void getFeatureProducts() {
+        latestProductsViewModel = ViewModelProviders.of(this).get(LatestProductsViewModel.class);
+        //check "ar"
+        latestProductsViewModel.getFeaturedProducts("ar",getContext()).observe(this, new Observer<List<LatestProductsData>>() {
+            @Override
+            public void onChanged(@Nullable List<LatestProductsData> latestProductsData) {
+                featureProductsAdapter = new FeatureProductsAdapter(getActivity(),latestProductsData);
+                recycler_featured_products.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+                recycler_featured_products.setAdapter(featureProductsAdapter);
             }
         });
     }

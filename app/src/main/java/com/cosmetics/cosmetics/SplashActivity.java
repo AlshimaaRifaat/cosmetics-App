@@ -33,12 +33,13 @@ public class SplashActivity extends AppCompatActivity {
                 {
                     e.printStackTrace();
                 }finally {
+
                     if(userTokenValue==null)
                     {
                         Intent intent=new Intent( SplashActivity.this,LoginActivity.class);
                         startActivity( intent );
 
-                   }else if (userTokenValue!=null){
+                   }else {
                         Intent intent=new Intent( SplashActivity.this,HomeActivity.class);
                         startActivity( intent );
 

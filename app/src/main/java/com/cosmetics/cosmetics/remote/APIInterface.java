@@ -19,4 +19,7 @@ public interface APIInterface {
 
     @POST("latest_products")
     Call<LatestProductsResponse> getLatestProducts(@QueryMap Map<String, String> map);
+
+    @POST("feature_products")
+    Call<LatestProductsResponse> getfeatureProducts(@QueryMap Map<String, String> map);
 }

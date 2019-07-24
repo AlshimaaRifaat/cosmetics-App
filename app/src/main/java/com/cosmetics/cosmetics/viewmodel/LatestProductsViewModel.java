@@ -20,16 +20,25 @@ import retrofit2.Response;
 public class LatestProductsViewModel extends ViewModel{
     Context context;
     private MutableLiveData<List<LatestProductsData>> listLatestProductsMutableLiveData;
-    public LiveData<List<LatestProductsData>> getLatestProducts( String Lang, Context context) {
+    private MutableLiveData<List<LatestProductsData>> listFeaturedProductsMutableLiveData;
+    public LiveData<List<LatestProductsData>> getlatestProducts( String Lang, Context context) {
         if (listLatestProductsMutableLiveData == null) {
             listLatestProductsMutableLiveData = new MutableLiveData<List<LatestProductsData>>();
             this.context=context;
-            getLatestProducts(Lang);
+            getLatestProductsValues(Lang);
+
         }
         return listLatestProductsMutableLiveData;
     }
-
-    private void getLatestProducts(String lang) {
+    public LiveData<List<LatestProductsData>> getFeaturedProducts( String Lang, Context context) {
+        if (listFeaturedProductsMutableLiveData == null) {
+            listFeaturedProductsMutableLiveData = new MutableLiveData<List<LatestProductsData>>();
+            this.context=context;
+            getFeaturedProductsValues(Lang);
+        }
+        return listFeaturedProductsMutableLiveData;
+    }
+    private void getLatestProductsValues(String lang) {
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("lang", lang);
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
@@ -48,6 +57,30 @@ public class LatestProductsViewModel extends ViewModel{
             @Override
             public void onFailure(Call<LatestProductsResponse> call, Throwable t) {
                 listLatestProductsMutableLiveData.setValue(null);
+
+            }
+        });
+    }
+
+    private void getFeaturedProductsValues(String lang) {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("lang", lang);
+        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<LatestProductsResponse> call = apiInterface.getfeatureProducts(hashMap);
+        call.enqueue(new Callback<LatestProductsResponse>() {
+            @Override
+            public void onResponse(Call<LatestProductsResponse> call, Response<LatestProductsResponse> response) {
+
+                if (response.code()==200) {
+                    listFeaturedProductsMutableLiveData.setValue(response.body().getData());
+                } else  {
+                    listFeaturedProductsMutableLiveData.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LatestProductsResponse> call, Throwable t) {
+                listFeaturedProductsMutableLiveData.setValue(null);
 
             }
         });
