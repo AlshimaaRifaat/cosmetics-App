@@ -5,6 +5,8 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.content.Context;
 
+import com.cosmetics.cosmetics.model.HomeSliderData;
+import com.cosmetics.cosmetics.model.HomeSliderResponse;
 import com.cosmetics.cosmetics.model.LatestProductsData;
 import com.cosmetics.cosmetics.model.LatestProductsResponse;
 import com.cosmetics.cosmetics.remote.APIClient;
@@ -21,6 +23,7 @@ public class LatestProductsViewModel extends ViewModel{
     Context context;
     private MutableLiveData<List<LatestProductsData>> listLatestProductsMutableLiveData;
     private MutableLiveData<List<LatestProductsData>> listFeaturedProductsMutableLiveData;
+    private MutableLiveData<List<HomeSliderData>> listHomeSliderMutableLiveData;
     public LiveData<List<LatestProductsData>> getlatestProducts( String Lang, Context context) {
         if (listLatestProductsMutableLiveData == null) {
             listLatestProductsMutableLiveData = new MutableLiveData<List<LatestProductsData>>();
@@ -29,6 +32,7 @@ public class LatestProductsViewModel extends ViewModel{
 
         }
         return listLatestProductsMutableLiveData;
+
     }
     public LiveData<List<LatestProductsData>> getFeaturedProducts( String Lang, Context context) {
         if (listFeaturedProductsMutableLiveData == null) {
@@ -37,6 +41,16 @@ public class LatestProductsViewModel extends ViewModel{
             getFeaturedProductsValues(Lang);
         }
         return listFeaturedProductsMutableLiveData;
+    }
+    public LiveData<List<HomeSliderData>> getHomeSlider( String Lang, Context context) {
+        if (listHomeSliderMutableLiveData == null) {
+            listHomeSliderMutableLiveData = new MutableLiveData<List<HomeSliderData>>();
+            this.context=context;
+            getHomeSliderValue(Lang);
+
+        }
+        return listHomeSliderMutableLiveData;
+
     }
     private void getLatestProductsValues(String lang) {
         HashMap<String, String> hashMap = new HashMap<>();
@@ -81,6 +95,30 @@ public class LatestProductsViewModel extends ViewModel{
             @Override
             public void onFailure(Call<LatestProductsResponse> call, Throwable t) {
                 listFeaturedProductsMutableLiveData.setValue(null);
+
+            }
+        });
+    }
+
+    private void getHomeSliderValue(String lang) {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("lang", lang);
+        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<HomeSliderResponse> call = apiInterface.getHomeSlider(hashMap);
+        call.enqueue(new Callback<HomeSliderResponse>() {
+            @Override
+            public void onResponse(Call<HomeSliderResponse> call, Response<HomeSliderResponse> response) {
+
+                if (response.code()==200) {
+                    listHomeSliderMutableLiveData.setValue(response.body().getData());
+                } else  {
+                    listHomeSliderMutableLiveData.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HomeSliderResponse> call, Throwable t) {
+                listHomeSliderMutableLiveData.setValue(null);
 
             }
         });

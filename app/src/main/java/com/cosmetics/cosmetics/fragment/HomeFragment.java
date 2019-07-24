@@ -16,7 +16,9 @@ import android.widget.RatingBar;
 
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.adapter.FeatureProductsAdapter;
+import com.cosmetics.cosmetics.adapter.HomeSliderAdapter;
 import com.cosmetics.cosmetics.adapter.LatestProductsAdapter;
+import com.cosmetics.cosmetics.model.HomeSliderData;
 import com.cosmetics.cosmetics.model.LatestProductsData;
 import com.cosmetics.cosmetics.view.DetailsHomeLatestProductsView;
 import com.cosmetics.cosmetics.viewmodel.LatestProductsViewModel;
@@ -35,16 +37,19 @@ public class HomeFragment extends Fragment implements DetailsHomeLatestProductsV
     ImageView iconCart;
     Unbinder unbinder;
 
+    LatestProductsViewModel latestProductsViewModel;
+
     @BindView(R.id.recycler_latest_products)
     RecyclerView recycler_latest_products;
-
-    LatestProductsViewModel latestProductsViewModel;
     LatestProductsAdapter latestProductsAdapter;
 
     @BindView(R.id.recycler_featured_products)
     RecyclerView recycler_featured_products;
-
     FeatureProductsAdapter featureProductsAdapter;
+
+    @BindView(R.id.recycler_slider)
+    RecyclerView recycler_slider;
+    HomeSliderAdapter homeSliderAdapter;
 
     View view;
 
@@ -61,6 +66,7 @@ public class HomeFragment extends Fragment implements DetailsHomeLatestProductsV
         unbinder= ButterKnife.bind(this,view);
         getLatestProducts();
         getFeatureProducts();
+        getHomeSlider();
         iconCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,7 +103,19 @@ public class HomeFragment extends Fragment implements DetailsHomeLatestProductsV
             }
         });
     }
-
+public void getHomeSlider()
+{
+    latestProductsViewModel = ViewModelProviders.of(this).get(LatestProductsViewModel.class);
+    //check "ar"
+    latestProductsViewModel.getHomeSlider("ar",getContext()).observe(this, new Observer<List<HomeSliderData>>() {
+        @Override
+        public void onChanged(@Nullable List<HomeSliderData> homeSliderData) {
+            homeSliderAdapter = new HomeSliderAdapter(getActivity(),homeSliderData);
+            recycler_slider.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+            recycler_slider.setAdapter(homeSliderAdapter);
+        }
+    });
+}
     @Override
     public void showDetailsHomeLatestProducts(LatestProductsData latestProductsData) {
          DetailsItemProductsFragment detailsItemProductsFragment=new DetailsItemProductsFragment();
