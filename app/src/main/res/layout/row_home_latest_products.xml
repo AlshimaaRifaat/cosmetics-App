@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/img_featured_services"
+            android:id="@+id/img"
             android:layout_width="@dimen/_142sdp"
             android:layout_height="@dimen/_97sdp"
             android:scaleType="fitXY"
@@ -23,7 +23,7 @@
             >
 
                 <TextView
-                    android:id="@+id/T_title_featured_services"
+                    android:id="@+id/T_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"

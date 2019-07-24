@@ -73,7 +73,7 @@
                 ></Button>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_home_featured_services"
+                android:id="@+id/recycler_latest_products"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
@@ -87,7 +87,7 @@
                 android:text="@string/FeaturedProducts"
                 android:textColor="#bab9ba"
                 android:textStyle="bold"
-                android:layout_below="@+id/recycler_home_featured_services"
+                android:layout_below="@+id/recycler_latest_products"
                 android:layout_marginStart="@dimen/_24sdp"
                 android:layout_marginEnd="@dimen/_2sdp"
                 android:layout_marginTop="@dimen/_12sdp"
