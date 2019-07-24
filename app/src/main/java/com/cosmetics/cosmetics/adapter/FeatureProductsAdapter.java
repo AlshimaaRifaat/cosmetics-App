@@ -39,7 +39,10 @@ public class FeatureProductsAdapter extends RecyclerView.Adapter<FeatureProducts
     }
 
     public int getItemCount() {
-        return latestProductsDataList.size();
+        if ((latestProductsDataList.size())!=0) {
+            return latestProductsDataList.size();
+        }
+        return 0;
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;

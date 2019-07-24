@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
-    tools:context=".fragment.DetailsItemProductsFragment">
+    tools:context=".fragment.DetailsItemProductFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
@@ -28,7 +28,7 @@
             />-->
 
         <TextView
-            android:id="@id/T_title"
+            android:id="@+id/T_label_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="title"
@@ -114,7 +114,6 @@
             >
             <TextView
                 android:id="@+id/T_title"
-                style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_3sdp"
@@ -125,7 +124,7 @@
                 android:text="title"
                 />
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/T_nabza"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -136,18 +135,20 @@
                 android:textColor="#939292"
                 android:textSize="@dimen/_12sdp"
                 android:layout_below="@id/T_title"
-                />
+                />-->
             <TextView
                 android:id="@+id/T_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/_3sdp"
-                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:text="price"
+                android:layout_marginStart="@dimen/_3sdp"
                 android:textColor="#939292"
                 android:textSize="@dimen/_12sdp"
-                android:layout_below="@id/T_title"
+
+
                 />
             <TextView
                 android:id="@+id/T_description"
@@ -159,7 +160,7 @@
                 android:text="description"
                 android:textColor="#939292"
                 android:textSize="@dimen/_9sdp"
-                android:layout_below="@id/T_nabza"
+                android:layout_below="@id/T_title"
                 android:layout_marginBottom="@dimen/_10sdp"
                 />
         </RelativeLayout>

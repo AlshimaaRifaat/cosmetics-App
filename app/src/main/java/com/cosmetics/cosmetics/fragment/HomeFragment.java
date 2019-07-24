@@ -18,6 +18,7 @@ import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.adapter.FeatureProductsAdapter;
 import com.cosmetics.cosmetics.adapter.LatestProductsAdapter;
 import com.cosmetics.cosmetics.model.LatestProductsData;
+import com.cosmetics.cosmetics.view.DetailsHomeLatestProductsView;
 import com.cosmetics.cosmetics.viewmodel.LatestProductsViewModel;
 
 import java.util.List;
@@ -29,7 +30,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements DetailsHomeLatestProductsView {
     @BindView(R.id.icon_cart)
     ImageView iconCart;
     Unbinder unbinder;
@@ -77,6 +78,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<LatestProductsData> latestProductsData) {
                 latestProductsAdapter = new LatestProductsAdapter(getActivity(),latestProductsData);
+                latestProductsAdapter.onClickItemLatestProduct(HomeFragment.this);
                 recycler_latest_products.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
                 recycler_latest_products.setAdapter(latestProductsAdapter);
             }
@@ -94,5 +96,15 @@ public class HomeFragment extends Fragment {
                 recycler_featured_products.setAdapter(featureProductsAdapter);
             }
         });
+    }
+
+    @Override
+    public void showDetailsHomeLatestProducts(LatestProductsData latestProductsData) {
+         DetailsItemProductsFragment detailsItemProductsFragment=new DetailsItemProductsFragment();
+         Bundle bundle=new Bundle();
+         bundle.putParcelable("LatestProductsItem",latestProductsData);
+         detailsItemProductsFragment.setArguments(bundle);
+         getFragmentManager().beginTransaction().replace(R.id.relative_home,detailsItemProductsFragment)
+                 .addToBackStack(null).commit();
     }
 }

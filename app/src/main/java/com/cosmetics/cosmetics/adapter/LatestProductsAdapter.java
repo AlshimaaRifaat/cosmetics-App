@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.model.LatestProductsData;
+import com.cosmetics.cosmetics.view.DetailsHomeLatestProductsView;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class LatestProductsAdapter extends RecyclerView.Adapter<LatestProductsAd
 
     Context context;
     List<LatestProductsData> latestProductsDataList;
+    DetailsHomeLatestProductsView detailsHomeLatestProductsView;
 
     public LatestProductsAdapter(Context context, List<LatestProductsData> latestProductsDataList) {
         this.context = context;
@@ -31,11 +33,20 @@ public class LatestProductsAdapter extends RecyclerView.Adapter<LatestProductsAd
         View view = LayoutInflater.from(context).inflate(R.layout.row_home_latest_products, parent, false);
         return new ViewHolder(view);
     }
-
+    public void onClickItemLatestProduct(DetailsHomeLatestProductsView detailsHomeLatestProductsView)
+    {
+        this.detailsHomeLatestProductsView=detailsHomeLatestProductsView;
+    }
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Glide.with(context).load("http://style-cosmetics.com"+latestProductsDataList.get(position).getImage()).into(holder.imageView);
         holder.textView.setText(latestProductsDataList.get(position).getTitle());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                detailsHomeLatestProductsView.showDetailsHomeLatestProducts(latestProductsDataList.get(position));
+            }
+        });
     }
 
     public int getItemCount() {
