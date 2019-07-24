@@ -55,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               
+
                 FUtilsValidation.isEmpty(ET_fullname,"please,enter your full name");
                 FUtilsValidation.isEmpty(ET_phone,"please,enter your phone");
                 FUtilsValidation.isEmpty(ET_email,"please,enter your email address");
