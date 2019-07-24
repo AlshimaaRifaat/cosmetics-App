@@ -70,9 +70,11 @@ Typeface customFontRegular;
                         public void onChanged(@Nullable LoginData loginData) {
                             if(loginData!=null) {
                                 Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
-                                SharedPrefManager.getInstance(getApplicationContext()).saveUserToken(loginData.getToken());
+                                SharedPrefManager.getInstance(getApplicationContext()).saveUserToken(loginData.getUserToken().toString());
+
                                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                 startActivity(intent);
+                                finish();
                             }else {
                                 String error = loginViewModel.getErrorMsg();
                                 if (error != null) {
