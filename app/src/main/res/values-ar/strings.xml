@@ -29,4 +29,6 @@
     <string name="Continue_as_guest">Continue as guest</string>
     <string name="or_login_with">Or Login With</string>
     <string name="Category">Category</string>
+    <string name="Email_Or_Password_is_previously_Used">User Email or password is previously used</string>
+    <string name="Check_the_fields_you_entered">Check the fields you entered</string>
 </resources>

@@ -7,6 +7,8 @@ import android.content.Context;
 
 import com.cosmetics.cosmetics.model.LoginData;
 import com.cosmetics.cosmetics.model.LoginResponse;
+import com.cosmetics.cosmetics.model.RegisterData;
+import com.cosmetics.cosmetics.model.RegisterResponse;
 import com.cosmetics.cosmetics.model.User;
 import com.cosmetics.cosmetics.remote.APIClient;
 import com.cosmetics.cosmetics.remote.APIInterface;
@@ -22,7 +24,7 @@ public class LoginViewModel extends ViewModel {
     Context context;
     private MutableLiveData<LoginData> mutableLiveData;
     String Error;
-
+    private MutableLiveData<RegisterData> registerMutableLiveData;
     public LiveData<LoginData> getLogin(User user, Context context) {
         if (mutableLiveData == null) {
             mutableLiveData = new MutableLiveData<LoginData>();
@@ -30,6 +32,43 @@ public class LoginViewModel extends ViewModel {
             login(user);
         }
         return mutableLiveData;
+    }
+    public LiveData<RegisterData> getRegister(User user, Context context) {
+        if (mutableLiveData == null) {
+            registerMutableLiveData = new MutableLiveData<RegisterData>();
+            this.context = context;
+            register(user);
+        }
+        return registerMutableLiveData;
+    }
+
+    private void register(User user) {
+        Map<String, String> queryMap = new HashMap<>();
+        queryMap.put("name", user.getFullname());
+        queryMap.put("phone", user.getPhone());
+        queryMap.put("email", user.getEmail());
+        queryMap.put("password", user.getPassword());
+        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<RegisterResponse> call = apiInterface.register(queryMap);
+        call.enqueue(new Callback<RegisterResponse>() {
+            @Override
+            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                if (response.code()==200)
+                {
+                    registerMutableLiveData.setValue(response.body().getData());
+                }else if(response.code()==401)
+                {
+                    registerMutableLiveData.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+                registerMutableLiveData.setValue(null);
+                Error="error";
+            }
+        });
+
     }
 
     public void login(User user) {

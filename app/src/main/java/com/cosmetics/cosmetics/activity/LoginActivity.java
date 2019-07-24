@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cosmetics.cosmetics.R;
+import com.cosmetics.cosmetics.SharedPrefManager;
 import com.cosmetics.cosmetics.model.LoginData;
 import com.cosmetics.cosmetics.model.User;
 import com.cosmetics.cosmetics.viewmodel.LoginViewModel;
@@ -67,11 +68,20 @@ Typeface customFontRegular;
                     loginViewModel.getLogin(user,getApplicationContext()).observe(LoginActivity.this, new Observer<LoginData>() {
                         @Override
                         public void onChanged(@Nullable LoginData loginData) {
-                            Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
-                            Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
-                            startActivity(intent);
+                            if(loginData!=null) {
+                                Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
+                                SharedPrefManager.getInstance(getApplicationContext()).saveUserToken(loginData.getToken());
+                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                startActivity(intent);
+                            }else {
+                                String error = loginViewModel.getErrorMsg();
+                                if (error != null) {
+                                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.Email_Or_Password_is_previously_Used), Toast.LENGTH_SHORT).show();
+                                }
+                            }
 
-                        }
+
+                            }
                     });
 
                 }
@@ -79,7 +89,7 @@ Typeface customFontRegular;
 
         });
     }
-                    private void init() {
+    private void init() {
         loginBtn=findViewById(R.id.btn_login);
         signUpTxt=findViewById(R.id.T_sign_up);
         forgotPasswordTxt=findViewById(R.id.T_forgot_password);
