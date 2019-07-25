@@ -3,81 +3,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   android:background="#fff"
+    android:background="#fff"
     tools:context=".fragment.ProductsFragment">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background"
-   >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:background="#f7f1f5"
-        android:id="@+id/relative_label_products">
-    <!-- TODO: Update blank fragment layout -->
-
-            <!--<ImageView
-                android:id="@+id/producer_families_image_favrite_heart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:background="@drawable/favorite_heart_button"
-                />-->
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Products"
-                android:layout_centerInParent="true"
-                android:textColor="#767676"
-                android:textSize="@dimen/_14sdp"
-                android:textStyle="bold"/>
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relative_btns"
-        android:layout_width="@dimen/_180sdp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/relative_label_products"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_20sdp"
-        >
-        <Button
-            android:id="@+id/btn_category"
-            android:layout_width="@dimen/_90sdp"
-            android:layout_height="@dimen/_34sdp"
-            android:background="#c94890"
-            android:textColor="#fff"
-            android:layout_alignParentStart="true"
-            android:text="@string/Category"
-            android:textSize="@dimen/_13sdp"
-            android:textStyle="bold"
-            android:textAllCaps="false"/>
-        <Button
-            android:id="@+id/btn_brands"
-            android:layout_width="@dimen/_90sdp"
-            android:layout_height="@dimen/_34sdp"
-            android:layout_toRightOf="@+id/btn_category"
-            android:textColor="#717171"
-            android:text="@string/Brands"
-            android:textStyle="bold"
-            android:background="#fff"/>
-    </RelativeLayout>
 
     <!-- TODO: Update blank fragment layout -->
-   <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_products"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/relative_btns"
-        android:layout_marginLeft="@dimen/_6sdp"
-        android:layout_marginRight="@dimen/_6sdp"
-       android:layout_marginTop="@dimen/_9sdp"
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:background="@drawable/background">
 
-        />
-</RelativeLayout>
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="@dimen/_40sdp"
+           android:background="#f7f1f5"
+           android:id="@+id/relative_label_products">
+           <!-- TODO: Update blank fragment layout -->
 
-</RelativeLayout>
+           <!--<ImageView
+               android:id="@+id/producer_families_image_favrite_heart"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentLeft="true"
+               android:background="@drawable/favorite_heart_button"
+               />-->
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="@string/Products"
+               android:layout_centerInParent="true"
+               android:textColor="#767676"
+               android:textSize="@dimen/_14sdp"
+               android:textStyle="bold"/>
+
+
+       </RelativeLayout>
+
+       <!-- TODO: Update blank fragment layout -->
+       <android.support.v7.widget.RecyclerView
+           android:id="@+id/recycler_products"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_below="@+id/relative_label_products"
+           android:layout_marginLeft="@dimen/_6sdp"
+           android:layout_marginRight="@dimen/_6sdp"
+           />
+   </RelativeLayout>
+
+   </RelativeLayout>
+

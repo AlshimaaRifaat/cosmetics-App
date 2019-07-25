@@ -3,6 +3,8 @@ package com.cosmetics.cosmetics.remote;
 import com.cosmetics.cosmetics.model.HomeSliderResponse;
 import com.cosmetics.cosmetics.model.LatestProductsResponse;
 import com.cosmetics.cosmetics.model.LoginResponse;
+import com.cosmetics.cosmetics.model.ProductCategoryResponse;
+import com.cosmetics.cosmetics.model.ProductsResponse;
 import com.cosmetics.cosmetics.model.RegisterResponse;
 
 import java.util.Map;
@@ -26,4 +28,13 @@ public interface APIInterface {
 
     @POST("slider")
     Call<HomeSliderResponse> getHomeSlider(@QueryMap Map<String, String> map);
+
+    @POST("categories")
+    Call<ProductCategoryResponse> getProductCategory(@QueryMap Map<String, String> map);
+
+    @POST("brands")
+    Call<ProductCategoryResponse> getProductBrand(@QueryMap Map<String, String> map);
+
+    @POST("products")
+    Call<ProductsResponse> getProducts(@QueryMap Map<String, String> map);
 }
