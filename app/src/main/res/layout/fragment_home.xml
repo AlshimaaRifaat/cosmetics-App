@@ -37,7 +37,7 @@
             android:id="@+id/recycler_slider"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_155sdp"
-            android:layout_marginTop="@dimen/_42sdp"
+            android:layout_marginTop="@dimen/_65sdp"
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_15sdp"
             ></android.support.v7.widget.RecyclerView>
@@ -51,7 +51,7 @@
                 android:layout_below="@+id/recycler_slider"
                 android:layout_marginStart="@dimen/_24sdp"
                android:layout_marginEnd="@dimen/_2sdp"
-                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_3sdp"
                 android:textSize="@dimen/_12sdp"/>
             <TextView
                 android:id="@+id/T_label_beauty_salon"
@@ -62,7 +62,7 @@
                 android:textStyle="bold"
                 android:layout_below="@+id/recycler_slider"
                 android:layout_toEndOf="@+id/T_label_featured_services"
-                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_3sdp"
                 android:textSize="@dimen/_12sdp"
                 android:layout_marginEnd="@dimen/_2sdp"/>
             <Button
@@ -96,7 +96,7 @@
                 android:layout_below="@+id/recycler_latest_products"
                 android:layout_marginStart="@dimen/_24sdp"
                 android:layout_marginEnd="@dimen/_2sdp"
-                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:textSize="@dimen/_12sdp"/>
             <TextView
                 android:id="@+id/T_label2_beauty_salon"
@@ -107,7 +107,7 @@
                 android:textStyle="bold"
                 android:layout_below="@+id/recycler_latest_products"
                 android:layout_toEndOf="@+id/T_label_featured_products"
-                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:textSize="@dimen/_12sdp"/>
             <Button
                 android:layout_width="@dimen/_40sdp"

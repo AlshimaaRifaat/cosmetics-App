@@ -19,7 +19,7 @@ import java.util.List;
 public class LatestProductsAdapter extends RecyclerView.Adapter<LatestProductsAdapter.ViewHolder> {
 
     Context context;
-    List<LatestProductsData> latestProductsDataList;
+    private List<LatestProductsData> latestProductsDataList;
     DetailsHomeLatestProductsView detailsHomeLatestProductsView;
 
     public LatestProductsAdapter(Context context, List<LatestProductsData> latestProductsDataList) {
@@ -53,8 +53,8 @@ public class LatestProductsAdapter extends RecyclerView.Adapter<LatestProductsAd
         return latestProductsDataList.size();
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
-        TextView textView;
+       private ImageView imageView;
+       private TextView textView;
 
         public ViewHolder(View itemView) {
             super(itemView);

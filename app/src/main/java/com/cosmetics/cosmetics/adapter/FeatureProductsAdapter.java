@@ -13,12 +13,13 @@ import com.bumptech.glide.Glide;
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.model.LatestProductsData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FeatureProductsAdapter extends RecyclerView.Adapter<FeatureProductsAdapter.ViewHolder> {
 
-    Context context;
-    List<LatestProductsData> latestProductsDataList;
+   Context context;
+    private List<LatestProductsData> latestProductsDataList=new ArrayList<>();
 
     public FeatureProductsAdapter(Context context, List<LatestProductsData> latestProductsDataList) {
         this.context = context;
@@ -38,15 +39,23 @@ public class FeatureProductsAdapter extends RecyclerView.Adapter<FeatureProducts
         holder.textView.setText(latestProductsDataList.get(position).getTitle());
     }
 
+    @Override
     public int getItemCount() {
-        if ((latestProductsDataList.size())!=0) {
-            return latestProductsDataList.size();
-        }
-        return 0;
+        return latestProductsDataList.size();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
-        TextView textView;
+        private ImageView imageView;
+        private TextView textView;
 
         public ViewHolder(View itemView) {
             super(itemView);

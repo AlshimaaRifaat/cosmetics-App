@@ -14,12 +14,13 @@ import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.model.HomeSliderData;
 import com.cosmetics.cosmetics.model.LatestProductsData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomeSliderAdapter  extends RecyclerView.Adapter<HomeSliderAdapter.ViewHolder> {
 
     Context context;
-    List<HomeSliderData> homeSliderDataList;
+    private List<HomeSliderData> homeSliderDataList=new ArrayList<>();
 
     public HomeSliderAdapter(Context context, List<HomeSliderData> homeSliderDataList) {
         this.context = context;

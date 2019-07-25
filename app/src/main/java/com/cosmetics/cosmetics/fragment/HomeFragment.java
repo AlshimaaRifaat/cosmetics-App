@@ -4,6 +4,7 @@ package com.cosmetics.cosmetics.fragment;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,7 +24,10 @@ import com.cosmetics.cosmetics.model.LatestProductsData;
 import com.cosmetics.cosmetics.view.DetailsHomeLatestProductsView;
 import com.cosmetics.cosmetics.viewmodel.LatestProductsViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,6 +54,30 @@ public class HomeFragment extends Fragment implements DetailsHomeLatestProductsV
     @BindView(R.id.recycler_slider)
     RecyclerView recycler_slider;
     HomeSliderAdapter homeSliderAdapter;
+
+
+    List<HomeSliderData> sliders =new ArrayList();
+    final Handler handler = new Handler();
+    int position = 0;
+    Boolean end;
+    final Runnable update = new Runnable() {
+        public void run() {
+            if(position == sliders.size()-1){
+                end = true;
+            }
+            else if (position == 0) {
+                end = false;
+            }
+            if(!end){
+                position++;
+            } else {
+                position--;
+            }
+//                vp_slider.setCurrentItem(page_position, true);
+            recycler_slider.smoothScrollToPosition(position);
+        }
+    };
+
 
     View view;
 
@@ -110,12 +138,22 @@ public void getHomeSlider()
     latestProductsViewModel.getHomeSlider("ar",getContext()).observe(this, new Observer<List<HomeSliderData>>() {
         @Override
         public void onChanged(@Nullable List<HomeSliderData> homeSliderData) {
+            sliders=homeSliderData;
             homeSliderAdapter = new HomeSliderAdapter(getActivity(),homeSliderData);
             recycler_slider.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
             recycler_slider.setAdapter(homeSliderAdapter);
+            Timer swipeTimer = new Timer();
+            swipeTimer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    handler.post(update);
+                }
+            },2000, 2000);
+
         }
     });
 }
+
     @Override
     public void showDetailsHomeLatestProducts(LatestProductsData latestProductsData) {
          DetailsItemProductsFragment detailsItemProductsFragment=new DetailsItemProductsFragment();
