@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.adapter.ProductCategoryAdapter;
@@ -40,8 +41,8 @@ public class ProductsFragment extends Fragment {
     Unbinder unbinder;
 
     Bundle bundle;
-    ProductCategoryData productCategoryData;
-    String BrandId;
+    ProductCategoryData productBrandData,productCategoryData;
+    public String BrandId,CategoryId,TypeValue;
     public ProductsFragment() {
         // Required empty public constructor
     }
@@ -53,15 +54,35 @@ View view;
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.fragment_products, container, false);
         unbinder = ButterKnife.bind(this, view);
-        bundle=this.getArguments();
-        if(bundle!=null)
-        {
-            productCategoryData=bundle.getParcelable("ProductBrandItem");
-            BrandId=String.valueOf(productCategoryData.getId());
-        }
         productsViewModel = ViewModelProviders.of(this).get(ProductsViewModel.class);
-        //check id's
-        productsViewModel.getProducts(BrandId,"","en", getContext()).observe(this, new Observer<List<ProductsData>>() {
+        bundle=this.getArguments();
+        TypeValue=bundle.getString("type");
+        Toast.makeText(getContext(), "ty "+TypeValue, Toast.LENGTH_SHORT).show();
+        /*if(bundle!=null&&TypeValue.equals("brand"))
+        {
+            productBrandData=bundle.getParcelable("ProductBrandItem");
+            BrandId=String.valueOf(productBrandData.getId());
+
+
+        }else*/  if(bundle!=null&&TypeValue.equals("category"))
+        {
+            productCategoryData=bundle.getParcelable("ProductCategoryItem");
+            CategoryId=String.valueOf(productCategoryData.getId());
+
+            getProductsCategory();
+        }
+        //Toast.makeText(getContext(), "brand "+BrandId, Toast.LENGTH_SHORT).show();
+
+
+
+        //check id's,language
+
+        return view;
+    }
+
+
+    public void getProductsCategory() {
+        productsViewModel.getProducts("",CategoryId,"en", getContext()).observe(this, new Observer<List<ProductsData>>() {
             @Override
             public void onChanged(@Nullable List<ProductsData> productsData) {
                 productsAdapter = new ProductsAdapter(getActivity(), productsData);
@@ -70,7 +91,5 @@ View view;
                 recycler_products.setAdapter(productsAdapter);
             }
         });
-        return view;
     }
-
 }

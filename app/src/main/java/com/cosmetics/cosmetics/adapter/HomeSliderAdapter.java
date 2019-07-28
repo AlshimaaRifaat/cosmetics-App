@@ -36,7 +36,7 @@ public class HomeSliderAdapter  extends RecyclerView.Adapter<HomeSliderAdapter.V
 
     @Override
     public void onBindViewHolder(@NonNull HomeSliderAdapter.ViewHolder holder, int position) {
-        Glide.with(context).load("http://style-cosmetics.com"+homeSliderDataList.get(position).getImage()).into(holder.imageView);
+        Glide.with(context).load("http://titco-industry.com"+homeSliderDataList.get(position).getImage()).into(holder.imageView);
 
     }
 

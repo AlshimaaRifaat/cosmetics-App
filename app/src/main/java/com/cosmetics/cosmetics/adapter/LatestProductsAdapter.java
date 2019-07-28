@@ -39,7 +39,7 @@ public class LatestProductsAdapter extends RecyclerView.Adapter<LatestProductsAd
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Glide.with(context).load("http://style-cosmetics.com"+latestProductsDataList.get(position).getImage()).into(holder.imageView);
+        Glide.with(context).load("http://titco-industry.com"+latestProductsDataList.get(position).getImage()).into(holder.imageView);
         holder.textView.setText(latestProductsDataList.get(position).getTitle());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

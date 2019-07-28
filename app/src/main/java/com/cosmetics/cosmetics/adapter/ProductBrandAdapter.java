@@ -20,7 +20,7 @@ public class ProductBrandAdapter extends RecyclerView.Adapter<ProductBrandAdapte
 
     Context context;
     private List<ProductCategoryData> productCategoryDataList;
-    DetailsProductBrandView detailsProductBrandView;
+   // DetailsProductBrandView detailsProductBrandView;
 
 
     public ProductBrandAdapter(Context context, List<ProductCategoryData> productCategoryDataList) {
@@ -34,20 +34,20 @@ public class ProductBrandAdapter extends RecyclerView.Adapter<ProductBrandAdapte
         View view = LayoutInflater.from(context).inflate(R.layout.row_products_category_brand, parent, false);
         return new ProductBrandAdapter.ViewHolder(view);
     }
-    public void onClickItemProductBrand(DetailsProductBrandView detailsProductBrandView)
+    /*public void onClickItemProductBrand(DetailsProductBrandView detailsProductBrandView)
      {
          this.detailsProductBrandView=detailsProductBrandView;
-     }
+     }*/
     @Override
     public void onBindViewHolder(@NonNull ProductBrandAdapter.ViewHolder holder, final int position) {
-        Glide.with(context).load("http://style-cosmetics.com"+productCategoryDataList.get(position).getImage()).into(holder.imageView);
+        Glide.with(context).load("http://titco-industry.com"+productCategoryDataList.get(position).getImage()).into(holder.imageView);
         holder.textView.setText(productCategoryDataList.get(position).getTitle());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 detailsProductBrandView.showDetailsProductBrand(productCategoryDataList.get(position));
             }
-        });
+        });*/
     }
 
     public int getItemCount() {

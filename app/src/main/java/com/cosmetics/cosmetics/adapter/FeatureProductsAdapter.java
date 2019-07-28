@@ -35,7 +35,7 @@ public class FeatureProductsAdapter extends RecyclerView.Adapter<FeatureProducts
 
     @Override
     public void onBindViewHolder(@NonNull FeatureProductsAdapter.ViewHolder holder, int position) {
-        Glide.with(context).load("http://style-cosmetics.com"+latestProductsDataList.get(position).getImage()).into(holder.imageView);
+        Glide.with(context).load("http://titco-industry.com"+latestProductsDataList.get(position).getImage()).into(holder.imageView);
         holder.textView.setText(latestProductsDataList.get(position).getTitle());
     }
 

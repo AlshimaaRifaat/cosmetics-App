@@ -10,7 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIClient {
-    public static final String BASE_URL="http://style-cosmetics.com/api/";
+    public static final String BASE_URL="http://titco-industry.com/api/";
 //    public static final String BASE_URL="http://localhost:83/api_Marrage/";
 
 

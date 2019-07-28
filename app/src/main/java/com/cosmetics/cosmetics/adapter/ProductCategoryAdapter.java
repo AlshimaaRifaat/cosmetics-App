@@ -12,14 +12,17 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.model.ProductCategoryData;
+import com.cosmetics.cosmetics.view.DetailsProductBrandView;
+import com.cosmetics.cosmetics.view.DetailsProductCategoryView;
 
 import java.util.List;
 
 public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategoryAdapter.ViewHolder> {
 
     Context context;
-    private List<ProductCategoryData> productCategoryDataList;
+     List<ProductCategoryData> productCategoryDataList;
 
+    DetailsProductCategoryView detailsProductCategoryView;
 
 
     public ProductCategoryAdapter(Context context, List<ProductCategoryData> productCategoryDataList) {
@@ -34,10 +37,21 @@ public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategory
         return new ProductCategoryAdapter.ViewHolder(view);
     }
 
+   public void onClickItemProductCategory(DetailsProductCategoryView detailsProductCategoryView)
+    {
+        this.detailsProductCategoryView=detailsProductCategoryView;
+    }
     @Override
     public void onBindViewHolder(@NonNull ProductCategoryAdapter.ViewHolder holder, final int position) {
-        Glide.with(context).load("http://style-cosmetics.com"+productCategoryDataList.get(position).getImage()).into(holder.imageView);
+        Glide.with(context).load("http://titco-industry.com"+productCategoryDataList.get(position).getImage()).into(holder.imageView);
         holder.textView.setText(productCategoryDataList.get(position).getTitle());
+
+       holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                detailsProductCategoryView.showDetailsProductCategory(productCategoryDataList.get(position));
+            }
+        });
 
     }
 

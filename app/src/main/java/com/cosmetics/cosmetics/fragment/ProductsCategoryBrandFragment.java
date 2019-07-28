@@ -20,6 +20,7 @@ import com.cosmetics.cosmetics.adapter.ProductBrandAdapter;
 import com.cosmetics.cosmetics.adapter.ProductCategoryAdapter;
 import com.cosmetics.cosmetics.model.ProductCategoryData;
 import com.cosmetics.cosmetics.view.DetailsProductBrandView;
+import com.cosmetics.cosmetics.view.DetailsProductCategoryView;
 import com.cosmetics.cosmetics.viewmodel.ProductCategoryViewModel;
 
 import java.util.List;
@@ -31,7 +32,8 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProductsCategoryBrandFragment extends Fragment implements DetailsProductBrandView{
+public class ProductsCategoryBrandFragment extends Fragment implements
+DetailsProductCategoryView{
     @BindView(R.id.btn_category)
     Button btnCategory;
     @BindView(R.id.btn_brands)
@@ -113,6 +115,7 @@ public class ProductsCategoryBrandFragment extends Fragment implements DetailsPr
             public void onChanged(@Nullable List<ProductCategoryData> productCategoryData) {
                 productCategoryAdapter = new ProductCategoryAdapter(getActivity(), productCategoryData);
                // productCategoryAdapter.onClickItemLatestProduct(HomeFragment.this);
+                productCategoryAdapter.onClickItemProductCategory(ProductsCategoryBrandFragment.this);
                 recycler_products.setLayoutManager(new GridLayoutManager(getContext(),2));
                 recycler_products.setAdapter(productCategoryAdapter);
             }
@@ -125,21 +128,33 @@ public class ProductsCategoryBrandFragment extends Fragment implements DetailsPr
             @Override
             public void onChanged(@Nullable List<ProductCategoryData> productCategoryData) {
                 productBrandAdapter = new ProductBrandAdapter(getActivity(), productCategoryData);
-                // productCategoryAdapter.onClickItemLatestProduct(HomeFragment.this);
-                productBrandAdapter.onClickItemProductBrand(ProductsCategoryBrandFragment.this);
+                //productBrandAdapter.onClickItemProductBrand(ProductsCategoryBrandFragment.this);
                 recycler_products.setLayoutManager(new GridLayoutManager(getContext(),2));
                 recycler_products.setAdapter(productBrandAdapter);
             }
         });
     }
 
-    @Override
+   /* @Override
     public void showDetailsProductBrand(ProductCategoryData productCategoryData) {
         ProductsFragment productsFragment=new ProductsFragment();
         Bundle bundle=new Bundle();
         bundle.putParcelable("ProductBrandItem",productCategoryData);
+        bundle.putString("type","brand");
         productsFragment.setArguments(bundle);
         getFragmentManager().beginTransaction().replace(R.id.relative_product_category_brand,productsFragment)
                 .addToBackStack(null).commit();
+    }*/
+
+ @Override
+    public void showDetailsProductCategory(ProductCategoryData productCategoryData) {
+        ProductsFragment productsFragment=new ProductsFragment();
+        Bundle bundle=new Bundle();
+        bundle.putParcelable("ProductCategoryItem",productCategoryData);
+       bundle.putString("type","category");
+        productsFragment.setArguments(bundle);
+        getFragmentManager().beginTransaction().replace(R.id.relative_product_category_brand,productsFragment)
+                .addToBackStack(null).commit();
+
     }
 }
