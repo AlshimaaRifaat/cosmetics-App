@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.adapter.FeatureProductsAdapter;
@@ -156,7 +155,7 @@ public void getHomeSlider()
 
     @Override
     public void showDetailsHomeLatestProducts(LatestProductsData latestProductsData) {
-         DetailsItemProductsFragment detailsItemProductsFragment=new DetailsItemProductsFragment();
+         DetailsProductFragment detailsItemProductsFragment=new DetailsProductFragment();
          Bundle bundle=new Bundle();
          bundle.putParcelable("LatestProductsItem",latestProductsData);
          detailsItemProductsFragment.setArguments(bundle);

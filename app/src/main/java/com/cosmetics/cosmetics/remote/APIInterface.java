@@ -1,5 +1,6 @@
 package com.cosmetics.cosmetics.remote;
 
+import com.cosmetics.cosmetics.model.DetailsProductSliderResponse;
 import com.cosmetics.cosmetics.model.HomeSliderResponse;
 import com.cosmetics.cosmetics.model.LatestProductsResponse;
 import com.cosmetics.cosmetics.model.LoginResponse;
@@ -37,4 +38,7 @@ public interface APIInterface {
 
     @POST("products")
     Call<ProductsResponse> getProducts(@QueryMap Map<String, String> map);
+
+    @POST("products_images")
+    Call<DetailsProductSliderResponse> getDetailsProductSlider(@QueryMap Map<String, String> map);
 }
