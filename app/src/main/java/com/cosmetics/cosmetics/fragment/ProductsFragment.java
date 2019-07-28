@@ -58,18 +58,20 @@ View view;
         bundle=this.getArguments();
         TypeValue=bundle.getString("type");
         Toast.makeText(getContext(), "ty "+TypeValue, Toast.LENGTH_SHORT).show();
-        /*if(bundle!=null&&TypeValue.equals("brand"))
-        {
-            productBrandData=bundle.getParcelable("ProductBrandItem");
-            BrandId=String.valueOf(productBrandData.getId());
-
-
-        }else*/  if(bundle!=null&&TypeValue.equals("category"))
+        if(bundle!=null&&TypeValue.equals("category"))
         {
             productCategoryData=bundle.getParcelable("ProductCategoryItem");
             CategoryId=String.valueOf(productCategoryData.getId());
 
             getProductsCategory();
+        }else if (bundle!=null&&TypeValue.equals("brand"))
+        {
+            productBrandData=bundle.getParcelable("ProductBrandItem");
+
+                BrandId = String.valueOf(productBrandData.getId());
+
+            getProductsBrand();
+
         }
         //Toast.makeText(getContext(), "brand "+BrandId, Toast.LENGTH_SHORT).show();
 
@@ -82,14 +84,30 @@ View view;
 
 
     public void getProductsCategory() {
-        productsViewModel.getProducts("",CategoryId,"en", getContext()).observe(this, new Observer<List<ProductsData>>() {
-            @Override
-            public void onChanged(@Nullable List<ProductsData> productsData) {
-                productsAdapter = new ProductsAdapter(getActivity(), productsData);
-                // productCategoryAdapter.onClickItemLatestProduct(HomeFragment.this);
-                recycler_products.setLayoutManager(new GridLayoutManager(getContext(),2));
-                recycler_products.setAdapter(productsAdapter);
-            }
-        });
+if(CategoryId!=null) {
+    productsViewModel.getProducts("", CategoryId, "en", getContext()).observe(this, new Observer<List<ProductsData>>() {
+        @Override
+        public void onChanged(@Nullable List<ProductsData> productsData) {
+            productsAdapter = new ProductsAdapter(getActivity(), productsData);
+            // productCategoryAdapter.onClickItemLatestProduct(HomeFragment.this);
+            recycler_products.setLayoutManager(new GridLayoutManager(getContext(), 2));
+            recycler_products.setAdapter(productsAdapter);
+        }
+    });
+}
+    }
+
+    public void getProductsBrand() {
+        if (BrandId != null) {
+            productsViewModel.getProducts(BrandId, "", "en", getContext()).observe(this, new Observer<List<ProductsData>>() {
+                @Override
+                public void onChanged(@Nullable List<ProductsData> productsData) {
+                    productsAdapter = new ProductsAdapter(getActivity(), productsData);
+                    // productCategoryAdapter.onClickItemLatestProduct(HomeFragment.this);
+                    recycler_products.setLayoutManager(new GridLayoutManager(getContext(), 2));
+                    recycler_products.setAdapter(productsAdapter);
+                }
+            });
+        }
     }
 }

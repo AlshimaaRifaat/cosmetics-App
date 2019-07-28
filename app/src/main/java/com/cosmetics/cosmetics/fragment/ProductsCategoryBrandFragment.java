@@ -33,7 +33,7 @@ import butterknife.Unbinder;
  * A simple {@link Fragment} subclass.
  */
 public class ProductsCategoryBrandFragment extends Fragment implements
-DetailsProductCategoryView{
+DetailsProductCategoryView,DetailsProductBrandView{
     @BindView(R.id.btn_category)
     Button btnCategory;
     @BindView(R.id.btn_brands)
@@ -67,6 +67,7 @@ DetailsProductCategoryView{
             @Override
             public void onChanged(@Nullable List<ProductCategoryData> productCategoryData) {
                 productCategoryAdapter = new ProductCategoryAdapter(getActivity(), productCategoryData);
+                productCategoryAdapter.onClickItemProductCategory(ProductsCategoryBrandFragment.this);
                 recycler_products.setLayoutManager(new GridLayoutManager(getContext(),2));
                 recycler_products.setAdapter(productCategoryAdapter);
             }
@@ -128,14 +129,14 @@ DetailsProductCategoryView{
             @Override
             public void onChanged(@Nullable List<ProductCategoryData> productCategoryData) {
                 productBrandAdapter = new ProductBrandAdapter(getActivity(), productCategoryData);
-                //productBrandAdapter.onClickItemProductBrand(ProductsCategoryBrandFragment.this);
+               productBrandAdapter.onClickItemProductBrand(ProductsCategoryBrandFragment.this);
                 recycler_products.setLayoutManager(new GridLayoutManager(getContext(),2));
                 recycler_products.setAdapter(productBrandAdapter);
             }
         });
     }
 
-   /* @Override
+    @Override
     public void showDetailsProductBrand(ProductCategoryData productCategoryData) {
         ProductsFragment productsFragment=new ProductsFragment();
         Bundle bundle=new Bundle();
@@ -144,7 +145,7 @@ DetailsProductCategoryView{
         productsFragment.setArguments(bundle);
         getFragmentManager().beginTransaction().replace(R.id.relative_product_category_brand,productsFragment)
                 .addToBackStack(null).commit();
-    }*/
+    }
 
  @Override
     public void showDetailsProductCategory(ProductCategoryData productCategoryData) {
