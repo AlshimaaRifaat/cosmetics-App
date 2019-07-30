@@ -164,6 +164,37 @@
                 android:layout_marginBottom="@dimen/_10sdp"
                 />
         </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_below="@id/relative_about"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:background="#fff"
+            android:id="@+id/relative_colors"
+            >
+            <TextView
+                android:id="@+id/T_colors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="#C6488E"
+                android:text="@string/Colors"
+                />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_products"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_below="@+id/T_colors"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_4sdp"
+                />
+        </RelativeLayout>
+
         <Button
             android:id="@+id/btn_add_to_cart"
             android:layout_width="@dimen/_145sdp"
@@ -175,7 +206,7 @@
             android:textColor="#fff"
             android:text="@string/Add_to_cart"
             android:textAllCaps="false"
-            android:layout_below="@id/relative_about"
+            android:layout_below="@id/relative_colors"
             android:clickable="true"
             />
         <android.support.v7.widget.RecyclerView

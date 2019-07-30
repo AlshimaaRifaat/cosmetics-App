@@ -40,6 +40,7 @@
             android:textColor="#939292"
             android:textSize="@dimen/_12sdp"
             android:textStyle="bold"
+            android:singleLine="true"
 
             />
 

@@ -18,6 +18,7 @@ import com.cosmetics.cosmetics.adapter.ProductCategoryAdapter;
 import com.cosmetics.cosmetics.adapter.ProductsAdapter;
 import com.cosmetics.cosmetics.model.ProductCategoryData;
 import com.cosmetics.cosmetics.model.ProductsData;
+import com.cosmetics.cosmetics.view.DetailsProductView;
 import com.cosmetics.cosmetics.viewmodel.ProductCategoryViewModel;
 import com.cosmetics.cosmetics.viewmodel.ProductsViewModel;
 
@@ -30,7 +31,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProductsFragment extends Fragment {
+public class ProductsFragment extends Fragment implements DetailsProductView {
 
     ProductsViewModel productsViewModel;
 
@@ -57,7 +58,7 @@ View view;
         productsViewModel = ViewModelProviders.of(this).get(ProductsViewModel.class);
         bundle=this.getArguments();
         TypeValue=bundle.getString("type");
-        Toast.makeText(getContext(), "ty "+TypeValue, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getContext(), "ty "+TypeValue, Toast.LENGTH_SHORT).show();
         if(bundle!=null&&TypeValue.equals("category"))
         {
             productCategoryData=bundle.getParcelable("ProductCategoryItem");
@@ -90,6 +91,7 @@ if(CategoryId!=null) {
         public void onChanged(@Nullable List<ProductsData> productsData) {
             productsAdapter = new ProductsAdapter(getActivity(), productsData);
             // productCategoryAdapter.onClickItemLatestProduct(HomeFragment.this);
+            productsAdapter.onClickItemProduct(ProductsFragment.this);
             recycler_products.setLayoutManager(new GridLayoutManager(getContext(), 2));
             recycler_products.setAdapter(productsAdapter);
         }
@@ -103,11 +105,22 @@ if(CategoryId!=null) {
                 @Override
                 public void onChanged(@Nullable List<ProductsData> productsData) {
                     productsAdapter = new ProductsAdapter(getActivity(), productsData);
-                    // productCategoryAdapter.onClickItemLatestProduct(HomeFragment.this);
+                     productsAdapter.onClickItemProduct(ProductsFragment.this);
                     recycler_products.setLayoutManager(new GridLayoutManager(getContext(), 2));
                     recycler_products.setAdapter(productsAdapter);
                 }
             });
         }
+    }
+
+    @Override
+    public void showDetailsProduct(ProductsData productsData) {
+        DetailsProductFragment detailsProductFragment=new DetailsProductFragment();
+        Bundle bundle=new Bundle();
+        bundle.putParcelable("ProductItem",productsData);
+        bundle.putString("from","productsPage");
+        detailsProductFragment.setArguments(bundle);
+        getFragmentManager().beginTransaction().replace(R.id.container_products,detailsProductFragment)
+                .addToBackStack(null).commit();
     }
 }

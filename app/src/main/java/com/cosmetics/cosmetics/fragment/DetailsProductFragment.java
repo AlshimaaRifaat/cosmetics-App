@@ -24,6 +24,7 @@ import com.cosmetics.cosmetics.adapter.LatestProductsAdapter;
 import com.cosmetics.cosmetics.model.DetailsProductSliderData;
 import com.cosmetics.cosmetics.model.HomeSliderData;
 import com.cosmetics.cosmetics.model.LatestProductsData;
+import com.cosmetics.cosmetics.model.ProductsData;
 import com.cosmetics.cosmetics.viewmodel.DetailsProductViewModel;
 import com.cosmetics.cosmetics.viewmodel.LatestProductsViewModel;
 
@@ -64,7 +65,9 @@ public class DetailsProductFragment extends Fragment {
     DetailsProductViewModel detailsProductViewModel;
     DetailsProductSliderAdapter detailsProductSliderAdapter;
 
-    Bundle bundle;
+    Bundle bundle,bundleProducts;
+    ProductsData productsData;
+    String productId,fromValue;
 
     public DetailsProductFragment() {
         // Required empty public constructor
@@ -77,28 +80,39 @@ public class DetailsProductFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_details_product, container, false);
         unbinder = ButterKnife.bind(this, view);
-        getDetailsProductSlider();
+
         bundle = this.getArguments();
-        if (bundle != null) {
+        bundleProducts=this.getArguments();
+        fromValue=bundle.getString("from");
+        Toast.makeText(getContext(), fromValue, Toast.LENGTH_SHORT).show();
+        if (bundleProducts!= null&&fromValue.equals("productsPage")) {
+            productsData = bundleProducts.getParcelable("ProductItem");
+            productId=String.valueOf(productsData.getId());
+            getDetailsProductSlider();
+        }else if (bundle != null&&fromValue.equals("homeLatestProductPage")) {
             latestProductsData = bundle.getParcelable("LatestProductsItem");
+            productId=String.valueOf(latestProductsData.getId());
             T_title.setText(latestProductsData.getTitle());
             T_price.setText("$" + String.valueOf(latestProductsData.getPriceGeneral()));
             T_description.setText(latestProductsData.getDescription());
             T_label_title.setText(latestProductsData.getTitle());
+            getDetailsProductSlider();
         }
+
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 Toast.makeText(getContext(), String.valueOf(rating), Toast.LENGTH_SHORT).show();
             }
         });
+        Toast.makeText(getContext(), productId, Toast.LENGTH_SHORT).show();
         return view;
     }
 
     public void getDetailsProductSlider() {
         detailsProductViewModel = ViewModelProviders.of(this).get(DetailsProductViewModel.class);
         //check "ar"
-        detailsProductViewModel.getDetailsProductSlider("1", getContext()).observe(this, new Observer<List<DetailsProductSliderData>>() {
+        detailsProductViewModel.getDetailsProductSlider(productId, getContext()).observe(this, new Observer<List<DetailsProductSliderData>>() {
             @Override
             public void onChanged(@Nullable List<DetailsProductSliderData> detailsProductSliderData) {
                 detailsProductSliderAdapter = new DetailsProductSliderAdapter(getActivity(),detailsProductSliderData);

@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.model.ProductsData;
+import com.cosmetics.cosmetics.view.DetailsProductCategoryView;
+import com.cosmetics.cosmetics.view.DetailsProductView;
 
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     Context context;
     private List<ProductsData> productsDataList;
 
+    DetailsProductView detailsProductView;
 
     public ProductsAdapter(Context context, List<ProductsData> productsDataList) {
         this.context = context;
@@ -32,12 +35,22 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         View view = LayoutInflater.from(context).inflate(R.layout.row_products, parent, false);
         return new ProductsAdapter.ViewHolder(view);
     }
-
+    public void onClickItemProduct(DetailsProductView detailsProductView)
+    {
+        this.detailsProductView=detailsProductView;
+    }
     @Override
     public void onBindViewHolder(@NonNull ProductsAdapter.ViewHolder holder, final int position) {
         Glide.with(context).load("http://titco-industry.com"+productsDataList.get(position).getImage()).into(holder.imageView);
         holder.T_title.setText(productsDataList.get(position).getTitle());
         holder.T_price.setText(String.valueOf(productsDataList.get(position).getPriceGeneral()));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                detailsProductView.showDetailsProduct(productsDataList.get(position));
+            }
+        });
     }
 
     public int getItemCount() {

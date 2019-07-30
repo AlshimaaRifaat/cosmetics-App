@@ -158,6 +158,7 @@ public void getHomeSlider()
          DetailsProductFragment detailsItemProductsFragment=new DetailsProductFragment();
          Bundle bundle=new Bundle();
          bundle.putParcelable("LatestProductsItem",latestProductsData);
+         bundle.putString("from","homeLatestProductPage");
          detailsItemProductsFragment.setArguments(bundle);
          getFragmentManager().beginTransaction().replace(R.id.relative_home,detailsItemProductsFragment)
                  .addToBackStack(null).commit();
