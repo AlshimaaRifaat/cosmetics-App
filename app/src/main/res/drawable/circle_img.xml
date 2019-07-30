@@ -8,8 +8,10 @@
         android:radius="@dimen/_24sdp"
 
         />
+    <size android:width="50dp"
+        android:height="50dp"/>
     <stroke
-        android:color="#b3b3b3"
+        android:color="#000"
         android:width="@dimen/_1sdp"
         />
 </shape>

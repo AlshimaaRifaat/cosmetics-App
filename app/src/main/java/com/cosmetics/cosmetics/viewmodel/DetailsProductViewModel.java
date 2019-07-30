@@ -5,6 +5,8 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.content.Context;
 
+import com.cosmetics.cosmetics.model.DetailsProductColorsData;
+import com.cosmetics.cosmetics.model.DetailsProductColorsResponse;
 import com.cosmetics.cosmetics.model.DetailsProductSliderData;
 import com.cosmetics.cosmetics.model.DetailsProductSliderResponse;
 import com.cosmetics.cosmetics.model.LatestProductsData;
@@ -23,6 +25,7 @@ public class DetailsProductViewModel extends ViewModel
 {
     Context context;
     private MutableLiveData<List<DetailsProductSliderData>> listProductSliderMutableLiveData;
+    private MutableLiveData<List<DetailsProductColorsData>> listProductColorsMutableLiveData;
     public LiveData<List<DetailsProductSliderData>> getDetailsProductSlider(String product_id, Context context) {
         if (listProductSliderMutableLiveData == null) {
             listProductSliderMutableLiveData = new MutableLiveData<List<DetailsProductSliderData>>();
@@ -32,6 +35,40 @@ public class DetailsProductViewModel extends ViewModel
         }
         return listProductSliderMutableLiveData;
 
+    }
+    public LiveData<List<DetailsProductColorsData>> getDetailsProductColor(String product_id, Context context) {
+        if (listProductColorsMutableLiveData== null) {
+            listProductColorsMutableLiveData = new MutableLiveData<List<DetailsProductColorsData>>();
+            this.context=context;
+            getDetailsProductColorValues(product_id);
+
+        }
+        return listProductColorsMutableLiveData;
+
+    }
+
+    private void getDetailsProductColorValues(String product_id) {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("product_id", product_id);
+        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<DetailsProductColorsResponse> call = apiInterface.getDetailsProductColors(hashMap);
+        call.enqueue(new Callback<DetailsProductColorsResponse>() {
+            @Override
+            public void onResponse(Call<DetailsProductColorsResponse> call, Response<DetailsProductColorsResponse> response) {
+
+                if (response.code()==200) {
+                    listProductColorsMutableLiveData.setValue(response.body().getData());
+                } else  {
+                    listProductColorsMutableLiveData.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DetailsProductColorsResponse> call, Throwable t) {
+                listProductColorsMutableLiveData.setValue(null);
+
+            }
+        });
     }
 
     private void getDetailsProductSliderValues(String product_id) {

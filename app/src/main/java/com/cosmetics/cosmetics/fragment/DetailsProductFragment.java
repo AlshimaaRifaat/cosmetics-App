@@ -17,10 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cosmetics.cosmetics.R;
+import com.cosmetics.cosmetics.adapter.DetailsProductColorsAdapter;
 import com.cosmetics.cosmetics.adapter.DetailsProductSliderAdapter;
 import com.cosmetics.cosmetics.adapter.FeatureProductsAdapter;
 import com.cosmetics.cosmetics.adapter.HomeSliderAdapter;
 import com.cosmetics.cosmetics.adapter.LatestProductsAdapter;
+import com.cosmetics.cosmetics.model.DetailsProductColorsData;
 import com.cosmetics.cosmetics.model.DetailsProductSliderData;
 import com.cosmetics.cosmetics.model.HomeSliderData;
 import com.cosmetics.cosmetics.model.LatestProductsData;
@@ -59,6 +61,11 @@ public class DetailsProductFragment extends Fragment {
     @BindView(R.id.recycler_slider)
     RecyclerView recycler_slider;
 
+    @BindView(R.id.recycler_colors)
+    RecyclerView recycler_colors;
+    DetailsProductColorsAdapter detailsProductColorsAdapter;
+
+
     Unbinder unbinder;
 
     LatestProductsData latestProductsData;
@@ -80,15 +87,16 @@ public class DetailsProductFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_details_product, container, false);
         unbinder = ButterKnife.bind(this, view);
-
+        detailsProductViewModel = ViewModelProviders.of(this).get(DetailsProductViewModel.class);
         bundle = this.getArguments();
         bundleProducts=this.getArguments();
         fromValue=bundle.getString("from");
-        Toast.makeText(getContext(), fromValue, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getContext(), fromValue, Toast.LENGTH_SHORT).show();
         if (bundleProducts!= null&&fromValue.equals("productsPage")) {
             productsData = bundleProducts.getParcelable("ProductItem");
             productId=String.valueOf(productsData.getId());
             getDetailsProductSlider();
+            getDetailsProductColors();
         }else if (bundle != null&&fromValue.equals("homeLatestProductPage")) {
             latestProductsData = bundle.getParcelable("LatestProductsItem");
             productId=String.valueOf(latestProductsData.getId());
@@ -97,20 +105,20 @@ public class DetailsProductFragment extends Fragment {
             T_description.setText(latestProductsData.getDescription());
             T_label_title.setText(latestProductsData.getTitle());
             getDetailsProductSlider();
+            getDetailsProductColors();
         }
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                Toast.makeText(getContext(), String.valueOf(rating), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), String.valueOf(rating), Toast.LENGTH_SHORT).show();
             }
         });
-        Toast.makeText(getContext(), productId, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getContext(), productId, Toast.LENGTH_SHORT).show();
         return view;
     }
 
     public void getDetailsProductSlider() {
-        detailsProductViewModel = ViewModelProviders.of(this).get(DetailsProductViewModel.class);
         //check "ar"
         detailsProductViewModel.getDetailsProductSlider(productId, getContext()).observe(this, new Observer<List<DetailsProductSliderData>>() {
             @Override
@@ -118,6 +126,20 @@ public class DetailsProductFragment extends Fragment {
                 detailsProductSliderAdapter = new DetailsProductSliderAdapter(getActivity(),detailsProductSliderData);
                 recycler_slider.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
                 recycler_slider.setAdapter(detailsProductSliderAdapter);
+            }
+        });
+
+    }
+
+    public void getDetailsProductColors() {
+        detailsProductViewModel.getDetailsProductColor(productId, getContext()).observe(this, new Observer<List<DetailsProductColorsData>>() {
+            @Override
+            public void onChanged(@Nullable List<DetailsProductColorsData> detailsProductColorsDataList) {
+                if(detailsProductColorsDataList!=null) {
+                    detailsProductColorsAdapter = new DetailsProductColorsAdapter(getActivity(), detailsProductColorsDataList);
+                    recycler_colors.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                    recycler_colors.setAdapter(detailsProductColorsAdapter);
+                }
             }
         });
 
