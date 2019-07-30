@@ -89,11 +89,13 @@ if(CategoryId!=null) {
     productsViewModel.getProducts("", CategoryId, "en", getContext()).observe(this, new Observer<List<ProductsData>>() {
         @Override
         public void onChanged(@Nullable List<ProductsData> productsData) {
-            productsAdapter = new ProductsAdapter(getActivity(), productsData);
-            // productCategoryAdapter.onClickItemLatestProduct(HomeFragment.this);
-            productsAdapter.onClickItemProduct(ProductsFragment.this);
-            recycler_products.setLayoutManager(new GridLayoutManager(getContext(), 2));
-            recycler_products.setAdapter(productsAdapter);
+            if (productsData!=null) {
+                productsAdapter = new ProductsAdapter(getActivity(), productsData);
+                // productCategoryAdapter.onClickItemLatestProduct(HomeFragment.this);
+                productsAdapter.onClickItemProduct(ProductsFragment.this);
+                recycler_products.setLayoutManager(new GridLayoutManager(getContext(), 2));
+                recycler_products.setAdapter(productsAdapter);
+            }
         }
     });
 }
@@ -104,10 +106,12 @@ if(CategoryId!=null) {
             productsViewModel.getProducts(BrandId, "", "en", getContext()).observe(this, new Observer<List<ProductsData>>() {
                 @Override
                 public void onChanged(@Nullable List<ProductsData> productsData) {
-                    productsAdapter = new ProductsAdapter(getActivity(), productsData);
-                     productsAdapter.onClickItemProduct(ProductsFragment.this);
-                    recycler_products.setLayoutManager(new GridLayoutManager(getContext(), 2));
-                    recycler_products.setAdapter(productsAdapter);
+                    if (productsData!=null) {
+                        productsAdapter = new ProductsAdapter(getActivity(), productsData);
+                        productsAdapter.onClickItemProduct(ProductsFragment.this);
+                        recycler_products.setLayoutManager(new GridLayoutManager(getContext(), 2));
+                        recycler_products.setAdapter(productsAdapter);
+                    }
                 }
             });
         }

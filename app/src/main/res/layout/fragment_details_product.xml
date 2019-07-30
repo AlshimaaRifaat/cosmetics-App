@@ -187,10 +187,10 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_colors"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_35sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_below="@+id/T_colors"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_6sdp"
                 />
         </RelativeLayout>
 

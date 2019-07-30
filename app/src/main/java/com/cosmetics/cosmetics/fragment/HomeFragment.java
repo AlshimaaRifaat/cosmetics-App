@@ -110,10 +110,12 @@ public class HomeFragment extends Fragment implements DetailsHomeLatestProductsV
         latestProductsViewModel.getlatestProducts("ar",getContext()).observe(this, new Observer<List<LatestProductsData>>() {
             @Override
             public void onChanged(@Nullable List<LatestProductsData> latestProductsData) {
-                latestProductsAdapter = new LatestProductsAdapter(getActivity(),latestProductsData);
-                latestProductsAdapter.onClickItemLatestProduct(HomeFragment.this);
-                recycler_latest_products.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-                recycler_latest_products.setAdapter(latestProductsAdapter);
+                if (latestProductsData!=null) {
+                    latestProductsAdapter = new LatestProductsAdapter(getActivity(), latestProductsData);
+                    latestProductsAdapter.onClickItemLatestProduct(HomeFragment.this);
+                    recycler_latest_products.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                    recycler_latest_products.setAdapter(latestProductsAdapter);
+                }
             }
         });
     }
@@ -124,9 +126,11 @@ public class HomeFragment extends Fragment implements DetailsHomeLatestProductsV
         latestProductsViewModel.getFeaturedProducts("ar",getContext()).observe(this, new Observer<List<LatestProductsData>>() {
             @Override
             public void onChanged(@Nullable List<LatestProductsData> latestProductsData) {
-                featureProductsAdapter = new FeatureProductsAdapter(getActivity(),latestProductsData);
-                recycler_featured_products.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-                recycler_featured_products.setAdapter(featureProductsAdapter);
+                if (latestProductsData!=null) {
+                    featureProductsAdapter = new FeatureProductsAdapter(getActivity(), latestProductsData);
+                    recycler_featured_products.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                    recycler_featured_products.setAdapter(featureProductsAdapter);
+                }
             }
         });
     }
@@ -138,16 +142,18 @@ public void getHomeSlider()
         @Override
         public void onChanged(@Nullable List<HomeSliderData> homeSliderData) {
             sliders=homeSliderData;
-            homeSliderAdapter = new HomeSliderAdapter(getActivity(),homeSliderData);
-            recycler_slider.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-            recycler_slider.setAdapter(homeSliderAdapter);
-            Timer swipeTimer = new Timer();
-            swipeTimer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    handler.post(update);
-                }
-            },2000, 2000);
+            if (sliders!=null) {
+                homeSliderAdapter = new HomeSliderAdapter(getActivity(), homeSliderData);
+                recycler_slider.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                recycler_slider.setAdapter(homeSliderAdapter);
+                Timer swipeTimer = new Timer();
+                swipeTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        handler.post(update);
+                    }
+                }, 2000, 2000);
+            }
 
         }
     });

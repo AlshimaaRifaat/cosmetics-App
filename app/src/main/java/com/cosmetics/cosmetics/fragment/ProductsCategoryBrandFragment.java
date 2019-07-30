@@ -114,11 +114,13 @@ DetailsProductCategoryView,DetailsProductBrandView{
         productCategoryViewModel.getProductCategory("en", getContext()).observe(this, new Observer<List<ProductCategoryData>>() {
             @Override
             public void onChanged(@Nullable List<ProductCategoryData> productCategoryData) {
-                productCategoryAdapter = new ProductCategoryAdapter(getActivity(), productCategoryData);
-               // productCategoryAdapter.onClickItemLatestProduct(HomeFragment.this);
-                productCategoryAdapter.onClickItemProductCategory(ProductsCategoryBrandFragment.this);
-                recycler_products.setLayoutManager(new GridLayoutManager(getContext(),2));
-                recycler_products.setAdapter(productCategoryAdapter);
+                if (productCategoryData!=null) {
+                    productCategoryAdapter = new ProductCategoryAdapter(getActivity(), productCategoryData);
+                    // productCategoryAdapter.onClickItemLatestProduct(HomeFragment.this);
+                    productCategoryAdapter.onClickItemProductCategory(ProductsCategoryBrandFragment.this);
+                    recycler_products.setLayoutManager(new GridLayoutManager(getContext(), 2));
+                    recycler_products.setAdapter(productCategoryAdapter);
+                }
             }
         });
     }
@@ -128,10 +130,12 @@ DetailsProductCategoryView,DetailsProductBrandView{
         productCategoryViewModel.getProductBrand("en", getContext()).observe(this, new Observer<List<ProductCategoryData>>() {
             @Override
             public void onChanged(@Nullable List<ProductCategoryData> productCategoryData) {
-                productBrandAdapter = new ProductBrandAdapter(getActivity(), productCategoryData);
-               productBrandAdapter.onClickItemProductBrand(ProductsCategoryBrandFragment.this);
-                recycler_products.setLayoutManager(new GridLayoutManager(getContext(),2));
-                recycler_products.setAdapter(productBrandAdapter);
+                if (productCategoryData!=null) {
+                    productBrandAdapter = new ProductBrandAdapter(getActivity(), productCategoryData);
+                    productBrandAdapter.onClickItemProductBrand(ProductsCategoryBrandFragment.this);
+                    recycler_products.setLayoutManager(new GridLayoutManager(getContext(), 2));
+                    recycler_products.setAdapter(productBrandAdapter);
+                }
             }
         });
     }
@@ -152,7 +156,7 @@ DetailsProductCategoryView,DetailsProductBrandView{
         ProductsFragment productsFragment=new ProductsFragment();
         Bundle bundle=new Bundle();
         bundle.putParcelable("ProductCategoryItem",productCategoryData);
-       bundle.putString("type","category");
+        bundle.putString("type","category");
         productsFragment.setArguments(bundle);
         getFragmentManager().beginTransaction().replace(R.id.relative_product_category_brand,productsFragment)
                 .addToBackStack(null).commit();

@@ -123,9 +123,11 @@ public class DetailsProductFragment extends Fragment {
         detailsProductViewModel.getDetailsProductSlider(productId, getContext()).observe(this, new Observer<List<DetailsProductSliderData>>() {
             @Override
             public void onChanged(@Nullable List<DetailsProductSliderData> detailsProductSliderData) {
-                detailsProductSliderAdapter = new DetailsProductSliderAdapter(getActivity(),detailsProductSliderData);
-                recycler_slider.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-                recycler_slider.setAdapter(detailsProductSliderAdapter);
+                if(detailsProductSliderData!=null) {
+                    detailsProductSliderAdapter = new DetailsProductSliderAdapter(getActivity(), detailsProductSliderData);
+                    recycler_slider.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                    recycler_slider.setAdapter(detailsProductSliderAdapter);
+                }
             }
         });
 
