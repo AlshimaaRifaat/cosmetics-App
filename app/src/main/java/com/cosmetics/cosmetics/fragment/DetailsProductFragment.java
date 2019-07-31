@@ -96,7 +96,7 @@ public class DetailsProductFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         detailsProductViewModel = ViewModelProviders.of(this).get(DetailsProductViewModel.class);
         userTokenValue= SharedPrefManager.getInstance(getContext()).getUserToken();
-        Toast.makeText(getContext(),userTokenValue, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getContext(),userTokenValue, Toast.LENGTH_SHORT).show();
 
         bundle = this.getArguments();
         bundleProducts=this.getArguments();

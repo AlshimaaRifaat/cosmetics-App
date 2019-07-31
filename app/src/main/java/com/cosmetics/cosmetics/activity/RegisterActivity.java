@@ -86,7 +86,10 @@ public class RegisterActivity extends AppCompatActivity {
                             }else {
                                 String error = loginViewModel.getErrorMsg();
                                 if (error != null) {
+                                    //check network con
+                                   // Toast.makeText(RegisterActivity.this, getResources().getString(R.string.Check_network_connection), Toast.LENGTH_SHORT).show();
                                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.Check_the_fields_you_entered), Toast.LENGTH_SHORT).show();
+
                                 }
                             }
 

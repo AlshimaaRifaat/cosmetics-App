@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_104sdp"
         android:scaleType="fitXY"
-        android:background="#be293d"
+        android:background="#fff"
         />
 
 <RelativeLayout
@@ -48,7 +48,7 @@
 
             />
 
-        <TextView
+       <!-- <TextView
             android:id="@+id/T_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
             android:textSize="@dimen/_11sdp"
             android:textStyle="bold"
             android:layout_below="@id/T_title"
-            />
+            />-->
 
         </RelativeLayout>
 
@@ -72,7 +72,7 @@
             android:layout_toEndOf="@id/relative_name">
 
             <TextView
-                android:id="@+id/T_quantity"
+                android:id="@+id/T_product_quantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_2sdp"
@@ -86,7 +86,7 @@
                 />
 
             <TextView
-                android:id="@+id/T_price"
+                android:id="@+id/T_unit_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_2sdp"
@@ -96,7 +96,7 @@
                 android:textColor="#939292"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold"
-                android:layout_below="@id/T_quantity"
+                android:layout_below="@id/T_product_quantity"
                 />
         </RelativeLayout>
 
@@ -112,26 +112,28 @@
         android:textAllCaps="false"
         android:background="@drawable/txt_price"
         android:layout_marginStart="@dimen/_5sdp"
-        android:id="@+id/T_total_price"></TextView>
-
+        android:id="@+id/T_total_unit_price"></TextView>
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_53sdp"
+    android:layout_alignParentEnd="true"
+    android:layout_marginEnd="@dimen/_10sdp">
     <Button
         android:id="@+id/btn_plus"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_53sdp"
         android:text="+"
         android:textSize="@dimen/_12sdp"
         android:gravity="center"
         android:textAllCaps="false"
         android:background="@drawable/txt_price"
-        android:layout_marginStart="@dimen/_209sdp"
+
         ></Button>
     <TextView
         android:id="@+id/T_changed_quantity"
         android:layout_width="@dimen/_35sdp"
         android:layout_height="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_53sdp"
-        android:text="12"
         android:textSize="@dimen/_12sdp"
         android:gravity="center"
         android:textAllCaps="false"
@@ -144,7 +146,6 @@
         android:id="@+id/btn_minus"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_53sdp"
         android:text="-"
         android:textSize="@dimen/_12sdp"
         android:gravity="center"
@@ -153,7 +154,7 @@
         android:layout_marginStart="@dimen/_3sdp"
         android:layout_toEndOf="@+id/T_changed_quantity"
         ></Button>
-
+</RelativeLayout>
 
 </RelativeLayout>
 

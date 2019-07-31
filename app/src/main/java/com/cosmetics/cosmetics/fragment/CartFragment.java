@@ -1,16 +1,31 @@
 package com.cosmetics.cosmetics.fragment;
 
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
 
 import com.cosmetics.cosmetics.R;
+import com.cosmetics.cosmetics.SharedPrefManager;
+import com.cosmetics.cosmetics.adapter.CartAdapter;
+import com.cosmetics.cosmetics.adapter.DetailsProductSliderAdapter;
+import com.cosmetics.cosmetics.adapter.LatestProductsAdapter;
+import com.cosmetics.cosmetics.model.GetListCartData;
+import com.cosmetics.cosmetics.viewmodel.CartViewModel;
+import com.cosmetics.cosmetics.viewmodel.LatestProductsViewModel;
+
+import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
@@ -18,7 +33,13 @@ import butterknife.Unbinder;
  */
 public class CartFragment extends Fragment {
 
+    CartViewModel cartViewModel;
 
+    @BindView(R.id.recycler_cart)
+    RecyclerView recycler_cart;
+    CartAdapter cartAdapter;
+    String userTokenValue;
+    Unbinder unbinder;
 View view;
     public CartFragment() {
         // Required empty public constructor
@@ -30,7 +51,24 @@ View view;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.fragment_cart, container, false);
+        unbinder= ButterKnife.bind(this,view);
+        userTokenValue= SharedPrefManager.getInstance(getContext()).getUserToken();
+        performGettingListCart();
         return view;
+    }
+
+    private void performGettingListCart() {
+        cartViewModel = ViewModelProviders.of(this).get(CartViewModel.class);
+        cartViewModel.getListCart("en",userTokenValue,getContext()).observe(this, new Observer<List<GetListCartData>>() {
+            @Override
+            public void onChanged(@Nullable List<GetListCartData> getListCartData) {
+                if(getListCartData!=null) {
+                    cartAdapter = new CartAdapter(getActivity(), getListCartData);
+                    recycler_cart.setLayoutManager(new LinearLayoutManager(getContext()));
+                    recycler_cart.setAdapter(cartAdapter);
+                }
+            }
+        });
     }
 
 }

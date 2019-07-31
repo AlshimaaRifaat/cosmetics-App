@@ -3,6 +3,7 @@ package com.cosmetics.cosmetics.remote;
 import com.cosmetics.cosmetics.model.DetailsProductAddCartResponse;
 import com.cosmetics.cosmetics.model.DetailsProductColorsResponse;
 import com.cosmetics.cosmetics.model.DetailsProductSliderResponse;
+import com.cosmetics.cosmetics.model.GetListCartResponse;
 import com.cosmetics.cosmetics.model.HomeSliderResponse;
 import com.cosmetics.cosmetics.model.LatestProductsResponse;
 import com.cosmetics.cosmetics.model.LoginResponse;
@@ -52,4 +53,8 @@ public interface APIInterface {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("add_cart")
     Call<DetailsProductAddCartResponse> getDetailsProductAddCart(@QueryMap Map<String, String> map, @Header("Authorization") String auth);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST("list_data_cart")
+    Call<GetListCartResponse> getListCart(@QueryMap Map<String, String> map, @Header("Authorization") String auth);
 }
