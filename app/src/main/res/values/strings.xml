@@ -36,4 +36,5 @@
     <string name="Email_Or_Password_is_previously_Used">User Email or password is previously used</string>
     <string name="Check_the_fields_you_entered">Check the fields you entered</string>
     <string name="Colors">Colors</string>
+    <string name="Pleaseloginfirst">Please, login first!</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.cosmetics.cosmetics.remote;
 
+import com.cosmetics.cosmetics.model.DetailsProductAddCartResponse;
 import com.cosmetics.cosmetics.model.DetailsProductColorsResponse;
 import com.cosmetics.cosmetics.model.DetailsProductSliderResponse;
 import com.cosmetics.cosmetics.model.HomeSliderResponse;
@@ -12,6 +13,8 @@ import com.cosmetics.cosmetics.model.RegisterResponse;
 import java.util.Map;
 
 import retrofit2.Call;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
 
@@ -45,4 +48,8 @@ public interface APIInterface {
 
     @POST("products_colors")
     Call<DetailsProductColorsResponse> getDetailsProductColors(@QueryMap Map<String, String> map);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST("add_cart")
+    Call<DetailsProductAddCartResponse> getDetailsProductAddCart(@QueryMap Map<String, String> map, @Header("Authorization") String auth);
 }

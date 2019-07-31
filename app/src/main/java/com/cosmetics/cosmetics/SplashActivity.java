@@ -20,7 +20,6 @@ public class SplashActivity extends AppCompatActivity {
 
        userTokenValue= SharedPrefManager.getInstance(this).getUserToken();
 
-
         Thread timer=new Thread(  )
         {
             @Override
