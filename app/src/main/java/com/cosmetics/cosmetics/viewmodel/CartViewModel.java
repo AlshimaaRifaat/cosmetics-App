@@ -9,6 +9,7 @@ import com.cosmetics.cosmetics.model.DetailsProductAddCartResponse;
 import com.cosmetics.cosmetics.model.DetailsProductSliderData;
 import com.cosmetics.cosmetics.model.GetListCartData;
 import com.cosmetics.cosmetics.model.GetListCartResponse;
+import com.cosmetics.cosmetics.model.PlusQuantityCartResponse;
 import com.cosmetics.cosmetics.model.TotalResultGetListCartData;
 import com.cosmetics.cosmetics.remote.APIClient;
 import com.cosmetics.cosmetics.remote.APIInterface;
@@ -24,6 +25,7 @@ public class CartViewModel extends ViewModel {
     Context context;
     private MutableLiveData<List<GetListCartData>> listCartMutableLiveData;
     private MutableLiveData<TotalResultGetListCartData> totalResultCartMutableLiveData;
+    private MutableLiveData<PlusQuantityCartResponse> plusQuantityCartMutableLiveData;
     public LiveData<List<GetListCartData>> getListCart(String lang,String user_token_Authorization , Context context) {
 
         listCartMutableLiveData = new MutableLiveData<List<GetListCartData>>();
@@ -33,6 +35,7 @@ public class CartViewModel extends ViewModel {
         return listCartMutableLiveData;
 
     }
+
     public LiveData<TotalResultGetListCartData> getTotalResultListCart(String lang,String user_token_Authorization , Context context) {
 
         totalResultCartMutableLiveData = new MutableLiveData<TotalResultGetListCartData>();
@@ -43,7 +46,41 @@ public class CartViewModel extends ViewModel {
 
     }
 
+    public LiveData<PlusQuantityCartResponse> getPlusQuantityCart(String lang,String cart_id,String user_token_Authorization , Context context) {
 
+        plusQuantityCartMutableLiveData = new MutableLiveData<PlusQuantityCartResponse>();
+        this.context=context;
+        getPlusQuantityCartValues(lang,cart_id,user_token_Authorization);
+
+        return plusQuantityCartMutableLiveData;
+
+    }
+
+    private void getPlusQuantityCartValues(String lang, String cart_id, String user_token_authorization) {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("lang", lang);
+        hashMap.put("cart_id",cart_id);
+        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<PlusQuantityCartResponse> call = apiInterface.getPlusQuantityCart(hashMap,"Bearer "+user_token_authorization);
+        call.enqueue(new Callback<PlusQuantityCartResponse>() {
+            @Override
+            public void onResponse(Call<PlusQuantityCartResponse> call, Response<PlusQuantityCartResponse> response) {
+
+                if (response.code()==200) {
+                    plusQuantityCartMutableLiveData.setValue(response.body());
+
+                } else  {
+                    plusQuantityCartMutableLiveData.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PlusQuantityCartResponse> call, Throwable t) {
+                plusQuantityCartMutableLiveData.setValue(null);
+
+            }
+        });
+    }
 
     private void getListCartValues(String lang, String user_token_authorization) {
         HashMap<String, String> hashMap = new HashMap<>();

@@ -128,7 +128,6 @@
         android:gravity="center"
         android:textAllCaps="false"
         android:background="@drawable/txt_price"
-
         ></Button>
     <TextView
         android:id="@+id/T_changed_quantity"
@@ -140,6 +139,8 @@
         android:background="@drawable/txt_price"
         android:layout_marginStart="@dimen/_3sdp"
         android:layout_toEndOf="@+id/btn_plus"
+        android:textColor="#fff"
+
         ></TextView>
 
     <Button

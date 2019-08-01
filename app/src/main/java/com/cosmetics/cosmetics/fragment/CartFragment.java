@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.SharedPrefManager;
@@ -20,7 +21,9 @@ import com.cosmetics.cosmetics.adapter.CartAdapter;
 import com.cosmetics.cosmetics.adapter.DetailsProductSliderAdapter;
 import com.cosmetics.cosmetics.adapter.LatestProductsAdapter;
 import com.cosmetics.cosmetics.model.GetListCartData;
+import com.cosmetics.cosmetics.model.PlusQuantityCartResponse;
 import com.cosmetics.cosmetics.model.TotalResultGetListCartData;
+import com.cosmetics.cosmetics.view.PlusQuantityCartView;
 import com.cosmetics.cosmetics.viewmodel.CartViewModel;
 import com.cosmetics.cosmetics.viewmodel.LatestProductsViewModel;
 
@@ -33,7 +36,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CartFragment extends Fragment {
+public class CartFragment extends Fragment implements PlusQuantityCartView {
 
     CartViewModel cartViewModel;
 
@@ -46,6 +49,8 @@ public class CartFragment extends Fragment {
 
     @BindView(R.id.T_sub_total_price)
     TextView T_sub_total_price;
+
+
     Unbinder unbinder;
 View view;
     public CartFragment() {
@@ -63,8 +68,14 @@ View view;
         cartViewModel = ViewModelProviders.of(this).get(CartViewModel.class);
         performGettingListCart();
         performGettingTotalResultListCart();
+
+
         return view;
     }
+
+
+
+
 
     private void performGettingTotalResultListCart() {
         cartViewModel.getTotalResultListCart("en",userTokenValue,getContext()).observe(this, new Observer<TotalResultGetListCartData>() {
@@ -84,6 +95,7 @@ View view;
             public void onChanged(@Nullable List<GetListCartData> getListCartData) {
                 if(getListCartData!=null) {
                     cartAdapter = new CartAdapter(getActivity(), getListCartData);
+                    cartAdapter.onClickPlusQuantityCart( CartFragment. this);
                     recycler_cart.setLayoutManager(new LinearLayoutManager(getContext()));
                     recycler_cart.setAdapter(cartAdapter);
                 }
@@ -91,4 +103,16 @@ View view;
         });
     }
 
+    @Override
+    public void showPlusQuantityCart(GetListCartData getListCartData, CartAdapter.ViewHolder viewHolder) {
+        //check lang,cart id
+        cartViewModel.getPlusQuantityCart("en",String.valueOf(getListCartData.getCartId()),userTokenValue,getContext())
+                .observe(this, new Observer<PlusQuantityCartResponse>() {
+                    @Override
+                    public void onChanged(@Nullable PlusQuantityCartResponse plusQuantityCartResponse) {
+                        if(plusQuantityCartResponse!=null)
+                            Toast.makeText(getContext(), plusQuantityCartResponse.getData(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
 }

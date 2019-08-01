@@ -7,6 +7,7 @@ import com.cosmetics.cosmetics.model.GetListCartResponse;
 import com.cosmetics.cosmetics.model.HomeSliderResponse;
 import com.cosmetics.cosmetics.model.LatestProductsResponse;
 import com.cosmetics.cosmetics.model.LoginResponse;
+import com.cosmetics.cosmetics.model.PlusQuantityCartResponse;
 import com.cosmetics.cosmetics.model.ProductCategoryResponse;
 import com.cosmetics.cosmetics.model.ProductsResponse;
 import com.cosmetics.cosmetics.model.RegisterResponse;
@@ -57,4 +58,8 @@ public interface APIInterface {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("list_data_cart")
     Call<GetListCartResponse> getListCart(@QueryMap Map<String, String> map, @Header("Authorization") String auth);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST("plus_quentity_Cart")
+    Call<PlusQuantityCartResponse> getPlusQuantityCart(@QueryMap Map<String, String> map, @Header("Authorization") String auth);
 }
