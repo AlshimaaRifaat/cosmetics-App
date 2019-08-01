@@ -36,13 +36,13 @@
             android:id="@+id/T_sub_total_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_3sdp"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:textSize="@dimen/_12sdp"
-            android:textColor="#747474"
-            android:text="1000$"
-            android:textStyle="bold"
             android:layout_below="@id/recycler_cart"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginTop="10dp"
+            android:text="1000$"
+            android:textColor="#747474"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"
 
             />
         <TextView

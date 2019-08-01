@@ -4,5 +4,5 @@ import com.cosmetics.cosmetics.adapter.CartAdapter;
 import com.cosmetics.cosmetics.model.GetListCartData;
 
 public interface PlusQuantityCartView {
-    void showPlusQuantityCart(GetListCartData getListCartData, CartAdapter.ViewHolder viewHolder);
+    void showPlusQuantityCart(GetListCartData getListCartData);
 }

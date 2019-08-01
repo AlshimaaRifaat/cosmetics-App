@@ -21,6 +21,7 @@ import com.cosmetics.cosmetics.adapter.CartAdapter;
 import com.cosmetics.cosmetics.adapter.DetailsProductSliderAdapter;
 import com.cosmetics.cosmetics.adapter.LatestProductsAdapter;
 import com.cosmetics.cosmetics.model.GetListCartData;
+import com.cosmetics.cosmetics.model.GetListCartResponse;
 import com.cosmetics.cosmetics.model.PlusQuantityCartResponse;
 import com.cosmetics.cosmetics.model.TotalResultGetListCartData;
 import com.cosmetics.cosmetics.view.PlusQuantityCartView;
@@ -104,7 +105,7 @@ View view;
     }
 
     @Override
-    public void showPlusQuantityCart(GetListCartData getListCartData, CartAdapter.ViewHolder viewHolder) {
+    public void showPlusQuantityCart(GetListCartData getListCartData) {
         //check lang,cart id
         cartViewModel.getPlusQuantityCart("en",String.valueOf(getListCartData.getCartId()),userTokenValue,getContext())
                 .observe(this, new Observer<PlusQuantityCartResponse>() {
@@ -112,6 +113,9 @@ View view;
                     public void onChanged(@Nullable PlusQuantityCartResponse plusQuantityCartResponse) {
                         if(plusQuantityCartResponse!=null)
                             Toast.makeText(getContext(), plusQuantityCartResponse.getData(), Toast.LENGTH_SHORT).show();
+                        performGettingListCart();
+                        performGettingTotalResultListCart();
+
                     }
                 });
     }

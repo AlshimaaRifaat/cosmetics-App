@@ -52,7 +52,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.Btn_plus_quantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                plusQuantityCartView.showPlusQuantityCart(getListCartDataList.get(position),holder);
+                /*int countt=Integer.parseInt(holder.T_changed_quantity.getText().toString());
+                countt++;
+                holder.T_changed_quantity.setText(String.valueOf(countt));
+                holder.T_total_unit_price.setText(Double.toString(Double.parseDouble(holder.T_quantity.getText().toString())*Double.parseDouble(holder.T_unit_price.getText().toString())));*/
+                plusQuantityCartView.showPlusQuantityCart(getListCartDataList.get(position));
             }
         });
     }
