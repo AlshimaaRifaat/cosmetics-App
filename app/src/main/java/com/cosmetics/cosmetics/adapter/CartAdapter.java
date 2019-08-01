@@ -43,9 +43,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull CartAdapter.ViewHolder holder, final int position) {
         Glide.with(context).load("http://titco-industry.com"+getListCartDataList.get(position).getImage()).into(holder.img);
         holder.T_title.setText(getListCartDataList.get(position).getProductName());
-        holder.T_quantity.setText(String.valueOf(getListCartDataList.get(position).getQuantity()));
-        holder.T_unit_price.setText(String.valueOf(getListCartDataList.get(position).getUnitPrice()));
-        holder.T_total_unit_price.setText(String.valueOf(getListCartDataList.get(position).getTotalUnitPrice()));
+        holder.T_quantity.setText("Qty "+String.valueOf(getListCartDataList.get(position).getQuantity()));
+        holder.T_unit_price.setText("Price $"+String.valueOf(getListCartDataList.get(position).getUnitPrice()));
+        holder.T_total_unit_price.setText("$"+String.valueOf(getListCartDataList.get(position).getTotalUnitPrice()));
         /*holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -9,6 +9,7 @@ import com.cosmetics.cosmetics.model.DetailsProductAddCartResponse;
 import com.cosmetics.cosmetics.model.DetailsProductSliderData;
 import com.cosmetics.cosmetics.model.GetListCartData;
 import com.cosmetics.cosmetics.model.GetListCartResponse;
+import com.cosmetics.cosmetics.model.TotalResultGetListCartData;
 import com.cosmetics.cosmetics.remote.APIClient;
 import com.cosmetics.cosmetics.remote.APIInterface;
 
@@ -22,7 +23,7 @@ import retrofit2.Response;
 public class CartViewModel extends ViewModel {
     Context context;
     private MutableLiveData<List<GetListCartData>> listCartMutableLiveData;
-
+    private MutableLiveData<TotalResultGetListCartData> totalResultCartMutableLiveData;
     public LiveData<List<GetListCartData>> getListCart(String lang,String user_token_Authorization , Context context) {
 
         listCartMutableLiveData = new MutableLiveData<List<GetListCartData>>();
@@ -32,6 +33,17 @@ public class CartViewModel extends ViewModel {
         return listCartMutableLiveData;
 
     }
+    public LiveData<TotalResultGetListCartData> getTotalResultListCart(String lang,String user_token_Authorization , Context context) {
+
+        totalResultCartMutableLiveData = new MutableLiveData<TotalResultGetListCartData>();
+        this.context=context;
+        getListCartValues(lang,user_token_Authorization);
+
+        return totalResultCartMutableLiveData;
+
+    }
+
+
 
     private void getListCartValues(String lang, String user_token_authorization) {
         HashMap<String, String> hashMap = new HashMap<>();
@@ -44,6 +56,7 @@ public class CartViewModel extends ViewModel {
 
                 if (response.code()==200) {
                     listCartMutableLiveData.setValue(response.body().getData().getList());
+                    totalResultCartMutableLiveData.setValue(response.body().getData());
                 } else  {
                     listCartMutableLiveData.setValue(null);
                 }

@@ -33,7 +33,7 @@
             ></android.support.v7.widget.RecyclerView>
 
         <TextView
-            android:id="@+id/T_sub_total"
+            android:id="@+id/T_sub_total_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_3sdp"
@@ -54,7 +54,7 @@
             android:textColor="#747474"
             android:text="taxes"
             android:textStyle="bold"
-            android:layout_below="@id/T_sub_total"
+            android:layout_below="@id/T_sub_total_price"
 
             />
         <TextView

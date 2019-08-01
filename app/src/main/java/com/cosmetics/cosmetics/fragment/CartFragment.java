@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.SharedPrefManager;
@@ -19,6 +20,7 @@ import com.cosmetics.cosmetics.adapter.CartAdapter;
 import com.cosmetics.cosmetics.adapter.DetailsProductSliderAdapter;
 import com.cosmetics.cosmetics.adapter.LatestProductsAdapter;
 import com.cosmetics.cosmetics.model.GetListCartData;
+import com.cosmetics.cosmetics.model.TotalResultGetListCartData;
 import com.cosmetics.cosmetics.viewmodel.CartViewModel;
 import com.cosmetics.cosmetics.viewmodel.LatestProductsViewModel;
 
@@ -35,10 +37,15 @@ public class CartFragment extends Fragment {
 
     CartViewModel cartViewModel;
 
+
+
     @BindView(R.id.recycler_cart)
     RecyclerView recycler_cart;
     CartAdapter cartAdapter;
     String userTokenValue;
+
+    @BindView(R.id.T_sub_total_price)
+    TextView T_sub_total_price;
     Unbinder unbinder;
 View view;
     public CartFragment() {
@@ -53,12 +60,25 @@ View view;
         view= inflater.inflate(R.layout.fragment_cart, container, false);
         unbinder= ButterKnife.bind(this,view);
         userTokenValue= SharedPrefManager.getInstance(getContext()).getUserToken();
+        cartViewModel = ViewModelProviders.of(this).get(CartViewModel.class);
         performGettingListCart();
+        performGettingTotalResultListCart();
         return view;
     }
 
+    private void performGettingTotalResultListCart() {
+        cartViewModel.getTotalResultListCart("en",userTokenValue,getContext()).observe(this, new Observer<TotalResultGetListCartData>() {
+            @Override
+            public void onChanged(@Nullable TotalResultGetListCartData totalResultGetListCartData) {
+                if (totalResultGetListCartData!=null) {
+                    T_sub_total_price.setText(String.valueOf(totalResultGetListCartData.getPrice()));
+                }
+            }
+        });
+    }
+
     private void performGettingListCart() {
-        cartViewModel = ViewModelProviders.of(this).get(CartViewModel.class);
+
         cartViewModel.getListCart("en",userTokenValue,getContext()).observe(this, new Observer<List<GetListCartData>>() {
             @Override
             public void onChanged(@Nullable List<GetListCartData> getListCartData) {

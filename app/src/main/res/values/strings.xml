@@ -37,4 +37,6 @@
     <string name="Check_the_fields_you_entered">Check the fields you entered</string>
     <string name="Colors">Colors</string>
     <string name="Pleaseloginfirst">Please, login first!</string>
+    <string name="Qty">Qty</string>
+    <string name="Price">Price</string>
 </resources>
