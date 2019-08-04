@@ -6,6 +6,7 @@ import com.cosmetics.cosmetics.model.DetailsProductSliderResponse;
 import com.cosmetics.cosmetics.model.GetListCartResponse;
 import com.cosmetics.cosmetics.model.HomeSliderResponse;
 import com.cosmetics.cosmetics.model.LatestProductsResponse;
+import com.cosmetics.cosmetics.model.ListFavoriteProductResponse;
 import com.cosmetics.cosmetics.model.LoginResponse;
 import com.cosmetics.cosmetics.model.PlusQuantityCartResponse;
 import com.cosmetics.cosmetics.model.ProductCategoryResponse;
@@ -66,4 +67,8 @@ public interface APIInterface {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("favorite_product")
     Call<PlusQuantityCartResponse> getFavoriteProduct(@QueryMap Map<String, String> map, @Header("Authorization") String auth);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST("list_favorite_product")
+    Call<ListFavoriteProductResponse> getListFavoriteProduct(@QueryMap Map<String, String> map, @Header("Authorization") String auth);
 }

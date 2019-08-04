@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         >
         <ImageView
-            android:id="@+id/row_prod_family_image"
+            android:id="@+id/img"
             android:layout_width="@dimen/_140sdp"
             android:layout_height="@dimen/_95sdp"
             android:layout_margin="@dimen/_3sdp"
@@ -18,8 +18,8 @@
             />
     </RelativeLayout>
     <RelativeLayout
-        android:layout_width="@dimen/_144sdp"
-        android:layout_height="@dimen/_50sdp"
+        android:layout_width="@dimen/_140sdp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_3sdp"
         android:layout_below="@id/relative_img"
         android:layout_marginBottom="@dimen/_3sdp"
@@ -37,16 +37,28 @@
             android:textSize="@dimen/_11sdp"
             android:textStyle="bold"
             />
-        <ImageView
-            android:id="@+id/icon_favorite"
-            android:layout_width="@dimen/_18sdp"
-            android:layout_height="@dimen/_18sdp"
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_3sdp"
             android:layout_marginEnd="@dimen/_3sdp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="@dimen/_27sdp"
-            android:background="@drawable/favorite_heart_button"
+            android:layout_marginTop="@dimen/_22sdp"
+            android:layout_marginBottom="@dimen/_3sdp"
+           android:layout_alignParentEnd="true">
+        <ImageView
+            android:id="@+id/icon_favorite_black"
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:background="@drawable/favorite_heart_button_black"
             />
+            <ImageView
+                android:id="@+id/icon_favorite_pink"
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:background="@drawable/favorite_heart_button"
+                android:visibility="gone"
+                />
+        </RelativeLayout>
        <!-- <TextView
             android:id="@+id/T_quantity"
             android:layout_width="wrap_content"

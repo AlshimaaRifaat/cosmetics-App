@@ -41,8 +41,6 @@ public class CartFragment extends Fragment implements PlusQuantityCartView {
 
     CartViewModel cartViewModel;
 
-
-
     @BindView(R.id.recycler_cart)
     RecyclerView recycler_cart;
     CartAdapter cartAdapter;
