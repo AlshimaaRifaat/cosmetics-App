@@ -12,6 +12,7 @@ import com.cosmetics.cosmetics.model.DetailsProductSliderData;
 import com.cosmetics.cosmetics.model.DetailsProductSliderResponse;
 import com.cosmetics.cosmetics.model.LatestProductsData;
 import com.cosmetics.cosmetics.model.LatestProductsResponse;
+import com.cosmetics.cosmetics.model.PlusQuantityCartResponse;
 import com.cosmetics.cosmetics.remote.APIClient;
 import com.cosmetics.cosmetics.remote.APIInterface;
 
@@ -28,6 +29,7 @@ public class DetailsProductViewModel extends ViewModel
     private MutableLiveData<List<DetailsProductSliderData>> listProductSliderMutableLiveData;
     private MutableLiveData<List<DetailsProductColorsData>> listProductColorsMutableLiveData;
     private MutableLiveData<DetailsProductAddCartResponse> productAddCartMutableLiveData;
+    private MutableLiveData<PlusQuantityCartResponse> favoriteProductMutableLiveData;
     public LiveData<List<DetailsProductSliderData>> getDetailsProductSlider(String product_id, Context context) {
         if (listProductSliderMutableLiveData == null) {
             listProductSliderMutableLiveData = new MutableLiveData<List<DetailsProductSliderData>>();
@@ -49,20 +51,56 @@ public class DetailsProductViewModel extends ViewModel
 
     }
 
-    public LiveData<DetailsProductAddCartResponse> getDetailsProductAddCart(String product_id,String product_quantity,String user_token_authentication, Context context) {
+    public LiveData<DetailsProductAddCartResponse> getDetailsProductAddCart(String product_id,String product_quantity,String color_id,String user_token_authentication, Context context) {
 
         productAddCartMutableLiveData = new MutableLiveData<DetailsProductAddCartResponse>();
             this.context=context;
-            getDetailsProductAddCartValues(product_id,product_quantity,user_token_authentication);
+            getDetailsProductAddCartValues(product_id,product_quantity,color_id,user_token_authentication);
 
         return productAddCartMutableLiveData;
 
     }
+    public LiveData<PlusQuantityCartResponse> getFavoriteProduct(String lang,String product_id,String user_token_authentication, Context context) {
 
-    private void getDetailsProductAddCartValues(String product_id,String product_quantity,String user_token_authentication) {
+        favoriteProductMutableLiveData = new MutableLiveData<PlusQuantityCartResponse>();
+        this.context=context;
+        getFavoriteProductValues(lang,product_id,user_token_authentication);
+
+        return favoriteProductMutableLiveData;
+
+    }
+
+    private void getFavoriteProductValues(String lang, String product_id, String user_token_authentication) {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("lang", lang);
+        hashMap.put("product_id",product_id);
+        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<PlusQuantityCartResponse> call = apiInterface.getFavoriteProduct(hashMap,"Bearer "+user_token_authentication);
+        call.enqueue(new Callback<PlusQuantityCartResponse>() {
+            @Override
+            public void onResponse(Call<PlusQuantityCartResponse> call, Response<PlusQuantityCartResponse> response) {
+
+                if (response.code()==200) {
+                    favoriteProductMutableLiveData.setValue(response.body());
+                } else  {
+                    favoriteProductMutableLiveData.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PlusQuantityCartResponse> call, Throwable t) {
+                favoriteProductMutableLiveData.setValue(null);
+
+            }
+        });
+
+    }
+
+    private void getDetailsProductAddCartValues(String product_id,String product_quantity,String color_id,String user_token_authentication) {
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("product_id", product_id);
         hashMap.put("product_quantity",product_quantity);
+        hashMap.put("color_id",color_id);
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
         Call<DetailsProductAddCartResponse> call = apiInterface.getDetailsProductAddCart(hashMap,"Bearer "+user_token_authentication);
         call.enqueue(new Callback<DetailsProductAddCartResponse>() {

@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +33,9 @@ import com.cosmetics.cosmetics.model.DetailsProductColorsData;
 import com.cosmetics.cosmetics.model.DetailsProductSliderData;
 import com.cosmetics.cosmetics.model.HomeSliderData;
 import com.cosmetics.cosmetics.model.LatestProductsData;
+import com.cosmetics.cosmetics.model.PlusQuantityCartResponse;
 import com.cosmetics.cosmetics.model.ProductsData;
+import com.cosmetics.cosmetics.view.OnClickProductColorView;
 import com.cosmetics.cosmetics.viewmodel.DetailsProductViewModel;
 import com.cosmetics.cosmetics.viewmodel.LatestProductsViewModel;
 
@@ -47,7 +50,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetailsProductFragment extends Fragment {
+public class DetailsProductFragment extends Fragment implements OnClickProductColorView {
     @BindView(R.id.rating_bar)
     RatingBar ratingBar;
 
@@ -73,6 +76,12 @@ public class DetailsProductFragment extends Fragment {
 
     @BindView(R.id.btn_add_to_cart)
     Button btn_add_to_cart;
+
+    @BindView(R.id.img_favorite_pink)
+    ImageView img_favorite_pink;
+
+    @BindView(R.id.img_favorite_black)
+    ImageView img_favorite_black;
     Unbinder unbinder;
 
     LatestProductsData latestProductsData;
@@ -81,7 +90,8 @@ public class DetailsProductFragment extends Fragment {
 
     Bundle bundle,bundleProducts;
     ProductsData productsData;
-    String productId,fromValue,userTokenValue;;
+    String productId,fromValue,userTokenValue;
+    public String productColorId;
 
     public DetailsProductFragment() {
         // Required empty public constructor
@@ -124,6 +134,12 @@ public class DetailsProductFragment extends Fragment {
                // Toast.makeText(getContext(), String.valueOf(rating), Toast.LENGTH_SHORT).show();
             }
         });
+        img_favorite_black.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                performFavoriteProduct();
+            }
+        });
        // Toast.makeText(getContext(), productId, Toast.LENGTH_SHORT).show();
         btn_add_to_cart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +148,32 @@ public class DetailsProductFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    private void performFavoriteProduct() {
+
+        if (userTokenValue==null)
+        {
+            Toast.makeText(getContext(), getResources().getString(R.string.Pleaseloginfirst), Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(getActivity(), LoginActivity.class);
+            startActivity(i);
+            ((Activity) getActivity()).overridePendingTransition(0,0);
+            getActivity().finish();
+        }else
+        {
+            detailsProductViewModel.getFavoriteProduct("en",productId,userTokenValue, getContext()).observe(this, new Observer<PlusQuantityCartResponse>() {
+                @Override
+                public void onChanged(@Nullable PlusQuantityCartResponse plusQuantityCartResponse) {
+                    if(plusQuantityCartResponse!=null)
+                    {
+                        Toast.makeText(getContext(), plusQuantityCartResponse.getData(), Toast.LENGTH_SHORT).show();
+                        img_favorite_black.setVisibility(View.GONE);
+                        img_favorite_pink.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+
+        }
     }
 
     private void performAddingToCard() {
@@ -144,7 +186,8 @@ public class DetailsProductFragment extends Fragment {
             getActivity().finish();
         }else
         {
-            detailsProductViewModel.getDetailsProductAddCart(productId,"1",userTokenValue, getContext()).observe(this,
+          //  Toast.makeText(getContext(), productColorId, Toast.LENGTH_SHORT).show();
+            detailsProductViewModel.getDetailsProductAddCart(productId,"1", productColorId,userTokenValue, getContext()).observe(this,
                     new Observer<DetailsProductAddCartResponse>() {
                         @Override
                         public void onChanged(@Nullable DetailsProductAddCartResponse detailsProductAddCartResponse) {
@@ -180,11 +223,19 @@ public class DetailsProductFragment extends Fragment {
             public void onChanged(@Nullable List<DetailsProductColorsData> detailsProductColorsDataList) {
                 if(detailsProductColorsDataList!=null) {
                     detailsProductColorsAdapter = new DetailsProductColorsAdapter(getActivity(), detailsProductColorsDataList);
+                    detailsProductColorsAdapter.onClickProductColor(DetailsProductFragment.this);
                     recycler_colors.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
                     recycler_colors.setAdapter(detailsProductColorsAdapter);
                 }
             }
         });
 
+    }
+
+    @Override
+    public void showOnClickProductColorResult(DetailsProductColorsData detailsProductColorsData) {
+
+        productColorId=String.valueOf(detailsProductColorsData.getId());
+        this.productColorId=productColorId;
     }
 }

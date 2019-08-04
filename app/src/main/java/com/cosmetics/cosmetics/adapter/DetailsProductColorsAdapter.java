@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.model.DetailsProductColorsData;
 import com.cosmetics.cosmetics.model.HomeSliderData;
+import com.cosmetics.cosmetics.view.OnClickProductColorView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class DetailsProductColorsAdapter  extends RecyclerView.Adapter<DetailsPr
     Context context;
     private List<DetailsProductColorsData> detailsProductColorsDataList=new ArrayList<>();
     int row_index=0;
-
+   OnClickProductColorView onClickProductColorView;
     public DetailsProductColorsAdapter(Context context, List<DetailsProductColorsData> detailsProductColorsDataList) {
         this.context = context;
         this.detailsProductColorsDataList = detailsProductColorsDataList;
@@ -40,6 +41,10 @@ public class DetailsProductColorsAdapter  extends RecyclerView.Adapter<DetailsPr
     public DetailsProductColorsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.row_details_product_colors, parent, false);
         return new DetailsProductColorsAdapter.ViewHolder(view);
+    }
+    public void onClickProductColor(OnClickProductColorView onClickProductColorView)
+    {
+        this.onClickProductColorView=onClickProductColorView;
     }
 
     @Override
@@ -64,9 +69,11 @@ public class DetailsProductColorsAdapter  extends RecyclerView.Adapter<DetailsPr
             @Override
             public void onClick(View v) {
                 row_index=position;
+                onClickProductColorView.showOnClickProductColorResult(detailsProductColorsDataList.get(position));
                 notifyDataSetChanged();
             }
         });
+
 
     }
 
