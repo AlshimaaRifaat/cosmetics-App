@@ -24,6 +24,7 @@ import com.cosmetics.cosmetics.model.GetListCartData;
 import com.cosmetics.cosmetics.model.GetListCartResponse;
 import com.cosmetics.cosmetics.model.PlusQuantityCartResponse;
 import com.cosmetics.cosmetics.model.TotalResultGetListCartData;
+import com.cosmetics.cosmetics.view.DeleteItemCartView;
 import com.cosmetics.cosmetics.view.MinQuantityView;
 import com.cosmetics.cosmetics.view.PlusQuantityCartView;
 import com.cosmetics.cosmetics.viewmodel.CartViewModel;
@@ -38,7 +39,8 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CartFragment extends Fragment implements PlusQuantityCartView,MinQuantityView {
+public class CartFragment extends Fragment implements PlusQuantityCartView,MinQuantityView
+,DeleteItemCartView{
 
     CartViewModel cartViewModel;
 
@@ -97,6 +99,7 @@ public class CartFragment extends Fragment implements PlusQuantityCartView,MinQu
                     cartAdapter = new CartAdapter(getActivity(), getListCartData);
                     cartAdapter.onClickPlusQuantityCart( CartFragment. this);
                     cartAdapter.onClickMinQuantityCart(CartFragment.this);
+                    cartAdapter.onClickDeleteItemCart(CartFragment.this);
                     recycler_cart.setLayoutManager(new LinearLayoutManager(getContext()));
                     recycler_cart.setAdapter(cartAdapter);
                 }
@@ -130,6 +133,21 @@ public class CartFragment extends Fragment implements PlusQuantityCartView,MinQu
                             Toast.makeText(getContext(), plusQuantityCartResponse.getData(), Toast.LENGTH_SHORT).show();
                         performGettingListCart();
                         performGettingTotalResultListCart();
+
+                    }
+                });
+    }
+
+    @Override
+    public void showDeleteItemCartView(GetListCartData getListCartData, int Position) {
+        cartViewModel.getDeleteItemCart("en",String.valueOf(getListCartData.getCartId()),userTokenValue,getContext())
+                .observe(this, new Observer<PlusQuantityCartResponse>() {
+                    @Override
+                    public void onChanged(@Nullable PlusQuantityCartResponse plusQuantityCartResponse) {
+                        if(plusQuantityCartResponse!=null)
+                            Toast.makeText(getContext(), plusQuantityCartResponse.getData(), Toast.LENGTH_SHORT).show();
+                       /* performGettingListCart();
+                        performGettingTotalResultListCart();*/
 
                     }
                 });

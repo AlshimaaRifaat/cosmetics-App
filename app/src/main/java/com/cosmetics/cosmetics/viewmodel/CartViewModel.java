@@ -27,6 +27,7 @@ public class CartViewModel extends ViewModel {
     private MutableLiveData<TotalResultGetListCartData> totalResultCartMutableLiveData;
     private MutableLiveData<PlusQuantityCartResponse> plusQuantityCartMutableLiveData;
     private MutableLiveData<PlusQuantityCartResponse> minQuantityCartMutableLiveData;
+    private MutableLiveData<PlusQuantityCartResponse> deleteItemCartMutableLiveData;
     public LiveData<List<GetListCartData>> getListCart(String lang,String user_token_Authorization , Context context) {
 
         listCartMutableLiveData = new MutableLiveData<List<GetListCartData>>();
@@ -64,6 +65,41 @@ public class CartViewModel extends ViewModel {
 
         return minQuantityCartMutableLiveData;
 
+    }
+    public LiveData<PlusQuantityCartResponse> getDeleteItemCart(String lang,String cart_id,String user_token_Authorization , Context context) {
+
+        deleteItemCartMutableLiveData = new MutableLiveData<PlusQuantityCartResponse>();
+        this.context=context;
+        getDeleteItemCartValues(lang,cart_id,user_token_Authorization);
+
+        return deleteItemCartMutableLiveData;
+
+    }
+
+    private void getDeleteItemCartValues(String lang, String cart_id, String user_token_authorization) {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("lang", lang);
+        hashMap.put("cart_id",cart_id);
+        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<PlusQuantityCartResponse> call = apiInterface.getDeleteItemCart(hashMap,"Bearer "+user_token_authorization);
+        call.enqueue(new Callback<PlusQuantityCartResponse>() {
+            @Override
+            public void onResponse(Call<PlusQuantityCartResponse> call, Response<PlusQuantityCartResponse> response) {
+
+                if (response.code()==200) {
+                    deleteItemCartMutableLiveData.setValue(response.body());
+
+                } else  {
+                    deleteItemCartMutableLiveData.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PlusQuantityCartResponse> call, Throwable t) {
+                deleteItemCartMutableLiveData.setValue(null);
+
+            }
+        });
     }
 
     private void getMinQuantityCartValues(String lang, String cart_id, String user_token_authorization) {

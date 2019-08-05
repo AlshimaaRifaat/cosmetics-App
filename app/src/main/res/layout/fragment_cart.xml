@@ -52,7 +52,6 @@
             android:layout_marginStart="@dimen/_3sdp"
             android:textSize="@dimen/_12sdp"
             android:textColor="#747474"
-            android:text="taxes"
             android:textStyle="bold"
             android:layout_below="@id/T_sub_total_price"
 
@@ -64,7 +63,6 @@
             android:layout_marginStart="@dimen/_3sdp"
             android:textSize="@dimen/_12sdp"
             android:textColor="#747474"
-            android:text="fees"
             android:textStyle="bold"
             android:layout_below="@id/T_tax"
             android:layout_marginBottom="@dimen/_4sdp"

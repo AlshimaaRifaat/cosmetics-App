@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.model.GetListCartData;
 import com.cosmetics.cosmetics.model.LatestProductsData;
+import com.cosmetics.cosmetics.view.DeleteItemCartView;
 import com.cosmetics.cosmetics.view.DetailsHomeLatestProductsView;
 import com.cosmetics.cosmetics.view.MinQuantityView;
 import com.cosmetics.cosmetics.view.PlusQuantityCartView;
@@ -25,7 +26,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     Context context;
     private List<GetListCartData> getListCartDataList;
    // DetailsHomeLatestProductsView detailsHomeLatestProductsView;
-
+    DeleteItemCartView deleteItemCartView;
     PlusQuantityCartView plusQuantityCartView;
     MinQuantityView minQuantityView;
     public CartAdapter(Context context, List<GetListCartData> getListCartDataList) {
@@ -48,6 +49,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     {
         this.minQuantityView=minQuantityView;
     }
+    public void onClickDeleteItemCart(DeleteItemCartView deleteItemCartView)
+    {
+        this.deleteItemCartView=deleteItemCartView;
+    }
     @Override
     public void onBindViewHolder(@NonNull final CartAdapter.ViewHolder holder, final int position) {
         Glide.with(context).load("http://titco-industry.com"+getListCartDataList.get(position).getImage()).into(holder.img);
@@ -69,11 +74,21 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.btn_minus_quantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*int countt=Integer.parseInt(holder.T_changed_quantity.getText().toString());
-                countt++;
+                int countt=Integer.parseInt(holder.T_changed_quantity.getText().toString());
+                if (countt>1)
+                countt--;
+
                 holder.T_changed_quantity.setText(String.valueOf(countt));
-                holder.T_total_unit_price.setText(Double.toString(Double.parseDouble(holder.T_quantity.getText().toString())*Double.parseDouble(holder.T_unit_price.getText().toString())));*/
+                //holder.T_total_unit_price.setText(Double.toString(Double.parseDouble(holder.T_quantity.getText().toString())*Double.parseDouble(holder.T_unit_price.getText().toString())));*/
                 minQuantityView.showMinQuantityCart(getListCartDataList.get(position));
+            }
+        });
+        holder.ic_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteItemCartView.showDeleteItemCartView(getListCartDataList.get(position),position);
+                getListCartDataList.remove(position);
+                notifyDataSetChanged();
             }
         });
     }
@@ -90,6 +105,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         private TextView T_changed_quantity;
         private Button Btn_plus_quantity;
         private Button btn_minus_quantity;
+        private ImageView ic_delete;
         public ViewHolder(View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.img);
@@ -100,6 +116,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             T_changed_quantity= itemView.findViewById(R.id.T_changed_quantity);
             Btn_plus_quantity=itemView.findViewById(R.id.btn_plus);
             btn_minus_quantity=itemView.findViewById(R.id.btn_minus);
+            ic_delete=itemView.findViewById(R.id.ic_delete);
         }
     }
 }
