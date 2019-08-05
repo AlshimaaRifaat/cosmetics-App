@@ -36,4 +36,8 @@
     <string name="Qty">Qty</string>
     <string name="Price">Price</string>
     <string name="Check_network_connection">Check network connection!</string>
+    <string name="sub_total">sub total</string>
+    <string name="Tax">Tax</string>
+    <string name="Delivery_fees">Delivery fees</string>
+    <string name="Cart_is_impty">Cart is impty !</string>
 </resources>

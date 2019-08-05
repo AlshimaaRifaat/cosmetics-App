@@ -16,6 +16,9 @@ public class GetListCartData implements Serializable, Parcelable
     @SerializedName("product_id")
     @Expose
     private String productId;
+    @SerializedName("hash_color")
+    @Expose
+    private String hashColor;
     @SerializedName("product_name")
     @Expose
     private String productName;
@@ -47,11 +50,12 @@ public class GetListCartData implements Serializable, Parcelable
 
     }
             ;
-    private final static long serialVersionUID = -7955953508879332605L;
+    private final static long serialVersionUID = -6751365389488021818L;
 
     protected GetListCartData(Parcel in) {
         this.cartId = ((int) in.readValue((int.class.getClassLoader())));
         this.productId = ((String) in.readValue((String.class.getClassLoader())));
+        this.hashColor = ((String) in.readValue((String.class.getClassLoader())));
         this.productName = ((String) in.readValue((String.class.getClassLoader())));
         this.quantity = ((String) in.readValue((String.class.getClassLoader())));
         this.image = ((String) in.readValue((String.class.getClassLoader())));
@@ -76,6 +80,14 @@ public class GetListCartData implements Serializable, Parcelable
 
     public void setProductId(String productId) {
         this.productId = productId;
+    }
+
+    public String getHashColor() {
+        return hashColor;
+    }
+
+    public void setHashColor(String hashColor) {
+        this.hashColor = hashColor;
     }
 
     public String getProductName() {
@@ -121,6 +133,7 @@ public class GetListCartData implements Serializable, Parcelable
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(cartId);
         dest.writeValue(productId);
+        dest.writeValue(hashColor);
         dest.writeValue(productName);
         dest.writeValue(quantity);
         dest.writeValue(image);

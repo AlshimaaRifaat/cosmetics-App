@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,8 +53,17 @@ public class CartFragment extends Fragment implements PlusQuantityCartView,MinQu
     @BindView(R.id.T_sub_total_price)
     TextView T_sub_total_price;
 
+    @BindView(R.id.T_tax)
+    TextView T_tax;
+
+    @BindView(R.id.T_delivery_fees)
+    TextView T_delivery_fees;
+
+    @BindView(R.id.rel_total_result_cart)
+    RelativeLayout rel_total_result_cart;
 
     Unbinder unbinder;
+
     View view;
     public CartFragment() {
         // Required empty public constructor
@@ -84,7 +94,9 @@ public class CartFragment extends Fragment implements PlusQuantityCartView,MinQu
             @Override
             public void onChanged(@Nullable TotalResultGetListCartData totalResultGetListCartData) {
                 if (totalResultGetListCartData!=null) {
-                    T_sub_total_price.setText(String.valueOf(totalResultGetListCartData.getPrice()));
+                    T_sub_total_price.setText(getResources().getString(R.string.sub_total)+"  "+String.valueOf(totalResultGetListCartData.getPrice())+" $");
+                    T_tax.setText(String.valueOf(getResources().getString(R.string.Tax)+"  "+totalResultGetListCartData.getTotalTax())+" $");
+                    T_delivery_fees.setText(getResources().getString(R.string.Delivery_fees)+"  "+String.valueOf(totalResultGetListCartData.getTotalDeleveryFees())+" $");
                 }
             }
         });
@@ -102,6 +114,10 @@ public class CartFragment extends Fragment implements PlusQuantityCartView,MinQu
                     cartAdapter.onClickDeleteItemCart(CartFragment.this);
                     recycler_cart.setLayoutManager(new LinearLayoutManager(getContext()));
                     recycler_cart.setAdapter(cartAdapter);
+                }else
+                {
+                   rel_total_result_cart.setVisibility(View.GONE);
+                    Toast.makeText(getContext(), getResources().getString(R.string.Cart_is_impty), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -146,8 +162,8 @@ public class CartFragment extends Fragment implements PlusQuantityCartView,MinQu
                     public void onChanged(@Nullable PlusQuantityCartResponse plusQuantityCartResponse) {
                         if(plusQuantityCartResponse!=null)
                             Toast.makeText(getContext(), plusQuantityCartResponse.getData(), Toast.LENGTH_SHORT).show();
-                       /* performGettingListCart();
-                        performGettingTotalResultListCart();*/
+                        performGettingListCart();
+                        performGettingTotalResultListCart();
 
                     }
                 });

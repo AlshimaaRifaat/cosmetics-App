@@ -27,19 +27,21 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_cart"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_330sdp"
+            android:layout_height="@dimen/_300sdp"
             android:layout_margin="@dimen/_4sdp"
             android:layout_below="@+id/T_title_bar"
             ></android.support.v7.widget.RecyclerView>
-
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/recycler_cart"
+    android:layout_marginStart="@dimen/_3sdp"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:id="@+id/rel_total_result_cart">
         <TextView
             android:id="@+id/T_sub_total_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/recycler_cart"
-            android:layout_marginStart="@dimen/_3sdp"
-            android:layout_marginTop="10dp"
-            android:text="1000$"
             android:textColor="#747474"
             android:textSize="@dimen/_12sdp"
             android:textStyle="bold"
@@ -49,7 +51,6 @@
             android:id="@+id/T_tax"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_3sdp"
             android:textSize="@dimen/_12sdp"
             android:textColor="#747474"
             android:textStyle="bold"
@@ -60,7 +61,6 @@
             android:id="@+id/T_delivery_fees"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_3sdp"
             android:textSize="@dimen/_12sdp"
             android:textColor="#747474"
             android:textStyle="bold"
@@ -68,7 +68,7 @@
             android:layout_marginBottom="@dimen/_4sdp"
             />
 
-
+</RelativeLayout>
     </RelativeLayout>
 
 </FrameLayout>

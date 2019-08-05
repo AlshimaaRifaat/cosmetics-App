@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.content.Context;
+import android.widget.Toast;
 
 import com.cosmetics.cosmetics.model.DetailsProductAddCartResponse;
 import com.cosmetics.cosmetics.model.DetailsProductSliderData;
@@ -166,9 +167,10 @@ public class CartViewModel extends ViewModel {
                 if (response.code()==200) {
                     listCartMutableLiveData.setValue(response.body().getData().getList());
                     totalResultCartMutableLiveData.setValue(response.body().getData());
-                } else  {
+                }  else{
                     listCartMutableLiveData.setValue(null);
-                }
+                    }
+
             }
 
             @Override
