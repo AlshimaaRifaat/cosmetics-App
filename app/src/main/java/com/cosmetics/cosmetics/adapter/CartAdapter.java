@@ -15,6 +15,7 @@ import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.model.GetListCartData;
 import com.cosmetics.cosmetics.model.LatestProductsData;
 import com.cosmetics.cosmetics.view.DetailsHomeLatestProductsView;
+import com.cosmetics.cosmetics.view.MinQuantityView;
 import com.cosmetics.cosmetics.view.PlusQuantityCartView;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
    // DetailsHomeLatestProductsView detailsHomeLatestProductsView;
 
     PlusQuantityCartView plusQuantityCartView;
+    MinQuantityView minQuantityView;
     public CartAdapter(Context context, List<GetListCartData> getListCartDataList) {
         this.context = context;
         this.getListCartDataList = getListCartDataList;
@@ -40,6 +42,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
    public void onClickPlusQuantityCart(PlusQuantityCartView plusQuantityCartView)
     {
         this.plusQuantityCartView=plusQuantityCartView;
+    }
+
+    public void onClickMinQuantityCart(MinQuantityView minQuantityView)
+    {
+        this.minQuantityView=minQuantityView;
     }
     @Override
     public void onBindViewHolder(@NonNull final CartAdapter.ViewHolder holder, final int position) {
@@ -59,6 +66,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 plusQuantityCartView.showPlusQuantityCart(getListCartDataList.get(position));
             }
         });
+        holder.btn_minus_quantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*int countt=Integer.parseInt(holder.T_changed_quantity.getText().toString());
+                countt++;
+                holder.T_changed_quantity.setText(String.valueOf(countt));
+                holder.T_total_unit_price.setText(Double.toString(Double.parseDouble(holder.T_quantity.getText().toString())*Double.parseDouble(holder.T_unit_price.getText().toString())));*/
+                minQuantityView.showMinQuantityCart(getListCartDataList.get(position));
+            }
+        });
     }
 
     public int getItemCount() {
@@ -72,6 +89,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         private TextView T_total_unit_price;
         private TextView T_changed_quantity;
         private Button Btn_plus_quantity;
+        private Button btn_minus_quantity;
         public ViewHolder(View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.img);
@@ -81,6 +99,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             T_total_unit_price=itemView.findViewById(R.id.T_total_unit_price);
             T_changed_quantity= itemView.findViewById(R.id.T_changed_quantity);
             Btn_plus_quantity=itemView.findViewById(R.id.btn_plus);
+            btn_minus_quantity=itemView.findViewById(R.id.btn_minus);
         }
     }
 }

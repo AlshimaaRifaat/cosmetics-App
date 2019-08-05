@@ -13,7 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.cosmetics.cosmetics.NetworkConnection;
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.adapter.FeatureProductsAdapter;
 import com.cosmetics.cosmetics.adapter.HomeSliderAdapter;
@@ -79,7 +81,7 @@ public class HomeFragment extends Fragment implements DetailsHomeLatestProductsV
 
 
     View view;
-
+NetworkConnection networkConnection;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -91,6 +93,7 @@ public class HomeFragment extends Fragment implements DetailsHomeLatestProductsV
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.fragment_home, container, false);
         unbinder= ButterKnife.bind(this,view);
+        networkConnection=new NetworkConnection(getContext());
         getLatestProducts();
         getFeatureProducts();
         getHomeSlider();
@@ -111,10 +114,15 @@ public class HomeFragment extends Fragment implements DetailsHomeLatestProductsV
             @Override
             public void onChanged(@Nullable List<LatestProductsData> latestProductsData) {
                 if (latestProductsData!=null) {
-                    latestProductsAdapter = new LatestProductsAdapter(getActivity(), latestProductsData);
-                    latestProductsAdapter.onClickItemLatestProduct(HomeFragment.this);
-                    recycler_latest_products.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-                    recycler_latest_products.setAdapter(latestProductsAdapter);
+                    if (networkConnection.isNetworkAvailable(getContext())) {
+                        latestProductsAdapter = new LatestProductsAdapter(getActivity(), latestProductsData);
+                        latestProductsAdapter.onClickItemLatestProduct(HomeFragment.this);
+                        recycler_latest_products.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                        recycler_latest_products.setAdapter(latestProductsAdapter);
+                    }else
+                    {
+                        Toast.makeText(getContext(), getResources().getString(R.string.Check_network_connection), Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -127,9 +135,14 @@ public class HomeFragment extends Fragment implements DetailsHomeLatestProductsV
             @Override
             public void onChanged(@Nullable List<LatestProductsData> latestProductsData) {
                 if (latestProductsData!=null) {
-                    featureProductsAdapter = new FeatureProductsAdapter(getActivity(), latestProductsData);
-                    recycler_featured_products.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-                    recycler_featured_products.setAdapter(featureProductsAdapter);
+                    if(networkConnection.isNetworkAvailable(getContext())) {
+                        featureProductsAdapter = new FeatureProductsAdapter(getActivity(), latestProductsData);
+                        recycler_featured_products.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                        recycler_featured_products.setAdapter(featureProductsAdapter);
+                    }else
+                    {
+                        Toast.makeText(getContext(), getResources().getString(R.string.Check_network_connection), Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -143,9 +156,14 @@ public void getHomeSlider()
         public void onChanged(@Nullable List<HomeSliderData> homeSliderData) {
             sliders=homeSliderData;
             if (sliders!=null) {
-                homeSliderAdapter = new HomeSliderAdapter(getActivity(), homeSliderData);
-                recycler_slider.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-                recycler_slider.setAdapter(homeSliderAdapter);
+                if (networkConnection.isNetworkAvailable(getContext())) {
+                    homeSliderAdapter = new HomeSliderAdapter(getActivity(), homeSliderData);
+                    recycler_slider.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                    recycler_slider.setAdapter(homeSliderAdapter);
+                }else
+                {
+                    Toast.makeText(getContext(), getResources().getString(R.string.Check_network_connection), Toast.LENGTH_SHORT).show();
+                }
                 Timer swipeTimer = new Timer();
                 swipeTimer.schedule(new TimerTask() {
                     @Override

@@ -35,4 +35,5 @@
     <string name="Pleaseloginfirst">Please, login first!</string>
     <string name="Qty">Qty</string>
     <string name="Price">Price</string>
+    <string name="Check_network_connection">Check network connection!</string>
 </resources>

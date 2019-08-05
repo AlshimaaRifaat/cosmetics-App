@@ -85,7 +85,7 @@ View view;
 
 
     public void getProductsCategory() {
-if(CategoryId!=null) {
+
     productsViewModel.getProducts("", CategoryId, "en", getContext()).observe(this, new Observer<List<ProductsData>>() {
         @Override
         public void onChanged(@Nullable List<ProductsData> productsData) {
@@ -99,7 +99,7 @@ if(CategoryId!=null) {
         }
     });
 }
-    }
+
 
     public void getProductsBrand() {
         if (BrandId != null) {

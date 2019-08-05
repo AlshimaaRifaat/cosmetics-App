@@ -14,6 +14,9 @@ public class ProductsData implements Serializable, Parcelable
     @SerializedName("id")
     @Expose
     private int id;
+    @SerializedName("Wishlist_state")
+    @Expose
+    private Object wishlistState;
     @SerializedName("title")
     @Expose
     private String title;
@@ -25,10 +28,10 @@ public class ProductsData implements Serializable, Parcelable
     private String description;
     @SerializedName("price_general")
     @Expose
-    private int priceGeneral;
+    private String priceGeneral;
     @SerializedName("sale_price")
     @Expose
-    private int salePrice;
+    private String salePrice;
     @SerializedName("image")
     @Expose
     private String image;
@@ -48,15 +51,16 @@ public class ProductsData implements Serializable, Parcelable
 
     }
             ;
-    private final static long serialVersionUID = 7517626684767119324L;
+    private final static long serialVersionUID = -6583370546156337539L;
 
     protected ProductsData(Parcel in) {
         this.id = ((int) in.readValue((int.class.getClassLoader())));
+        this.wishlistState = ((Object) in.readValue((Object.class.getClassLoader())));
         this.title = ((String) in.readValue((String.class.getClassLoader())));
         this.shortDescription = ((String) in.readValue((String.class.getClassLoader())));
         this.description = ((String) in.readValue((String.class.getClassLoader())));
-        this.priceGeneral = ((int) in.readValue((int.class.getClassLoader())));
-        this.salePrice = ((int) in.readValue((int.class.getClassLoader())));
+        this.priceGeneral = ((String) in.readValue((String.class.getClassLoader())));
+        this.salePrice = ((String) in.readValue((String.class.getClassLoader())));
         this.image = ((String) in.readValue((String.class.getClassLoader())));
     }
 
@@ -69,6 +73,14 @@ public class ProductsData implements Serializable, Parcelable
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Object getWishlistState() {
+        return wishlistState;
+    }
+
+    public void setWishlistState(Object wishlistState) {
+        this.wishlistState = wishlistState;
     }
 
     public String getTitle() {
@@ -95,19 +107,19 @@ public class ProductsData implements Serializable, Parcelable
         this.description = description;
     }
 
-    public int getPriceGeneral() {
+    public String getPriceGeneral() {
         return priceGeneral;
     }
 
-    public void setPriceGeneral(int priceGeneral) {
+    public void setPriceGeneral(String priceGeneral) {
         this.priceGeneral = priceGeneral;
     }
 
-    public int getSalePrice() {
+    public String getSalePrice() {
         return salePrice;
     }
 
-    public void setSalePrice(int salePrice) {
+    public void setSalePrice(String salePrice) {
         this.salePrice = salePrice;
     }
 
@@ -121,6 +133,7 @@ public class ProductsData implements Serializable, Parcelable
 
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(id);
+        dest.writeValue(wishlistState);
         dest.writeValue(title);
         dest.writeValue(shortDescription);
         dest.writeValue(description);

@@ -38,8 +38,8 @@
             android:textStyle="bold"
             />
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
             android:layout_marginStart="@dimen/_3sdp"
             android:layout_marginEnd="@dimen/_3sdp"
             android:layout_marginTop="@dimen/_22sdp"
@@ -49,6 +49,7 @@
             android:id="@+id/icon_favorite_black"
             android:layout_width="@dimen/_18sdp"
             android:layout_height="@dimen/_18sdp"
+            android:visibility="gone"
             android:background="@drawable/favorite_heart_button_black"
             />
             <ImageView

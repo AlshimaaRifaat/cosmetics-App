@@ -71,4 +71,8 @@ public interface APIInterface {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("list_favorite_product")
     Call<ListFavoriteProductResponse> getListFavoriteProduct(@QueryMap Map<String, String> map, @Header("Authorization") String auth);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST("min_quentity_Cart")
+    Call<PlusQuantityCartResponse> getMinQuantityProduct(@QueryMap Map<String, String> map, @Header("Authorization") String auth);
 }

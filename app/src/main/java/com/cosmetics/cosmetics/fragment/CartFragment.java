@@ -24,6 +24,7 @@ import com.cosmetics.cosmetics.model.GetListCartData;
 import com.cosmetics.cosmetics.model.GetListCartResponse;
 import com.cosmetics.cosmetics.model.PlusQuantityCartResponse;
 import com.cosmetics.cosmetics.model.TotalResultGetListCartData;
+import com.cosmetics.cosmetics.view.MinQuantityView;
 import com.cosmetics.cosmetics.view.PlusQuantityCartView;
 import com.cosmetics.cosmetics.viewmodel.CartViewModel;
 import com.cosmetics.cosmetics.viewmodel.LatestProductsViewModel;
@@ -37,7 +38,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CartFragment extends Fragment implements PlusQuantityCartView {
+public class CartFragment extends Fragment implements PlusQuantityCartView,MinQuantityView {
 
     CartViewModel cartViewModel;
 
@@ -51,7 +52,7 @@ public class CartFragment extends Fragment implements PlusQuantityCartView {
 
 
     Unbinder unbinder;
-View view;
+    View view;
     public CartFragment() {
         // Required empty public constructor
     }
@@ -95,6 +96,7 @@ View view;
                 if(getListCartData!=null) {
                     cartAdapter = new CartAdapter(getActivity(), getListCartData);
                     cartAdapter.onClickPlusQuantityCart( CartFragment. this);
+                    cartAdapter.onClickMinQuantityCart(CartFragment.this);
                     recycler_cart.setLayoutManager(new LinearLayoutManager(getContext()));
                     recycler_cart.setAdapter(cartAdapter);
                 }
@@ -106,6 +108,21 @@ View view;
     public void showPlusQuantityCart(GetListCartData getListCartData) {
         //check lang,cart id
         cartViewModel.getPlusQuantityCart("en",String.valueOf(getListCartData.getCartId()),userTokenValue,getContext())
+                .observe(this, new Observer<PlusQuantityCartResponse>() {
+                    @Override
+                    public void onChanged(@Nullable PlusQuantityCartResponse plusQuantityCartResponse) {
+                        if(plusQuantityCartResponse!=null)
+                            Toast.makeText(getContext(), plusQuantityCartResponse.getData(), Toast.LENGTH_SHORT).show();
+                        performGettingListCart();
+                        performGettingTotalResultListCart();
+
+                    }
+                });
+    }
+
+    @Override
+    public void showMinQuantityCart(GetListCartData getListCartData) {
+        cartViewModel.getMinQuantityCart("en",String.valueOf(getListCartData.getCartId()),userTokenValue,getContext())
                 .observe(this, new Observer<PlusQuantityCartResponse>() {
                     @Override
                     public void onChanged(@Nullable PlusQuantityCartResponse plusQuantityCartResponse) {

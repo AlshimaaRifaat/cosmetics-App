@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.cosmetics.cosmetics.Language;
+import com.cosmetics.cosmetics.NetworkConnection;
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.fragment.HomeFragment;
 import com.cosmetics.cosmetics.fragment.MoreFragment;
@@ -28,6 +29,7 @@ public class HomeActivity extends AppCompatActivity {
     String UserToken=SplashActivity.Login;
 
     public TextView textView;*/
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

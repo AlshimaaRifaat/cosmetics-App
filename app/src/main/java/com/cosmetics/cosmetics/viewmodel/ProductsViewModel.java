@@ -46,6 +46,7 @@ public class ProductsViewModel extends ViewModel {
 
                 if (response.code()==200) {
                     listProductsMutableLiveData.setValue(response.body().getData());
+
                 } else  {
                     listProductsMutableLiveData.setValue(null);
                 }

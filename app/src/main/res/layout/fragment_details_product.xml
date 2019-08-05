@@ -95,6 +95,7 @@
 <RelativeLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:id="@+id/rel_ic_favorite"
     android:layout_marginEnd="@dimen/_3sdp"
     android:layout_centerVertical="true"
     android:layout_alignParentEnd="true">
@@ -102,13 +103,15 @@
             android:id="@+id/img_favorite_pink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/favorite_heart_button"
             android:visibility="gone"
+            android:background="@drawable/favorite_heart_button"
+
             />
         <ImageView
             android:id="@+id/img_favorite_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:background="@drawable/favorite_heart_button_black"
             />
 </RelativeLayout>

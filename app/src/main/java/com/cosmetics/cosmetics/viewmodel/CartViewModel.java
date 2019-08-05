@@ -26,6 +26,7 @@ public class CartViewModel extends ViewModel {
     private MutableLiveData<List<GetListCartData>> listCartMutableLiveData;
     private MutableLiveData<TotalResultGetListCartData> totalResultCartMutableLiveData;
     private MutableLiveData<PlusQuantityCartResponse> plusQuantityCartMutableLiveData;
+    private MutableLiveData<PlusQuantityCartResponse> minQuantityCartMutableLiveData;
     public LiveData<List<GetListCartData>> getListCart(String lang,String user_token_Authorization , Context context) {
 
         listCartMutableLiveData = new MutableLiveData<List<GetListCartData>>();
@@ -54,6 +55,41 @@ public class CartViewModel extends ViewModel {
 
         return plusQuantityCartMutableLiveData;
 
+    }
+    public LiveData<PlusQuantityCartResponse> getMinQuantityCart(String lang,String cart_id,String user_token_Authorization , Context context) {
+
+        minQuantityCartMutableLiveData = new MutableLiveData<PlusQuantityCartResponse>();
+        this.context=context;
+        getMinQuantityCartValues(lang,cart_id,user_token_Authorization);
+
+        return minQuantityCartMutableLiveData;
+
+    }
+
+    private void getMinQuantityCartValues(String lang, String cart_id, String user_token_authorization) {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("lang", lang);
+        hashMap.put("cart_id",cart_id);
+        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<PlusQuantityCartResponse> call = apiInterface.getMinQuantityProduct(hashMap,"Bearer "+user_token_authorization);
+        call.enqueue(new Callback<PlusQuantityCartResponse>() {
+            @Override
+            public void onResponse(Call<PlusQuantityCartResponse> call, Response<PlusQuantityCartResponse> response) {
+
+                if (response.code()==200) {
+                    minQuantityCartMutableLiveData.setValue(response.body());
+
+                } else  {
+                    minQuantityCartMutableLiveData.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PlusQuantityCartResponse> call, Throwable t) {
+                minQuantityCartMutableLiveData.setValue(null);
+
+            }
+        });
     }
 
     private void getPlusQuantityCartValues(String lang, String cart_id, String user_token_authorization) {

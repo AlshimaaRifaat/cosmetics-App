@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -82,6 +83,9 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
 
     @BindView(R.id.img_favorite_black)
     ImageView img_favorite_black;
+
+   @BindView(R.id.rel_ic_favorite)
+   RelativeLayout rel_ic_favorite;
     Unbinder unbinder;
 
     LatestProductsData latestProductsData;
@@ -91,6 +95,7 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
     Bundle bundle,bundleProducts;
     ProductsData productsData;
     String productId,fromValue,userTokenValue;
+     String wishListState;
     public String productColorId;
 
     public DetailsProductFragment() {
@@ -115,8 +120,20 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
         if (bundleProducts!= null&&fromValue.equals("productsPage")) {
             productsData = bundleProducts.getParcelable("ProductItem");
             productId=String.valueOf(productsData.getId());
+            wishListState=String.valueOf(productsData.getWishlistState());
+           // Toast.makeText(getContext(), wishListState+" s", Toast.LENGTH_SHORT).show();
+            checkWishListState();
+            rel_ic_favorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    performFavoriteProduct();
+                }
+            });
             getDetailsProductSlider();
             getDetailsProductColors();
+
+
+           // Toast.makeText(getContext(), "PID "+productId, Toast.LENGTH_SHORT).show();
         }else if (bundle != null&&fromValue.equals("homeLatestProductPage")) {
             latestProductsData = bundle.getParcelable("LatestProductsItem");
             productId=String.valueOf(latestProductsData.getId());
@@ -134,12 +151,8 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
                // Toast.makeText(getContext(), String.valueOf(rating), Toast.LENGTH_SHORT).show();
             }
         });
-        img_favorite_black.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                performFavoriteProduct();
-            }
-        });
+
+
        // Toast.makeText(getContext(), productId, Toast.LENGTH_SHORT).show();
         btn_add_to_cart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,6 +162,23 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
         });
         return view;
     }
+
+    private void checkWishListState() {
+        //wishListSate="1";
+       // Toast.makeText(getContext(), "  w "+wishListState, Toast.LENGTH_SHORT).show();
+        if(wishListState.equals("0"))
+        {
+            //Toast.makeText(getContext(), wishListState+"", Toast.LENGTH_SHORT).show();
+            img_favorite_black.setVisibility(View.VISIBLE);
+            img_favorite_pink.setVisibility(View.GONE);
+        }else if(wishListState.equals("1")) {
+           // Toast.makeText(getContext(), wishListState+"", Toast.LENGTH_SHORT).show();
+            img_favorite_pink.setVisibility(View.VISIBLE);
+            img_favorite_black.setVisibility(View.GONE);
+
+        }
+    }
+
 
     private void performFavoriteProduct() {
 
@@ -166,15 +196,29 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
                 public void onChanged(@Nullable PlusQuantityCartResponse plusQuantityCartResponse) {
                     if(plusQuantityCartResponse!=null)
                     {
-                        Toast.makeText(getContext(), plusQuantityCartResponse.getData(), Toast.LENGTH_SHORT).show();
-                        img_favorite_black.setVisibility(View.GONE);
-                        img_favorite_pink.setVisibility(View.VISIBLE);
+
+
+                        if (plusQuantityCartResponse.getData().equals("Your Product Removed from your wishlists "))
+                        {
+                            Toast.makeText(getContext(), plusQuantityCartResponse.getData(), Toast.LENGTH_SHORT).show();
+                            img_favorite_black.setVisibility(View.VISIBLE);
+                            img_favorite_pink.setVisibility(View.GONE);
+                        }else if (plusQuantityCartResponse.getData().equals("Congratulation Your Product added to your wishlists  successfully "))
+                        {
+                            Toast.makeText(getContext(), plusQuantityCartResponse.getData(), Toast.LENGTH_SHORT).show();
+                            img_favorite_pink.setVisibility(View.VISIBLE);
+                            img_favorite_black.setVisibility(View.GONE);
+
+                        }
+
                     }
                 }
             });
 
         }
     }
+
+
 
     private void performAddingToCard() {
         if (userTokenValue==null)
