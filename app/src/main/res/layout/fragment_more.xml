@@ -75,20 +75,37 @@
             android:layout_below="@id/T_favorite"
 
             />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/T_language"
+                android:layout_marginStart="@dimen/_11sdp"
+                android:layout_marginEnd="@dimen/_11sdp"
+                android:layout_marginTop="@dimen/_14sdp">
         <TextView
             android:id="@+id/T_log_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_11sdp"
-            android:layout_marginEnd="@dimen/_11sdp"
-            android:layout_marginTop="@dimen/_14sdp"
             android:text="@string/Logout"
             android:textColor="#939292"
             android:textSize="@dimen/_14sdp"
-            android:layout_below="@id/T_language"
             android:textStyle="bold"
             android:layout_marginBottom="@dimen/_14sdp"
+
+
             />
+                <TextView
+                    android:id="@+id/T_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Login"
+                    android:textColor="#939292"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="@dimen/_14sdp"
+                   android:visibility="gone"
+                    />
+            </RelativeLayout>
     </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

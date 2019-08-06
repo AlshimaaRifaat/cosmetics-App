@@ -17,7 +17,6 @@
         android:id="@+id/relative_btns"
         android:layout_width="@dimen/_180sdp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relative_label_products"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_12sdp"
         android:layout_alignParentTop="true"

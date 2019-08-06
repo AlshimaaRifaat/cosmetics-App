@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cosmetics.cosmetics.NetworkConnection;
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.SharedPrefManager;
 import com.cosmetics.cosmetics.model.LoginData;
@@ -41,11 +43,13 @@ public class RegisterActivity extends AppCompatActivity {
     Unbinder unbinder;
 
     LoginViewModel loginViewModel;
+    NetworkConnection networkConnection;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         unbinder= ButterKnife.bind(this,this);
+        networkConnection=new NetworkConnection(getApplicationContext());
         loginViewModel= ViewModelProviders.of(this).get(LoginViewModel.class);
         register();
 
@@ -61,45 +65,78 @@ public class RegisterActivity extends AppCompatActivity {
                 FUtilsValidation.isEmpty(ET_email,"please,enter your email address");
                 FUtilsValidation.isEmpty(ET_password,"please,enter your password");
                 FUtilsValidation.isLengthCorrect(ET_password.getText().toString(),5,16);
-                if (!ET_fullname.getText().toString().equals("")
-                        && !ET_phone.getText().toString().equals("")
-                        &&!ET_email.getText().toString().equals("")
-                        && !ET_password.getText().toString().equals("")
-                        && (FUtilsValidation.isLengthCorrect(ET_password.getText().toString(), 5, 16))) {
-                    User user = new User();
-                    user.setFullname(ET_fullname.getText().toString());
-                    user.setPhone(ET_phone.getText().toString());
-                    user.setEmail(ET_email.getText().toString());
-                    user.setPassword(ET_password.getText().toString());
+                if (networkConnection.isNetworkAvailable(getApplicationContext())) {
+                    if(ET_password.getText().toString().length()<5)
+                    {
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.enter_password_with_at_least_five_numbers), Toast.LENGTH_SHORT).show();
+                    }else if ( validateEmail()) {
+                        if (!ET_fullname.getText().toString().equals("")
+                                && !ET_phone.getText().toString().equals("")
+                                && !ET_email.getText().toString().equals("")
+                                && !ET_password.getText().toString().equals("")
+                                && (FUtilsValidation.isLengthCorrect(ET_password.getText().toString(), 5, 16))) {
+                            User user = new User();
+                            user.setFullname(ET_fullname.getText().toString());
+                            user.setPhone(ET_phone.getText().toString());
+                            user.setEmail(ET_email.getText().toString());
+                            user.setPassword(ET_password.getText().toString());
    /* private void setFont() {
         customFontRegular = Typeface.createFromAsset( getApplicationContext().getAssets(), "robotoFont/Roboto-Regular.ttf" );
         forgotPasswordTxt.setTypeface( customFontRegular );
     }*/
-                    loginViewModel.getRegister(user,getApplicationContext()).observe(RegisterActivity.this, new Observer<RegisterData>() {
-                        @Override
-                        public void onChanged(@Nullable RegisterData registerData) {
-                            if(registerData!=null) {
-                                Toast.makeText(RegisterActivity.this, "success", Toast.LENGTH_SHORT).show();
-                               // SharedPrefManager.getInstance(getApplicationContext()).saveUserToken(registerData.getToken());
-                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                startActivity(intent);
-                            }else {
-                                String error = loginViewModel.getErrorMsg();
-                                if (error != null) {
-                                    //check network con
-                                   // Toast.makeText(RegisterActivity.this, getResources().getString(R.string.Check_network_connection), Toast.LENGTH_SHORT).show();
-                                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.Check_the_fields_you_entered), Toast.LENGTH_SHORT).show();
+                            loginViewModel.getRegister(user, getApplicationContext()).observe(RegisterActivity.this, new Observer<RegisterData>() {
+                                @Override
+                                public void onChanged(@Nullable RegisterData registerData) {
+                                    if (registerData != null) {
+
+
+                                        Toast.makeText(RegisterActivity.this, "success", Toast.LENGTH_SHORT).show();
+                                        // SharedPrefManager.getInstance(getApplicationContext()).saveUserToken(registerData.getToken());
+                                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                        startActivity(intent);
+                                    } else {
+                                        String error = loginViewModel.getErrorMsg();
+                                        if (error != null) {
+                                            //check network con
+                                            // Toast.makeText(RegisterActivity.this, getResources().getString(R.string.Check_network_connection), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.Check_the_fields_you_entered), Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    }
+                            /*}else
+                            {
+                                Toast.makeText(getApplicationContext(), getResources().getString(R.string.Check_network_connection), Toast.LENGTH_SHORT).show();
+                            }*/
+
 
                                 }
-                            }
-
+                            });
 
                         }
-                    });
-
+                    }
+                }else
+                {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.Check_network_connection), Toast.LENGTH_SHORT).show();
                 }
             }
 
         });
+    }
+
+    private boolean validateEmail() {
+        String Email=ET_email.getText().toString().trim();
+        if (Email.isEmpty()||!isValidEmail(Email)) {
+            ET_email.setError( getResources().getString(R.string.Invalid_email) );
+            return false;
+        }else if(!ET_email.getText().toString().matches( "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+" ))
+        {
+            ET_email.setError(getResources().getString(R.string.Invalid_email) );
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidEmail(String email) {
+        return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 }

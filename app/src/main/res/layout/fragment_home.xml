@@ -124,10 +124,12 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_featured_products"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_165sdp"
                 android:layout_below="@+id/btn_view_all_products"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_4sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
                 ></android.support.v7.widget.RecyclerView>
 
     </RelativeLayout>

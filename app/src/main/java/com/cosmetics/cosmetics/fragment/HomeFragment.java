@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -137,7 +138,7 @@ NetworkConnection networkConnection;
                 if (latestProductsData!=null) {
                     if(networkConnection.isNetworkAvailable(getContext())) {
                         featureProductsAdapter = new FeatureProductsAdapter(getActivity(), latestProductsData);
-                        recycler_featured_products.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                        recycler_featured_products.setLayoutManager(new GridLayoutManager(getContext(), 2));
                         recycler_featured_products.setAdapter(featureProductsAdapter);
                     }else
                     {

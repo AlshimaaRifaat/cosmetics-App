@@ -44,4 +44,7 @@
     <string name="Tax">Tax </string>
     <string name="Delivery_fees">Delivery fees </string>
     <string name="Cart_is_impty">Cart is impty !</string>
+    <string name="Cart">Cart</string>
+    <string name="enter_password_with_at_least_five_numbers">Please, enter your password  with at least five numbers!</string>
+    <string name="Invalid_email">Invalid email address!</string>
 </resources>

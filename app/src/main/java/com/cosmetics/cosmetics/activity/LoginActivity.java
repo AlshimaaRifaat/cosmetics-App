@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cosmetics.cosmetics.NetworkConnection;
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.SharedPrefManager;
 import com.cosmetics.cosmetics.model.LoginData;
@@ -24,11 +25,11 @@ import com.fourhcode.forhutils.FUtilsValidation;
 
 public class LoginActivity extends AppCompatActivity {
 Button loginBtn,signUpBtn;
-TextView signUpTxt,forgotPasswordTxt;
+TextView signUpTxt,forgotPasswordTxt,T_continue_as_guest;
 EditText ET_email,ET_password;
 Typeface customFontRegular;
     LoginViewModel loginViewModel;
-
+NetworkConnection networkConnection;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +37,7 @@ Typeface customFontRegular;
         init();
         //setFont();
          loginViewModel= ViewModelProviders.of(this).get(LoginViewModel.class);
+         networkConnection=new NetworkConnection(getApplicationContext());
         Login();
 
         signUpTxt.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +47,15 @@ Typeface customFontRegular;
                 startActivity(intent);
             }
         });
+        T_continue_as_guest.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent=new Intent( LoginActivity.this,HomeActivity.class );
+                startActivity( intent );
+
+            }
+        } );
 
     }
 
@@ -69,17 +80,23 @@ Typeface customFontRegular;
                         @Override
                         public void onChanged(@Nullable LoginData loginData) {
                             if(loginData!=null) {
-                                Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
-                                SharedPrefManager.getInstance(getApplicationContext()).saveUserToken(loginData.getUserToken().toString());
+                                if (networkConnection.isNetworkAvailable(getBaseContext())) {
+                                    Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
+                                    SharedPrefManager.getInstance(getApplicationContext()).saveUserToken(loginData.getUserToken().toString());
 
-                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                                startActivity(intent);
-                                finish();
-                            }else {
-                                String error = loginViewModel.getErrorMsg();
-                                if (error != null) {
-                                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.Email_Or_Password_is_previously_Used), Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                    startActivity(intent);
+                                    finish();
+
+                                } else {
+                                    String error = loginViewModel.getErrorMsg();
+                                    if (error != null) {
+                                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.Check_the_fields_you_entered), Toast.LENGTH_SHORT).show();
+                                    }
                                 }
+                            }else
+                            {
+                                Toast.makeText(getApplicationContext(), getResources().getString(R.string.Check_network_connection), Toast.LENGTH_SHORT).show();
                             }
 
 
@@ -97,5 +114,6 @@ Typeface customFontRegular;
         forgotPasswordTxt=findViewById(R.id.T_forgot_password);
         ET_email=findViewById(R.id.ET_email);
         ET_password=findViewById(R.id.ET_password);
+        T_continue_as_guest=findViewById(R.id.T_continue_as_guest);
     }
 }

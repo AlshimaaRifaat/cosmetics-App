@@ -16,7 +16,7 @@ public class ProductsData implements Serializable, Parcelable
     private int id;
     @SerializedName("Wishlist_state")
     @Expose
-    private Object wishlistState;
+    private int wishlistState;
     @SerializedName("title")
     @Expose
     private String title;
@@ -55,7 +55,7 @@ public class ProductsData implements Serializable, Parcelable
 
     protected ProductsData(Parcel in) {
         this.id = ((int) in.readValue((int.class.getClassLoader())));
-        this.wishlistState = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.wishlistState = ((int) in.readValue((int.class.getClassLoader())));
         this.title = ((String) in.readValue((String.class.getClassLoader())));
         this.shortDescription = ((String) in.readValue((String.class.getClassLoader())));
         this.description = ((String) in.readValue((String.class.getClassLoader())));
@@ -75,11 +75,11 @@ public class ProductsData implements Serializable, Parcelable
         this.id = id;
     }
 
-    public Object getWishlistState() {
+    public int getWishlistState() {
         return wishlistState;
     }
 
-    public void setWishlistState(Object wishlistState) {
+    public void setWishlistState(int wishlistState) {
         this.wishlistState = wishlistState;
     }
 

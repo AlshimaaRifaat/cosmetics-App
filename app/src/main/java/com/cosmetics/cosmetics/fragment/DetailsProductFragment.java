@@ -165,7 +165,7 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
 
     private void checkWishListState() {
         //wishListSate="1";
-       // Toast.makeText(getContext(), "  w "+wishListState, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "  w "+wishListState, Toast.LENGTH_SHORT).show();
         if(wishListState.equals("0"))
         {
             //Toast.makeText(getContext(), wishListState+"", Toast.LENGTH_SHORT).show();

@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.content.Context;
+import android.widget.Toast;
 
 import com.cosmetics.cosmetics.model.LoginData;
 import com.cosmetics.cosmetics.model.LoginResponse;
@@ -58,7 +59,9 @@ public class LoginViewModel extends ViewModel {
                     registerMutableLiveData.setValue(response.body().getData());
                 }else if(response.code()==401)
                 {
-                    registerMutableLiveData.setValue(null);
+                    // check handle json object
+                    Toast.makeText(context, "Email address is previously used!", Toast.LENGTH_SHORT).show();
+                    //registerMutableLiveData.setValue("Email address is previously used!");
                 }
             }
 
@@ -86,6 +89,7 @@ public class LoginViewModel extends ViewModel {
                         mutableLiveData.setValue(response.body().getData());
                     }else if(response.code()==401)
                     {
+                        // check handle json object
                         mutableLiveData.setValue(null);
                     }
             }
