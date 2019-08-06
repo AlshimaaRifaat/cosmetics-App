@@ -57,7 +57,7 @@
         android:layout_below="@id/recycler_slider"
         android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginEnd="@dimen/_15sdp"
-        android:background="#fff"
+        android:background="#fdfdfd"
 
         >
         <RatingBar
@@ -124,7 +124,7 @@
             android:layout_below="@id/relaive_rating"
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_15sdp"
-            android:background="#fff"
+            android:background="#fdfdfd"
             android:id="@+id/relative_about"
             >
             <TextView
@@ -186,8 +186,8 @@
             android:layout_below="@id/relative_about"
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_15sdp"
-            android:background="#fff"
             android:id="@+id/relative_colors"
+            android:background="#fdfdfd"
             >
             <TextView
                 android:id="@+id/T_colors"
