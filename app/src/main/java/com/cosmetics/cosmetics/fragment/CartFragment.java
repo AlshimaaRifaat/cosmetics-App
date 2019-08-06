@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -62,6 +63,8 @@ public class CartFragment extends Fragment implements PlusQuantityCartView,MinQu
     @BindView(R.id.rel_total_result_cart)
     RelativeLayout rel_total_result_cart;
 
+    @BindView(R.id.btn_check_out)
+    Button btn_check_out;
     Unbinder unbinder;
 
     View view;
@@ -78,10 +81,17 @@ public class CartFragment extends Fragment implements PlusQuantityCartView,MinQu
         unbinder= ButterKnife.bind(this,view);
         userTokenValue= SharedPrefManager.getInstance(getContext()).getUserToken();
         cartViewModel = ViewModelProviders.of(this).get(CartViewModel.class);
+
         performGettingListCart();
         performGettingTotalResultListCart();
 
-
+        btn_check_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().replace(R.id.frame_container_cart,new OrderNowFragment())
+                        .addToBackStack(null).commit();
+            }
+        });
         return view;
     }
 

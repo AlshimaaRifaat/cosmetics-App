@@ -58,7 +58,6 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
     @BindView(R.id.T_title)
     TextView T_title;
 
-
     @BindView(R.id.T_price)
     TextView T_price;
 
@@ -98,6 +97,7 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
      String wishListState;
     public String productColorId;
 
+
     public DetailsProductFragment() {
         // Required empty public constructor
     }
@@ -122,6 +122,11 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
             productId=String.valueOf(productsData.getId());
             wishListState=String.valueOf(productsData.getWishlistState());
           // Toast.makeText(getContext(), wishListState+" s", Toast.LENGTH_SHORT).show();
+            T_title.setText(productsData.getTitle());
+            T_price.setText("$" + String.valueOf(productsData.getPriceGeneral()));
+            T_description.setText(productsData.getDescription());
+            T_label_title.setText(productsData.getTitle());
+            getDetailsProductSlider();
             checkWishListState();
             rel_ic_favorite.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -129,7 +134,7 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
                     performFavoriteProduct();
                 }
             });
-            getDetailsProductSlider();
+
             getDetailsProductColors();
 
 
@@ -250,6 +255,7 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
 
     public void getDetailsProductSlider() {
         //check "ar"
+       // Toast.makeText(getContext(), productId, Toast.LENGTH_SHORT).show();
         detailsProductViewModel.getDetailsProductSlider(productId, getContext()).observe(this, new Observer<List<DetailsProductSliderData>>() {
             @Override
             public void onChanged(@Nullable List<DetailsProductSliderData> detailsProductSliderData) {

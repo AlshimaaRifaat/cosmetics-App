@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     android:background="#fff"
     tools:context=".activity.LoginActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -196,4 +199,5 @@
             />
     </RelativeLayout>
 </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

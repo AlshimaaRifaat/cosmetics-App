@@ -136,7 +136,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:textSize="@dimen/_12sdp"
                 android:textColor="#939292"
-                android:text="title"
+
                 />
 
             <!--<TextView
@@ -158,7 +158,6 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/_3sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:text="price"
                 android:layout_marginStart="@dimen/_3sdp"
                 android:textColor="#939292"
                 android:textSize="@dimen/_12sdp"
@@ -172,7 +171,7 @@
                 android:layout_marginEnd="@dimen/_3sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginStart="@dimen/_3sdp"
-                android:text="description"
+
                 android:textColor="#939292"
                 android:textSize="@dimen/_9sdp"
                 android:layout_below="@id/T_title"

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f7f1f5"
+    android:id="@+id/frame_container_cart"
     tools:context=".fragment.CartFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -36,7 +37,8 @@
     android:layout_height="wrap_content"
     android:layout_below="@id/recycler_cart"
     android:layout_marginStart="@dimen/_3sdp"
-    android:layout_marginTop="@dimen/_10sdp"
+    android:layout_marginTop="@dimen/_22sdp"
+    android:layout_marginBottom="@dimen/_5sdp"
     android:id="@+id/rel_total_result_cart">
         <TextView
             android:id="@+id/T_sub_total_price"
@@ -69,6 +71,22 @@
             />
 
 </RelativeLayout>
+        <Button
+            android:id="@+id/btn_check_out"
+            android:layout_width="@dimen/_95sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@drawable/btn_check_out"
+             android:layout_marginEnd="@dimen/_5sdp"
+
+            android:layout_marginTop="@dimen/_32sdp"
+            android:textSize="@dimen/_13sdp"
+            android:textColor="#fff"
+            android:text="@string/CheckOut"
+            android:textAllCaps="false"
+            android:layout_below="@id/recycler_cart"
+            android:layout_alignParentEnd="true"
+            android:clickable="true"
+            />
     </RelativeLayout>
 
 </FrameLayout>
