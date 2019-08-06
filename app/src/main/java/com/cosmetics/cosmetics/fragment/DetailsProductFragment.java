@@ -121,7 +121,7 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
             productsData = bundleProducts.getParcelable("ProductItem");
             productId=String.valueOf(productsData.getId());
             wishListState=String.valueOf(productsData.getWishlistState());
-           // Toast.makeText(getContext(), wishListState+" s", Toast.LENGTH_SHORT).show();
+          // Toast.makeText(getContext(), wishListState+" s", Toast.LENGTH_SHORT).show();
             checkWishListState();
             rel_ic_favorite.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -137,6 +137,7 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
         }else if (bundle != null&&fromValue.equals("homeLatestProductPage")) {
             latestProductsData = bundle.getParcelable("LatestProductsItem");
             productId=String.valueOf(latestProductsData.getId());
+           // wishListState=String.valueOf()
             T_title.setText(latestProductsData.getTitle());
             T_price.setText("$" + String.valueOf(latestProductsData.getPriceGeneral()));
             T_description.setText(latestProductsData.getDescription());
@@ -165,7 +166,7 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
 
     private void checkWishListState() {
         //wishListSate="1";
-        Toast.makeText(getContext(), "  w "+wishListState, Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(getContext(), "  w "+wishListState, Toast.LENGTH_SHORT).show();
         if(wishListState.equals("0"))
         {
             //Toast.makeText(getContext(), wishListState+"", Toast.LENGTH_SHORT).show();
@@ -191,6 +192,7 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
             getActivity().finish();
         }else
         {
+           // Toast.makeText(getContext(), userTokenValue, Toast.LENGTH_SHORT).show();
             detailsProductViewModel.getFavoriteProduct("en",productId,userTokenValue, getContext()).observe(this, new Observer<PlusQuantityCartResponse>() {
                 @Override
                 public void onChanged(@Nullable PlusQuantityCartResponse plusQuantityCartResponse) {

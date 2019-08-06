@@ -43,8 +43,9 @@ public interface APIInterface {
     @POST("brands")
     Call<ProductCategoryResponse> getProductBrand(@QueryMap Map<String, String> map);
 
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("products")
-    Call<ProductsResponse> getProducts(@QueryMap Map<String, String> map);
+    Call<ProductsResponse> getProducts(@QueryMap Map<String, String> map,@Header("Authorization") String auth);
 
     @POST("products_images")
     Call<DetailsProductSliderResponse> getDetailsProductSlider(@QueryMap Map<String, String> map);

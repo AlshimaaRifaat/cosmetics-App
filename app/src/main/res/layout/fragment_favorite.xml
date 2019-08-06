@@ -14,11 +14,7 @@
         android:background="@drawable/background"
         android:id="@+id/relative_favorite"
         >
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
-            android:background="#f7f1f5"
-            android:id="@+id/relative_label_favorite">
+
             <!-- TODO: Update blank fragment layout -->
 
             <!--<ImageView
@@ -33,22 +29,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Favorite"
-                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
                 android:textColor="#767676"
                 android:textSize="@dimen/_14sdp"
-                android:textStyle="bold"/>
+                android:layout_marginTop="@dimen/_12sdp"
+                android:textStyle="bold"
+                android:id="@+id/T_label_favorite"/>
 
 
-        </RelativeLayout>
+
 
         <!-- TODO: Update blank fragment layout -->
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_favorite"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/relative_label_favorite"
+            android:layout_below="@+id/T_label_favorite"
             android:layout_marginLeft="@dimen/_6sdp"
             android:layout_marginRight="@dimen/_6sdp"
+            android:layout_marginTop="@dimen/_9sdp"
 
             />
     </RelativeLayout>

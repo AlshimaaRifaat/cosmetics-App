@@ -22,24 +22,24 @@ import retrofit2.Response;
 public class ProductsViewModel extends ViewModel {
     Context context;
     private MutableLiveData<List<ProductsData>> listProductsMutableLiveData;
-    public LiveData<List<ProductsData>> getProducts(String brand_id,String category_id,String lang, Context context) {
+    public LiveData<List<ProductsData>> getProducts(String brand_id,String category_id,String lang,String user_token_authorization, Context context) {
         if (listProductsMutableLiveData == null) {
             listProductsMutableLiveData = new MutableLiveData<List<ProductsData>>();
             this.context=context;
-            getProductsValues(brand_id,category_id,lang);
+            getProductsValues(brand_id,category_id,lang,user_token_authorization);
 
         }
         return listProductsMutableLiveData;
 
     }
 
-    private void getProductsValues(String brand_id, String category_id, String lang) {
+    private void getProductsValues(String brand_id, String category_id, String lang,String user_token_authorization) {
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("brand_id", brand_id);
         hashMap.put("category_id", category_id);
         hashMap.put("lang", lang);
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<ProductsResponse> call = apiInterface.getProducts(hashMap);
+        Call<ProductsResponse> call = apiInterface.getProducts(hashMap,"Bearer "+user_token_authorization);
         call.enqueue(new Callback<ProductsResponse>() {
             @Override
             public void onResponse(Call<ProductsResponse> call, Response<ProductsResponse> response) {

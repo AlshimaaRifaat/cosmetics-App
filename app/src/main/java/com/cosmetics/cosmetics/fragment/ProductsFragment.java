@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.cosmetics.cosmetics.R;
+import com.cosmetics.cosmetics.SharedPrefManager;
 import com.cosmetics.cosmetics.adapter.ProductCategoryAdapter;
 import com.cosmetics.cosmetics.adapter.ProductsAdapter;
 import com.cosmetics.cosmetics.model.ProductCategoryData;
@@ -44,6 +45,7 @@ public class ProductsFragment extends Fragment implements DetailsProductView {
     Bundle bundle;
     ProductCategoryData productBrandData,productCategoryData;
     public String BrandId,CategoryId,TypeValue;
+    String userTokenValue;
     public ProductsFragment() {
         // Required empty public constructor
     }
@@ -56,6 +58,7 @@ View view;
         view= inflater.inflate(R.layout.fragment_products, container, false);
         unbinder = ButterKnife.bind(this, view);
         productsViewModel = ViewModelProviders.of(this).get(ProductsViewModel.class);
+        userTokenValue= SharedPrefManager.getInstance(getContext()).getUserToken();
         bundle=this.getArguments();
         TypeValue=bundle.getString("type");
        // Toast.makeText(getContext(), "ty "+TypeValue, Toast.LENGTH_SHORT).show();
@@ -86,7 +89,7 @@ View view;
 
     public void getProductsCategory() {
 
-    productsViewModel.getProducts("", CategoryId, "en", getContext()).observe(this, new Observer<List<ProductsData>>() {
+    productsViewModel.getProducts("", CategoryId, "en",userTokenValue, getContext()).observe(this, new Observer<List<ProductsData>>() {
         @Override
         public void onChanged(@Nullable List<ProductsData> productsData) {
             if (productsData!=null) {
@@ -103,7 +106,7 @@ View view;
 
     public void getProductsBrand() {
         if (BrandId != null) {
-            productsViewModel.getProducts(BrandId, "", "en", getContext()).observe(this, new Observer<List<ProductsData>>() {
+            productsViewModel.getProducts(BrandId, "", "en",userTokenValue, getContext()).observe(this, new Observer<List<ProductsData>>() {
                 @Override
                 public void onChanged(@Nullable List<ProductsData> productsData) {
                     if (productsData!=null) {
