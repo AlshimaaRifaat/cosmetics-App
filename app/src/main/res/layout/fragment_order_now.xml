@@ -17,15 +17,15 @@
         >
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_113sdp"
+            android:layout_height="@dimen/_93sdp"
             android:background="@drawable/copy"/>
         <ImageView
             android:id="@+id/img_logo"
-            android:layout_width="@dimen/_66sdp"
-            android:layout_height="@dimen/_66sdp"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
             android:background="@drawable/group_39"
             android:layout_marginStart="@dimen/_33sdp"
-            android:layout_marginTop="@dimen/_74sdp"/>
+            android:layout_marginTop="@dimen/_57sdp"/>
         <TextView
             android:id="@+id/T_label"
             android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
             android:layout_below="@id/img_logo"
             android:text="@string/StyleCosmetics"
             android:layout_centerHorizontal="true"
-            android:textSize="@dimen/_18sdp"
+            android:textSize="@dimen/_16sdp"
             android:textColor="#c6498f"
 
             />

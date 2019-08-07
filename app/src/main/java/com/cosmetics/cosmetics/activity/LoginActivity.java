@@ -63,6 +63,7 @@ NetworkConnection networkConnection;
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //check lang
                 FUtilsValidation.isEmpty(ET_email,"من فضلك ادخل بريدك الالكترونى");
                 FUtilsValidation.isEmpty(ET_password,"من فضلك ادخل كلمه المرور");
                 FUtilsValidation.isLengthCorrect(ET_password.getText().toString(),5,16);

@@ -76,8 +76,7 @@
             android:layout_width="@dimen/_95sdp"
             android:layout_height="@dimen/_35sdp"
             android:background="@drawable/btn_check_out"
-             android:layout_marginEnd="@dimen/_5sdp"
-
+            android:layout_marginEnd="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_32sdp"
             android:textSize="@dimen/_13sdp"
             android:textColor="#fff"
