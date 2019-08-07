@@ -19,6 +19,11 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_93sdp"
             android:background="@drawable/copy"/>
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"/>
         <ImageView
             android:id="@+id/img_logo"
             android:layout_width="@dimen/_60sdp"
