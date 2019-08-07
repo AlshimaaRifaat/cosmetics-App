@@ -98,6 +98,7 @@ public class OrderNowFragment extends Fragment implements OnMapReadyCallback, co
     GPSTracker gbs;
     Unbinder unbinder;
     String userTokenValue;
+    boolean statues=true;
     View view;
     public OrderNowFragment() {
         // Required empty public constructor
@@ -232,27 +233,26 @@ public class OrderNowFragment extends Fragment implements OnMapReadyCallback, co
         latitude = location.getLatitude();
         longitude = location.getLongitude();
 
+        if(!statues) {
+            try {
+                Geocoder geocoder = new Geocoder(getContext());
+                addresses = geocoder.getFromLocation(latitude, longitude, 1);
 
-        try {
+                address = addresses.get(0).getAddressLine(0);
+                Street = addresses.get(0).getFeatureName();
+                City = addresses.get(0).getAdminArea();
+                Country = addresses.get(0).getCountryName();
 
+                ET_address.setText(address + "");
+                ET_street.setText(Street);
+                ET_city.setText(City);
+                ET_country.setText(Country);
 
-            Geocoder geocoder = new Geocoder(getContext());
-            addresses = geocoder.getFromLocation(latitude, longitude, 1);
+                // check the rest
 
-            address = addresses.get(0).getAddressLine(0);
-            Street=addresses.get(0).getFeatureName();
-            City = addresses.get(0).getAdminArea();
-            Country=addresses.get(0).getCountryName();
-
-            ET_address.setText(address + "");
-            ET_street.setText(Street);
-            ET_city.setText(City);
-            ET_country.setText(Country);
-
-            // check the rest
-
-        } catch (IOException d) {
-            d.printStackTrace();
+            } catch (IOException d) {
+                d.printStackTrace();
+            }
         }
     }
 
@@ -280,6 +280,7 @@ public class OrderNowFragment extends Fragment implements OnMapReadyCallback, co
         btn_get_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                statues=false;
                 buildGoogleapiclient();
                 checkLocationPermission();
             }
