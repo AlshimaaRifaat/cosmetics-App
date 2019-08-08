@@ -65,6 +65,8 @@ public class CartFragment extends Fragment implements PlusQuantityCartView,MinQu
 
     @BindView(R.id.btn_check_out)
     Button btn_check_out;
+
+    public  static String TotalPrice;
     Unbinder unbinder;
 
     View view;
@@ -104,7 +106,8 @@ public class CartFragment extends Fragment implements PlusQuantityCartView,MinQu
             @Override
             public void onChanged(@Nullable TotalResultGetListCartData totalResultGetListCartData) {
                 if (totalResultGetListCartData!=null) {
-                    T_sub_total_price.setText(getResources().getString(R.string.sub_total)+"  "+String.valueOf(totalResultGetListCartData.getPrice())+" $");
+                    TotalPrice=String.valueOf(totalResultGetListCartData.getPrice());
+                    T_sub_total_price.setText(getResources().getString(R.string.sub_total)+"  "+TotalPrice+" $");
                     T_tax.setText(String.valueOf(getResources().getString(R.string.Tax)+"  "+totalResultGetListCartData.getTotalTax())+" $");
                     T_delivery_fees.setText(getResources().getString(R.string.Delivery_fees)+"  "+String.valueOf(totalResultGetListCartData.getTotalDeleveryFees())+" $");
                 }

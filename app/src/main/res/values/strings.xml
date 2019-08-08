@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">cosmetics</string>
     <string name="StyleCosmetics">Style Cosmetics</string>
@@ -58,4 +59,5 @@
     <string name="Please_enter_your_phone_number">Please, enter your phone number!</string>
     <string name="Please_enter_your_address">Please, enter your address!</string>
     <string name="Please_enter_your_country">Please, enter your country!</string>
+    <string name="Rate">Rate</string>
 </resources>

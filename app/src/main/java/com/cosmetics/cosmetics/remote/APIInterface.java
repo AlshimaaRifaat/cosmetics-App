@@ -85,4 +85,8 @@ public interface APIInterface {
     @POST("create_order")
     Call<PlusQuantityCartResponse> getOrderNow(@QueryMap Map<String, String> map, @Header("Authorization") String auth);
 
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST("rate_creat")
+    Call<PlusQuantityCartResponse> getRateMyOrdersNow(@QueryMap Map<String, String> map, @Header("Authorization") String auth);
+
 }

@@ -40,15 +40,16 @@
         android:paddingEnd="@dimen/_4sdp"
         android:hint="@string/Say_some_thing_about_products"
         android:textColorHint="#d2d2d2"
-        android:textSize="@dimen/_11sdp"
-        android:id="@+id/Et_comment"
+        android:textColor="#d2d2d2"
+        android:textSize="@dimen/_13sdp"
+        android:id="@+id/ET_comment"
         ></EditText>
         <RelativeLayout
             android:id="@+id/relaive_evaluation"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:layout_below="@id/Et_comment"
+            android:layout_below="@id/ET_comment"
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_15sdp"
             android:background="#fff"
@@ -73,34 +74,50 @@
                 android:layout_centerVertical="true"
                 />
 
-            <TextView
-                android:id="@+id/T_evaluation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_112sdp"
-                android:layout_marginEnd="@dimen/_3sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:text="excellent"
-                android:textColor="#C6488E"
-                android:textSize="@dimen/_12sdp"
-                android:layout_toEndOf="@id/rating_bar_evaluate"
-                android:layout_centerVertical="true"
-                />
+
             <TextView
                 android:id="@+id/T_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_1sdp"
-                android:layout_marginEnd="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:text="@string/Product"
                 android:layout_alignParentEnd="true"
                 android:textColor="#939292"
                 android:textSize="@dimen/_12sdp"
-                android:layout_toEndOf="@id/T_evaluation"
+                android:layout_centerVertical="true"
+                />
+            <TextView
+                android:id="@+id/T_evaluation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="excellent"
+                android:textColor="#C6488E"
+                android:textSize="@dimen/_12sdp"
+                android:layout_toStartOf="@id/T_product"
                 android:layout_centerVertical="true"
                 />
         </RelativeLayout>
+        <Button
+            android:id="@+id/btn_rate"
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@drawable/btn_login"
+            android:layout_marginStart="@dimen/_36sdp"
+            android:layout_marginEnd="@dimen/_36sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/_13sdp"
+            android:textColor="#fff"
+            android:text="@string/Rate"
+            android:textAllCaps="false"
+            android:layout_below="@id/relaive_evaluation"
+            android:clickable="true"
+            />
 
     </RelativeLayout>
 </FrameLayout>
