@@ -122,7 +122,7 @@ public class CartFragment extends Fragment implements PlusQuantityCartView,MinQu
             public void onChanged(@Nullable List<GetListCartData> getListCartData) {
                 if(getListCartData!=null) {
                     cartAdapter = new CartAdapter(getActivity(), getListCartData);
-                    cartAdapter.onClickPlusQuantityCart( CartFragment. this);
+                    cartAdapter.onClickPlusQuantityCart( CartFragment.this);
                     cartAdapter.onClickMinQuantityCart(CartFragment.this);
                     cartAdapter.onClickDeleteItemCart(CartFragment.this);
                     recycler_cart.setLayoutManager(new LinearLayoutManager(getContext()));

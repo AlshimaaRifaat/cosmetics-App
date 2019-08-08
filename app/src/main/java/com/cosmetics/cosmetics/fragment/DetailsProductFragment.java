@@ -151,12 +151,12 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
             getDetailsProductColors();
         }
 
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+        /*ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                // Toast.makeText(getContext(), String.valueOf(rating), Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
 
        // Toast.makeText(getContext(), productId, Toast.LENGTH_SHORT).show();

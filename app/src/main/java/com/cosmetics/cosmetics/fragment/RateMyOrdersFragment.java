@@ -42,6 +42,7 @@ public class RateMyOrdersFragment extends Fragment {
     String userTokenValue;
     //public  static String TotalPrice;
     Unbinder unbinder;
+    int rateCount;
     public RateMyOrdersFragment() {
         // Required empty public constructor
     }
@@ -55,6 +56,12 @@ View view;
         unbinder= ButterKnife.bind(this,view);
         userTokenValue= SharedPrefManager.getInstance(getContext()).getUserToken();
         rateMyOrdersViewModel = ViewModelProviders.of(this).get(RateMyOrdersViewModel.class);
+        /*rating_bar_evaluate.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                // Toast.makeText(getContext(), String.valueOf(rating), Toast.LENGTH_SHORT).show();
+            }
+        });*/
 
         btn_rate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,15 +74,21 @@ View view;
         return view;
     }
     private void PerformRatingMyOrders() {
-        //check product id & rating range
-        rateMyOrdersViewModel.getRateMyOrders("1","1",ET_comment.getText().toString(),userTokenValue,getContext())
-                .observe(this, new Observer<PlusQuantityCartResponse>() {
-                    @Override
-                    public void onChanged(@Nullable PlusQuantityCartResponse plusQuantityCartResponse) {
-                        if(plusQuantityCartResponse!=null)
-                            Toast.makeText(getContext(), plusQuantityCartResponse.getData(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+        //check product id
+
+        rateCount= (int) rating_bar_evaluate.getRating();
+        Toast.makeText(getContext(), String.valueOf(rateCount), Toast.LENGTH_SHORT).show();
+                rateMyOrdersViewModel.getRateMyOrders("4",String.valueOf(rateCount),ET_comment.getText().toString(),userTokenValue,getContext())
+                        .observe(RateMyOrdersFragment.this, new Observer<PlusQuantityCartResponse>() {
+                            @Override
+                            public void onChanged(@Nullable PlusQuantityCartResponse plusQuantityCartResponse) {
+                                if(plusQuantityCartResponse!=null)
+                                    Toast.makeText(getContext(), plusQuantityCartResponse.getData(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
+
+
     }
 
-}
+
