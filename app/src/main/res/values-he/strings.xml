@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">עברית</string>
+    <string name="StyleCosmetics">סיסמה</string>
+    <string name="BeautyCenter">עברית</string>
+    <string name="Email">עברית</string>
+    <string name="Password">עברית</string>
+    <string name="Login">עברית</string>
+    <string name="Donthaveaccount">עברית</string>
+    <string name="SignUp">עברית</string>
+    <string name="Rate">Rate</string>
+</resources>
