@@ -55,21 +55,7 @@
             android:background="#fff"
 
             >
-            <RatingBar
-                android:id="@+id/rating_bar_evaluate"
-                style="?android:attr/ratingBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_4sdp"
-                android:layout_marginEnd="@dimen/_4sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:stepSize="1.0"
-                android:gravity="left|center"
-                android:numStars="5"
-                android:progressTint="#C6488E"
-                android:progressBackgroundTint="#8c8a8a"
-                android:layout_centerVertical="true"
-                />
+
 
 
             <TextView
@@ -88,16 +74,31 @@
                 android:id="@+id/T_evaluation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:visibility="gone"
+              android:visibility="gone"
                 android:textColor="#C6488E"
                 android:textSize="@dimen/_12sdp"
                 android:layout_toStartOf="@id/T_product"
                 android:layout_centerVertical="true"
                 />
         </RelativeLayout>
+        <RatingBar
+            android:id="@+id/rating_bar_evaluate"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:stepSize="1.0"
+            android:gravity="left"
+            android:numStars="5"
+            android:progressTint="#C6488E"
+            android:progressBackgroundTint="#8c8a8a"
+            android:layout_centerVertical="true"
+            android:layout_below="@+id/ET_comment"
+            />
         <Button
             android:id="@+id/btn_rate"
             android:layout_width="@dimen/_110sdp"
