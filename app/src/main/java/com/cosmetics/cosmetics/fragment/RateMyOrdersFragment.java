@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cosmetics.cosmetics.Language;
@@ -38,6 +39,9 @@ public class RateMyOrdersFragment extends Fragment {
     @BindView(R.id.btn_rate)
     Button btn_rate;
 
+    @BindView(R.id.T_evaluation)
+    TextView T_evaluation;
+
     RateMyOrdersViewModel rateMyOrdersViewModel;
     String userTokenValue;
     //public  static String TotalPrice;
@@ -63,6 +67,23 @@ View view;
             }
         });*/
 
+       /* if(rateVal==1)
+        {
+            T_evaluation.setText("Very Bad");
+        }else if(rateVal==2)
+        {
+            T_evaluation.setText("Bad");
+        }else if(rateVal==3)
+        {
+            T_evaluation.setText("Good");
+        }else if(rateVal==4)
+        {
+            T_evaluation.setText("Very Good");
+        }else if(rateVal==5)
+        {
+            T_evaluation.setText("Excellent");
+        }*/
+        checkEvaluationCase();
         btn_rate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +97,9 @@ View view;
     private void PerformRatingMyOrders() {
         //check product id
 
-        rateCount= (int) rating_bar_evaluate.getRating();
+      rateCount= (int) rating_bar_evaluate.getRating();
+
+
         Toast.makeText(getContext(), String.valueOf(rateCount), Toast.LENGTH_SHORT).show();
                 rateMyOrdersViewModel.getRateMyOrders("4",String.valueOf(rateCount),ET_comment.getText().toString(),userTokenValue,getContext())
                         .observe(RateMyOrdersFragment.this, new Observer<PlusQuantityCartResponse>() {
@@ -86,9 +109,35 @@ View view;
                                     Toast.makeText(getContext(), plusQuantityCartResponse.getData(), Toast.LENGTH_SHORT).show();
                             }
                         });
+       checkEvaluationCase();
             }
 
+    private void checkEvaluationCase() {
+        if(rateCount==1)
+        {
+            T_evaluation.setVisibility(View.VISIBLE);
+            T_evaluation.setText("Very Bad");
+        }else if(rateCount==2)
+        {
+            T_evaluation.setVisibility(View.VISIBLE);
+            T_evaluation.setText("Bad");
+        }else if(rateCount==3)
+        {
+            T_evaluation.setVisibility(View.VISIBLE);
+            T_evaluation.setText("Good");
+        }else if(rateCount==4)
+        {
+            T_evaluation.setVisibility(View.VISIBLE);
+            T_evaluation.setText("Very Good");
+        }else if(rateCount==5)
+        {
+            T_evaluation.setVisibility(View.VISIBLE);
+            T_evaluation.setText("Excellent");
+        }
 
     }
+
+
+}
 
 

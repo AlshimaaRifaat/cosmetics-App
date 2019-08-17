@@ -47,7 +47,7 @@
         <RelativeLayout
             android:id="@+id/relaive_evaluation"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp"
+            android:layout_height="@dimen/_55sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_below="@id/ET_comment"
             android:layout_marginStart="@dimen/_15sdp"
@@ -67,7 +67,7 @@
                 android:gravity="left|center"
                 android:numStars="5"
                 android:progressTint="#C6488E"
-                android:progressBackgroundTint="#d6d0d0"
+                android:progressBackgroundTint="#8c8a8a"
                 android:layout_centerVertical="true"
                 />
 
@@ -76,15 +76,14 @@
                 android:id="@+id/T_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_1sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_1sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:text="@string/Product"
-                android:layout_alignParentEnd="true"
                 android:textColor="#939292"
-                android:textSize="@dimen/_12sdp"
-                android:layout_centerVertical="true"
-                />
+                android:textSize="@dimen/_12sdp" />
             <TextView
                 android:id="@+id/T_evaluation"
                 android:layout_width="wrap_content"
@@ -92,7 +91,7 @@
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:text="excellent"
+                android:visibility="gone"
                 android:textColor="#C6488E"
                 android:textSize="@dimen/_12sdp"
                 android:layout_toStartOf="@id/T_product"
