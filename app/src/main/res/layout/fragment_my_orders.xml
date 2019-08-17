@@ -13,7 +13,7 @@
         android:id="@id/T_title_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="title"
+        android:text="@string/MyOrders"
         android:layout_centerHorizontal="true"
         android:textColor="#7d7c7e"
         android:textSize="@dimen/_14sdp"
@@ -25,10 +25,10 @@
         android:id="@+id/recycler_my_orders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_6sdp"
         android:layout_marginLeft="@dimen/_6sdp"
         android:layout_marginRight="@dimen/_6sdp"
         android:layout_below="@+id/T_title_bar"
+        android:layout_marginBottom="@dimen/_9sdp"
         />
     </RelativeLayout>
 </RelativeLayout>

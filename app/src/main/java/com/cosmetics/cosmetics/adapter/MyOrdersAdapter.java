@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.model.MyOrdersData;
@@ -44,7 +45,19 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.ViewHo
     public void onBindViewHolder(@NonNull final MyOrdersAdapter.ViewHolder holder, final int position) {
 
         holder.T_order_id.setText("#"+String.valueOf(myOrdersDataList.get(position).getOrderId()));
-        holder.T_order_status.setText(String.valueOf(myOrdersDataList.get(position).getOrderStat()));
+        String orderStatusValue=String.valueOf(myOrdersDataList.get(position).getOrderStat());
+
+        if (orderStatusValue.equals("1"))
+        {
+            holder.T_order_status.setText(context.getResources().getString(R.string.InProgress));
+        }else if (orderStatusValue.equals("2"))
+        {
+            holder.T_order_status.setText(context.getResources().getString(R.string.Delivered));
+        }else if (orderStatusValue.equals("3"))
+        {
+            holder.T_order_status.setText(context.getResources().getString(R.string.Canceled));
+        }
+
         holder.T_date.setText(String.valueOf(myOrdersDataList.get(position).getCreatedAt()));
         holder.T_price.setText("$ "+String.valueOf(myOrdersDataList.get(position).getOrderTotalPrice()));
 

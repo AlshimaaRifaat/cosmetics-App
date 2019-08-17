@@ -57,7 +57,7 @@ View view;
     }
 
     public void getListMyOrders() {
-        Toast.makeText(getContext(), userTokenValue, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), userTokenValue, Toast.LENGTH_SHORT).show();
         myOrdersViewModel.getMyOrders("en",userTokenValue, getContext()).observe(this, new Observer<List<MyOrdersData>>() {
             @Override
             public void onChanged(@Nullable List<MyOrdersData> myOrdersData) {

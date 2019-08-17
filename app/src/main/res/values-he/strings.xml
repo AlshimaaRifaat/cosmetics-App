@@ -9,4 +9,7 @@
     <string name="Donthaveaccount">עברית</string>
     <string name="SignUp">עברית</string>
     <string name="Rate">Rate</string>
+    <string name="InProgress">In Progress</string>
+    <string name="Delivered">Delivered</string>
+    <string name="Canceled">Canceled</string>
 </resources>
