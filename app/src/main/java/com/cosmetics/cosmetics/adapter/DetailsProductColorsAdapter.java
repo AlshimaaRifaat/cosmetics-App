@@ -55,6 +55,7 @@ public class DetailsProductColorsAdapter  extends RecyclerView.Adapter<DetailsPr
                 200, 200, 200, 200}, null, null);
 
         ShapeDrawable shapeDrawable = new ShapeDrawable(roundRectShape);
+        if(detailsProductColorsDataList.get(position).getHashColor()!=null)
         shapeDrawable.getPaint().setColor(Color.parseColor(detailsProductColorsDataList.get(position).getHashColor()));
         holder.circleImageView.setBackground(shapeDrawable);
 

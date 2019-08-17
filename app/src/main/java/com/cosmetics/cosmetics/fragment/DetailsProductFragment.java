@@ -155,6 +155,7 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
             T_label_title.setText(latestProductsData.getTitle());
             getDetailsProductSlider();
             getDetailsProductColors();
+            getListComments();
         }
 
         /*ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -305,7 +306,7 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
                 if(commentsData!=null) {
                     commentsAdapter = new CommentsAdapter(getActivity(), commentsData);
                    // commentsAdapter.onClickProductColor(DetailsProductFragment.this);
-                    recycler_comments.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                    recycler_comments.setLayoutManager(new LinearLayoutManager(getContext()));
                     recycler_comments.setAdapter(commentsAdapter);
                 }
             }
