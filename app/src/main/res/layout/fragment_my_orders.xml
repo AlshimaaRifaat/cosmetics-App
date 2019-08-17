@@ -22,7 +22,7 @@
         android:layout_marginTop="@dimen/_12sdp"/>
     <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_item_products"
+        android:id="@+id/recycler_my_orders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_6sdp"

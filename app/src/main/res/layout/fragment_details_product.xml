@@ -228,8 +228,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/btn_add_to_cart"
             android:layout_marginTop="@dimen/_12sdp"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             ></android.support.v7.widget.RecyclerView>
 
   <!--  <EditText

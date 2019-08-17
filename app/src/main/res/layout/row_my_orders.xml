@@ -16,22 +16,21 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="@dimen/_68sdp"
-            android:layout_height="@dimen/_68sdp"
+            android:layout_width="@dimen/_65sdp"
+            android:layout_height="@dimen/_65sdp"
             android:layout_alignParentStart="true"
             android:layout_marginTop="@dimen/_4sdp"
             android:layout_marginStart="@dimen/_4sdp"
             app:civ_border_width="@dimen/_2sdp"
             app:civ_border_color="#fff"
-            android:background="#c40d0d"
+            android:background="@drawable/group_39"
             android:layout_marginBottom="@dimen/_4sdp"
 
             />
         <TextView
-            android:id="@+id/T_user_name"
+            android:id="@+id/T_order_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="name"
             android:textStyle="bold"
             android:layout_marginTop="@dimen/_9sdp"
             android:layout_marginStart="@dimen/_2sdp"
@@ -48,17 +47,16 @@
             android:textStyle="bold"
             android:layout_marginTop="@dimen/_9sdp"
             android:layout_marginEnd="@dimen/_3sdp"
-            android:textColor="#838383"
+            android:textColor="#c6498f"
             android:textSize="@dimen/_12sdp"
             android:maxLines="1"
             android:layout_alignParentEnd="true"/>
 
 
         <TextView
-            android:id="@+id/T_items_number"
+            android:id="@+id/T_order_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="item numbers"
             android:textStyle="bold"
             android:layout_marginTop="@dimen/_3sdp"
             android:layout_marginEnd="@dimen/_2sdp"
@@ -66,9 +64,9 @@
             android:textColor="#838383"
             android:textSize="@dimen/_12sdp"
             android:layout_toEndOf="@+id/img"
-            android:layout_below="@+id/T_user_name"
+            android:layout_below="@+id/T_order_id"
             />
-        <TextView
+        <!--<TextView
             android:id="@+id/T_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -79,14 +77,13 @@
             android:layout_marginStart="@dimen/_1sdp"
             android:textColor="#838383"
             android:textSize="@dimen/_12sdp"
-            android:layout_toEndOf="@+id/T_items_number"
+            android:layout_toEndOf="@+id/T_order_status"
             android:layout_below="@+id/T_user_name"
-            />
+            />-->
         <TextView
             android:id="@+id/T_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="date"
             android:textStyle="bold"
             android:layout_marginTop="@dimen/_3sdp"
             android:layout_marginEnd="@dimen/_2sdp"
@@ -94,7 +91,7 @@
             android:textColor="#838383"
             android:textSize="@dimen/_12sdp"
             android:layout_toEndOf="@+id/img"
-            android:layout_below="@+id/T_items_number"
+            android:layout_below="@+id/T_order_status"
             />
         />
 

@@ -114,14 +114,14 @@ public class HomeActivity extends AppCompatActivity {
 
      if(Language.isRTL()){
             viewPagerAdapter.addFrag( new MoreFragment(),"" );
-            viewPagerAdapter.addFrag( new RateMyOrdersFragment(),"" );
+            viewPagerAdapter.addFrag( new MyOrdersFragment(),"" );
             viewPagerAdapter.addFrag( new ProductsCategoryBrandFragment(),"" );
             viewPagerAdapter.addFrag( new HomeFragment(),"" );
 
         }else {
             viewPagerAdapter.addFrag( new HomeFragment(),"" );
             viewPagerAdapter.addFrag( new ProductsCategoryBrandFragment(),"" );
-            viewPagerAdapter.addFrag( new RateMyOrdersFragment(),"" );
+            viewPagerAdapter.addFrag( new MyOrdersFragment(),"" );
             viewPagerAdapter.addFrag( new MoreFragment(),"" );
 
         }

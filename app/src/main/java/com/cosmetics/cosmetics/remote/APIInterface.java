@@ -9,6 +9,7 @@ import com.cosmetics.cosmetics.model.HomeSliderResponse;
 import com.cosmetics.cosmetics.model.LatestProductsResponse;
 import com.cosmetics.cosmetics.model.ListFavoriteProductResponse;
 import com.cosmetics.cosmetics.model.LoginResponse;
+import com.cosmetics.cosmetics.model.MyOrdersResponse;
 import com.cosmetics.cosmetics.model.PlusQuantityCartResponse;
 import com.cosmetics.cosmetics.model.ProductCategoryResponse;
 import com.cosmetics.cosmetics.model.ProductsResponse;
@@ -92,4 +93,8 @@ public interface APIInterface {
 
     @POST("rate_list")
     Call<CommentsResponse> getComments(@QueryMap Map<String, String> map);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST("order_list")
+    Call<MyOrdersResponse> getMyOrders(@QueryMap Map<String, String> map, @Header("Authorization") String auth);
 }

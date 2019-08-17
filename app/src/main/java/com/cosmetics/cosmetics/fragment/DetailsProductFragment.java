@@ -299,7 +299,7 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
     }
 
     public void getListComments() {
-        Toast.makeText(getContext(), productId, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), productId, Toast.LENGTH_SHORT).show();
         detailsProductViewModel.getCommentsList(productId, getContext()).observe(this, new Observer<List<CommentsData>>() {
             @Override
             public void onChanged(@Nullable List<CommentsData> commentsData) {
