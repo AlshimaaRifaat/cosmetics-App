@@ -24,22 +24,21 @@ public class ProductCategoryViewModel extends ViewModel {
     private MutableLiveData<List<ProductCategoryData>> listCategoryMutableLiveData;
     private MutableLiveData<List<ProductCategoryData>> listBrandMutableLiveData;
     public LiveData<List<ProductCategoryData>> getProductCategory(String Lang, Context context) {
-        if (listCategoryMutableLiveData == null) {
+
             listCategoryMutableLiveData = new MutableLiveData<List<ProductCategoryData>>();
             this.context=context;
             getProductCategoryValues(Lang);
 
-        }
+
         return listCategoryMutableLiveData;
 
     }
     public LiveData<List<ProductCategoryData>> getProductBrand(String Lang, Context context) {
-        if (listBrandMutableLiveData == null) {
+
             listBrandMutableLiveData = new MutableLiveData<List<ProductCategoryData>>();
             this.context=context;
             getProductBrandValues(Lang);
 
-        }
         return listBrandMutableLiveData;
 
     }

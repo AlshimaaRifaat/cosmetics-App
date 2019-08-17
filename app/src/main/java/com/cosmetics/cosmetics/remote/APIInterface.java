@@ -1,5 +1,6 @@
 package com.cosmetics.cosmetics.remote;
 
+import com.cosmetics.cosmetics.model.CommentsResponse;
 import com.cosmetics.cosmetics.model.DetailsProductAddCartResponse;
 import com.cosmetics.cosmetics.model.DetailsProductColorsResponse;
 import com.cosmetics.cosmetics.model.DetailsProductSliderResponse;
@@ -89,4 +90,6 @@ public interface APIInterface {
     @POST("rate_creat")
     Call<PlusQuantityCartResponse> getRateMyOrdersNow(@QueryMap Map<String, String> map, @Header("Authorization") String auth);
 
+    @POST("rate_list")
+    Call<CommentsResponse> getComments(@QueryMap Map<String, String> map);
 }

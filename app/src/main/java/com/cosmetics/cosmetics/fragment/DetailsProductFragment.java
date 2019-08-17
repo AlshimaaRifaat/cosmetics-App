@@ -24,11 +24,13 @@ import android.widget.Toast;
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.SharedPrefManager;
 import com.cosmetics.cosmetics.activity.LoginActivity;
+import com.cosmetics.cosmetics.adapter.CommentsAdapter;
 import com.cosmetics.cosmetics.adapter.DetailsProductColorsAdapter;
 import com.cosmetics.cosmetics.adapter.DetailsProductSliderAdapter;
 import com.cosmetics.cosmetics.adapter.FeatureProductsAdapter;
 import com.cosmetics.cosmetics.adapter.HomeSliderAdapter;
 import com.cosmetics.cosmetics.adapter.LatestProductsAdapter;
+import com.cosmetics.cosmetics.model.CommentsData;
 import com.cosmetics.cosmetics.model.DetailsProductAddCartResponse;
 import com.cosmetics.cosmetics.model.DetailsProductColorsData;
 import com.cosmetics.cosmetics.model.DetailsProductSliderData;
@@ -85,6 +87,10 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
 
    @BindView(R.id.rel_ic_favorite)
    RelativeLayout rel_ic_favorite;
+
+    @BindView(R.id.recycler_comments)
+    RecyclerView recycler_comments;
+    CommentsAdapter commentsAdapter;
     Unbinder unbinder;
 
     LatestProductsData latestProductsData;
@@ -136,7 +142,7 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
             });
 
             getDetailsProductColors();
-
+            getListComments();
 
            // Toast.makeText(getContext(), "PID "+productId, Toast.LENGTH_SHORT).show();
         }else if (bundle != null&&fromValue.equals("homeLatestProductPage")) {
@@ -289,5 +295,20 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
 
         productColorId=String.valueOf(detailsProductColorsData.getId());
         this.productColorId=productColorId;
+    }
+
+    public void getListComments() {
+        Toast.makeText(getContext(), productId, Toast.LENGTH_SHORT).show();
+        detailsProductViewModel.getCommentsList(productId, getContext()).observe(this, new Observer<List<CommentsData>>() {
+            @Override
+            public void onChanged(@Nullable List<CommentsData> commentsData) {
+                if(commentsData!=null) {
+                    commentsAdapter = new CommentsAdapter(getActivity(), commentsData);
+                   // commentsAdapter.onClickProductColor(DetailsProductFragment.this);
+                    recycler_comments.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                    recycler_comments.setAdapter(commentsAdapter);
+                }
+            }
+        });
     }
 }

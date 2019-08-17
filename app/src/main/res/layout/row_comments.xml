@@ -13,7 +13,7 @@
         android:background="#fff"
         >
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <!--<de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="@dimen/_55sdp"
@@ -26,19 +26,17 @@
             android:background="#c40d0d"
             android:layout_marginBottom="@dimen/_18sdp"
 
-            />
+            />-->
         <TextView
             android:id="@+id/T_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="name"
             android:textStyle="bold"
             android:layout_marginTop="@dimen/_9sdp"
             android:layout_marginStart="@dimen/_2sdp"
             android:layout_marginEnd="@dimen/_2sdp"
-            android:textColor="#959595"
+            android:textColor="#c53b88"
             android:textSize="@dimen/_12sdp"
-            android:layout_toEndOf="@+id/img"
             android:maxLines="1"/>
 
 
@@ -46,9 +44,9 @@
             android:id="@+id/T_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="description"
             android:textStyle="bold"
-            android:layout_marginTop="@dimen/_9sdp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_marginBottom="@dimen/_9sdp"
             android:layout_marginEnd="@dimen/_2sdp"
             android:layout_marginStart="@dimen/_2sdp"
             android:textColor="#b3b3b3"

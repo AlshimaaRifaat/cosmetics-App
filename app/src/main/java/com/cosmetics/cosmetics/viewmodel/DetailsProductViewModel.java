@@ -5,6 +5,8 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.content.Context;
 
+import com.cosmetics.cosmetics.model.CommentsData;
+import com.cosmetics.cosmetics.model.CommentsResponse;
 import com.cosmetics.cosmetics.model.DetailsProductAddCartResponse;
 import com.cosmetics.cosmetics.model.DetailsProductColorsData;
 import com.cosmetics.cosmetics.model.DetailsProductColorsResponse;
@@ -30,6 +32,7 @@ public class DetailsProductViewModel extends ViewModel
     private MutableLiveData<List<DetailsProductColorsData>> listProductColorsMutableLiveData;
     private MutableLiveData<DetailsProductAddCartResponse> productAddCartMutableLiveData;
     private MutableLiveData<PlusQuantityCartResponse> favoriteProductMutableLiveData;
+    private MutableLiveData<List<CommentsData>> listCommentsMutableLiveData ;
     public LiveData<List<DetailsProductSliderData>> getDetailsProductSlider(String product_id, Context context) {
         if (listProductSliderMutableLiveData == null) {
             listProductSliderMutableLiveData = new MutableLiveData<List<DetailsProductSliderData>>();
@@ -50,9 +53,41 @@ public class DetailsProductViewModel extends ViewModel
         return listProductColorsMutableLiveData;
 
     }
+    public LiveData<List<CommentsData>> getCommentsList(String product_id, Context context) {
+
+        listCommentsMutableLiveData = new MutableLiveData<List<CommentsData>>();
+            this.context=context;
+            getCommentsListValues(product_id);
+
+        return listCommentsMutableLiveData;
+
+    }
+
+    private void getCommentsListValues(String product_id) {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("product_id", product_id);
+        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<CommentsResponse> call = apiInterface.getComments(hashMap);
+        call.enqueue(new Callback<CommentsResponse>() {
+            @Override
+            public void onResponse(Call<CommentsResponse> call, Response<CommentsResponse> response) {
+
+                if (response.code()==200) {
+                    listCommentsMutableLiveData.setValue(response.body().getData());
+                } else  {
+                    listCommentsMutableLiveData.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CommentsResponse> call, Throwable t) {
+                listCommentsMutableLiveData.setValue(null);
+
+            }
+        });
+    }
 
     public LiveData<DetailsProductAddCartResponse> getDetailsProductAddCart(String product_id,String product_quantity,String color_id,String user_token_authentication, Context context) {
-
         productAddCartMutableLiveData = new MutableLiveData<DetailsProductAddCartResponse>();
             this.context=context;
             getDetailsProductAddCartValues(product_id,product_quantity,color_id,user_token_authentication);
