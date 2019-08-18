@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.model.MyOrdersData;
+import com.cosmetics.cosmetics.view.DetailsMyOrdersView;
 
 import java.util.List;
 
@@ -19,9 +20,7 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.ViewHo
 
     Context context;
     private List<MyOrdersData> myOrdersDataList;
-    // DetailsHomeLatestProductsView detailsHomeLatestProductsView;
-
-    //PlusQuantityCartView plusQuantityCartView;
+    DetailsMyOrdersView detailsMyOrdersView;
 
 
     public MyOrdersAdapter(Context context, List<MyOrdersData> myOrdersDataList) {
@@ -35,10 +34,10 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.ViewHo
         View view = LayoutInflater.from(context).inflate(R.layout.row_my_orders, parent, false);
         return new MyOrdersAdapter.ViewHolder(view);
     }
-    /*public void onClickPlusQuantityCart(PlusQuantityCartView plusQuantityCartView)
+    public void onClickMyOrdersItem(DetailsMyOrdersView detailsMyOrdersView)
     {
-        this.plusQuantityCartView=plusQuantityCartView;
-    }*/
+        this.detailsMyOrdersView=detailsMyOrdersView;
+    }
 
 
     @Override
@@ -61,16 +60,13 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.ViewHo
         holder.T_date.setText(String.valueOf(myOrdersDataList.get(position).getCreatedAt()));
         holder.T_price.setText("$ "+String.valueOf(myOrdersDataList.get(position).getOrderTotalPrice()));
 
-        /*holder.Btn_plus_quantity.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                *//*int countt=Integer.parseInt(holder.T_changed_quantity.getText().toString());
-                countt++;
-                holder.T_changed_quantity.setText(String.valueOf(countt));
-                holder.T_total_unit_price.setText(Double.toString(Double.parseDouble(holder.T_quantity.getText().toString())*Double.parseDouble(holder.T_unit_price.getText().toString())));*//*
-                plusQuantityCartView.showPlusQuantityCart(getListCartDataList.get(position));
+
+                detailsMyOrdersView.showDetailsMyOrders(myOrdersDataList.get(position));
             }
-        });*/
+        });
 
 
     }

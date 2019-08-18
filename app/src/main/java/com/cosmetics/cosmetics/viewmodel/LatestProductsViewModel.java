@@ -25,21 +25,21 @@ public class LatestProductsViewModel extends ViewModel{
     private MutableLiveData<List<LatestProductsData>> listFeaturedProductsMutableLiveData;
     private MutableLiveData<List<HomeSliderData>> listHomeSliderMutableLiveData;
     public LiveData<List<LatestProductsData>> getlatestProducts( String Lang, Context context) {
-        if (listLatestProductsMutableLiveData == null) {
+
             listLatestProductsMutableLiveData = new MutableLiveData<List<LatestProductsData>>();
             this.context=context;
             getLatestProductsValues(Lang);
 
-        }
+
         return listLatestProductsMutableLiveData;
 
     }
     public LiveData<List<LatestProductsData>> getFeaturedProducts( String Lang, Context context) {
-        if (listFeaturedProductsMutableLiveData == null) {
+
             listFeaturedProductsMutableLiveData = new MutableLiveData<List<LatestProductsData>>();
             this.context=context;
             getFeaturedProductsValues(Lang);
-        }
+
         return listFeaturedProductsMutableLiveData;
     }
     public LiveData<List<HomeSliderData>> getHomeSlider( String Lang, Context context) {

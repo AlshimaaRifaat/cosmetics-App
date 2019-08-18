@@ -18,6 +18,8 @@ import android.widget.Toast;
 import com.cosmetics.cosmetics.Language;
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.SharedPrefManager;
+import com.cosmetics.cosmetics.model.MyOrdersData;
+import com.cosmetics.cosmetics.model.MyOrdersDetailsData;
 import com.cosmetics.cosmetics.model.PlusQuantityCartResponse;
 import com.cosmetics.cosmetics.viewmodel.CartViewModel;
 import com.cosmetics.cosmetics.viewmodel.RateMyOrdersViewModel;
@@ -47,6 +49,10 @@ public class RateMyOrdersFragment extends Fragment {
     //public  static String TotalPrice;
     Unbinder unbinder;
     int rateCount;
+
+    Bundle bundle;
+    String ProductId;
+    MyOrdersDetailsData myOrdersDetailsData;
     public RateMyOrdersFragment() {
         // Required empty public constructor
     }
@@ -60,6 +66,14 @@ View view;
         unbinder= ButterKnife.bind(this,view);
         userTokenValue= SharedPrefManager.getInstance(getContext()).getUserToken();
         rateMyOrdersViewModel = ViewModelProviders.of(this).get(RateMyOrdersViewModel.class);
+        bundle = this.getArguments();
+        if (bundle!= null) {
+            myOrdersDetailsData = bundle.getParcelable("rateProduct");
+            ProductId=String.valueOf(myOrdersDetailsData.getProductId());
+            PerformRatingMyOrders();
+
+            // Toast.makeText(getContext(), "PID "+productId, Toast.LENGTH_SHORT).show();
+        }
         /*rating_bar_evaluate.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
@@ -100,8 +114,8 @@ View view;
       rateCount= (int) rating_bar_evaluate.getRating();
 
 
-        Toast.makeText(getContext(), String.valueOf(rateCount), Toast.LENGTH_SHORT).show();
-                rateMyOrdersViewModel.getRateMyOrders("4",String.valueOf(rateCount),ET_comment.getText().toString(),userTokenValue,getContext())
+       // Toast.makeText(getContext(), String.valueOf(rateCount), Toast.LENGTH_SHORT).show();
+                rateMyOrdersViewModel.getRateMyOrders(ProductId,String.valueOf(rateCount),ET_comment.getText().toString(),userTokenValue,getContext())
                         .observe(RateMyOrdersFragment.this, new Observer<PlusQuantityCartResponse>() {
                             @Override
                             public void onChanged(@Nullable PlusQuantityCartResponse plusQuantityCartResponse) {

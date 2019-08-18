@@ -16,6 +16,12 @@ public class MyOrdersData implements Serializable, Parcelable
     @SerializedName("order_total_price")
     @Expose
     private String orderTotalPrice;
+    @SerializedName("tax")
+    @Expose
+    private double tax;
+    @SerializedName("delevery_fees")
+    @Expose
+    private String deleveryFees;
     @SerializedName("order_stat")
     @Expose
     private String orderStat;
@@ -33,7 +39,7 @@ public class MyOrdersData implements Serializable, Parcelable
     private String customerStreet;
     @SerializedName("customer_comments_extra")
     @Expose
-    private Object customerCommentsExtra;
+    private String customerCommentsExtra;
     @SerializedName("langtude")
     @Expose
     private String langtude;
@@ -68,17 +74,19 @@ public class MyOrdersData implements Serializable, Parcelable
 
     }
             ;
-    private final static long serialVersionUID = 7793295049530899790L;
+    private final static long serialVersionUID = -2474133698874755219L;
 
     protected MyOrdersData(Parcel in) {
         this.orderId = ((int) in.readValue((int.class.getClassLoader())));
         this.orderTotalPrice = ((String) in.readValue((String.class.getClassLoader())));
+        this.tax = ((double) in.readValue((double.class.getClassLoader())));
+        this.deleveryFees = ((String) in.readValue((String.class.getClassLoader())));
         this.orderStat = ((String) in.readValue((String.class.getClassLoader())));
         this.customerAddress = ((String) in.readValue((String.class.getClassLoader())));
         this.customerCity = ((String) in.readValue((String.class.getClassLoader())));
         this.customerCountry = ((String) in.readValue((String.class.getClassLoader())));
         this.customerStreet = ((String) in.readValue((String.class.getClassLoader())));
-        this.customerCommentsExtra = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.customerCommentsExtra = ((String) in.readValue((String.class.getClassLoader())));
         this.langtude = ((String) in.readValue((String.class.getClassLoader())));
         this.lattude = ((String) in.readValue((String.class.getClassLoader())));
         this.paymentMethod = ((String) in.readValue((String.class.getClassLoader())));
@@ -104,6 +112,22 @@ public class MyOrdersData implements Serializable, Parcelable
 
     public void setOrderTotalPrice(String orderTotalPrice) {
         this.orderTotalPrice = orderTotalPrice;
+    }
+
+    public double getTax() {
+        return tax;
+    }
+
+    public void setTax(double tax) {
+        this.tax = tax;
+    }
+
+    public String getDeleveryFees() {
+        return deleveryFees;
+    }
+
+    public void setDeleveryFees(String deleveryFees) {
+        this.deleveryFees = deleveryFees;
     }
 
     public String getOrderStat() {
@@ -146,11 +170,11 @@ public class MyOrdersData implements Serializable, Parcelable
         this.customerStreet = customerStreet;
     }
 
-    public Object getCustomerCommentsExtra() {
+    public String getCustomerCommentsExtra() {
         return customerCommentsExtra;
     }
 
-    public void setCustomerCommentsExtra(Object customerCommentsExtra) {
+    public void setCustomerCommentsExtra(String customerCommentsExtra) {
         this.customerCommentsExtra = customerCommentsExtra;
     }
 
@@ -205,6 +229,8 @@ public class MyOrdersData implements Serializable, Parcelable
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(orderId);
         dest.writeValue(orderTotalPrice);
+        dest.writeValue(tax);
+        dest.writeValue(deleveryFees);
         dest.writeValue(orderStat);
         dest.writeValue(customerAddress);
         dest.writeValue(customerCity);

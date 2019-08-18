@@ -12,4 +12,5 @@
     <string name="InProgress">In Progress</string>
     <string name="Delivered">Delivered</string>
     <string name="Canceled">Canceled</string>
+    <string name="Items">Items</string>
 </resources>

@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/relative_details">
+        android:id="@+id/container_details_my_orders">
         <!-- TODO: Update blank fragment layout -->
         <RelativeLayout
             android:layout_width="match_parent"
@@ -27,7 +27,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="@dimen/_12sdp"/>
 
-            <RelativeLayout
+           <!-- <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/relative_name"
@@ -84,14 +84,14 @@
                     />
                 />
             </RelativeLayout>
-
+-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_below="@id/relative_name"
-                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_below="@+id/T_title_bar"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:background="#fff"
                 android:id="@+id/relative_deliver"
                 >
@@ -179,7 +179,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_130sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_below="@id/relative_deliver"
                 android:layout_marginStart="@dimen/_10sdp"
@@ -188,6 +188,25 @@
                 android:id="@+id/relative_products"
                 >
                 <TextView
+                    android:id="@+id/items"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="#747474"
+                    android:text="@string/Items"
+                    android:textStyle="bold"
+                    />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_details_list_my_orders"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_6sdp"
+                    android:layout_marginRight="@dimen/_6sdp"
+                    android:layout_below="@+id/items"
+                    />
+                <!--<TextView
                     android:id="@+id/product1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -206,7 +225,7 @@
                     android:textSize="@dimen/_12sdp"
                     android:textColor="#939292"
                     android:text="2 items"
-                    android:textStyle="bold"
+
                     android:layout_below="@id/product1"
                     />
                 <TextView
@@ -216,31 +235,12 @@
                     android:layout_marginStart="@dimen/_3sdp"
                     android:textSize="@dimen/_12sdp"
                     android:textColor="#cb7ea4"
+                    android:layout_marginBottom="@dimen/_10sdp"
                     android:text="@string/Rate_product"
                     android:layout_below="@id/T_product1"
-                    />
-                <TextView
-                    android:id="@+id/T_product2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_3sdp"
-                    android:textSize="@dimen/_12sdp"
-                    android:textColor="#939292"
-                    android:text="7 items"
-                    android:textStyle="bold"
-                    android:layout_below="@id/T_rate_product1"
-                    />
-                <TextView
-                    android:id="@+id/T_rate_product2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_3sdp"
-                    android:textSize="@dimen/_12sdp"
-                    android:textColor="#cb7ea4"
-                    android:text="@string/Rate_product"
-                    android:layout_below="@id/T_product2"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    />
+                    />-->
+
+
             </RelativeLayout>
 
             <RelativeLayout

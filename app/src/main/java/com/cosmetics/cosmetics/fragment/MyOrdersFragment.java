@@ -19,6 +19,7 @@ import com.cosmetics.cosmetics.adapter.CommentsAdapter;
 import com.cosmetics.cosmetics.adapter.MyOrdersAdapter;
 import com.cosmetics.cosmetics.model.CommentsData;
 import com.cosmetics.cosmetics.model.MyOrdersData;
+import com.cosmetics.cosmetics.view.DetailsMyOrdersView;
 import com.cosmetics.cosmetics.viewmodel.DetailsProductViewModel;
 import com.cosmetics.cosmetics.viewmodel.MyOrdersViewModel;
 
@@ -31,7 +32,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MyOrdersFragment extends Fragment {
+public class MyOrdersFragment extends Fragment implements DetailsMyOrdersView{
 
     @BindView(R.id.recycler_my_orders)
     RecyclerView recycler_my_orders;
@@ -57,13 +58,13 @@ View view;
     }
 
     public void getListMyOrders() {
-        //Toast.makeText(getContext(), userTokenValue, Toast.LENGTH_SHORT).show();
+       //check Lang
         myOrdersViewModel.getMyOrders("en",userTokenValue, getContext()).observe(this, new Observer<List<MyOrdersData>>() {
             @Override
             public void onChanged(@Nullable List<MyOrdersData> myOrdersData) {
                 if(myOrdersData!=null) {
                     myOrdersAdapter = new MyOrdersAdapter(getActivity(), myOrdersData);
-                    // commentsAdapter.onClickProductColor(DetailsProductFragment.this);
+                    myOrdersAdapter.onClickMyOrdersItem(MyOrdersFragment.this);
                     recycler_my_orders.setLayoutManager(new LinearLayoutManager(getContext()));
                     recycler_my_orders.setAdapter(myOrdersAdapter);
                 }
@@ -71,5 +72,15 @@ View view;
         });
 
 
+    }
+
+    @Override
+    public void showDetailsMyOrders(MyOrdersData myOrdersData) {
+        DetailsMyOrdersFragment detailsMyOrdersFragment=new DetailsMyOrdersFragment();
+        Bundle bundle=new Bundle();
+        bundle.putParcelable("MyOrdersItem",myOrdersData);
+        detailsMyOrdersFragment.setArguments(bundle);
+        getFragmentManager().beginTransaction().replace(R.id.container_my_orders,detailsMyOrdersFragment)
+                .addToBackStack(null).commit();
     }
 }
