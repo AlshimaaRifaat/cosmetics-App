@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff">
+
+    <TextView
+        android:id="@+id/T_product_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_3sdp"
+        android:textSize="@dimen/_12sdp"
+        android:textColor="#939292"
+        android:text="2 items"
+        android:layout_marginTop="@dimen/_7sdp"
+
+        />
+    <TextView
+        android:id="@id/T_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/_3sdp"
+       android:layout_marginTop="@dimen/_10sdp"
+      />
+    <TextView
+        android:id="@+id/T_rate_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_3sdp"
+        android:textSize="@dimen/_12sdp"
+        android:textColor="#cb7ea4"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:text="@string/Rate_product"
+        android:layout_below="@id/T_product_quantity"
+        />
+</RelativeLayout>
