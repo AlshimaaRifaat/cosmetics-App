@@ -13,4 +13,6 @@
     <string name="Delivered">Delivered</string>
     <string name="Canceled">Canceled</string>
     <string name="Items">Items</string>
+    <string name="payment_method">Payment method</string>
+    <string name="Deliveryaddress">Delivery address</string>
 </resources>

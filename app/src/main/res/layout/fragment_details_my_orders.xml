@@ -114,7 +114,8 @@
                     android:layout_marginStart="@dimen/_3sdp"
                     android:layout_marginEnd="@dimen/_3sdp"
                     android:layout_marginTop="@dimen/_1sdp"
-                    android:text="address"
+                    android:text="@string/Deliveryaddress"
+                    android:textStyle="bold"
                     android:textColor="#939292"
                     android:textSize="@dimen/_12sdp"
                     android:layout_toEndOf="@id/deliver"
@@ -128,7 +129,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_3sdp"
                     android:layout_marginEnd="@dimen/_3sdp"
-                    android:text="cairo"
                     android:textColor="#939292"
                     android:textSize="@dimen/_12sdp"
                     android:layout_below="@id/delivery_address"
@@ -152,26 +152,25 @@
                     android:id="@+id/payment_method"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_3sdp"
                     android:layout_marginEnd="@dimen/_3sdp"
                     android:layout_marginTop="@dimen/_1sdp"
-                    android:text="payment method"
+                    android:text="@string/payment_method"
                     android:textColor="#939292"
+                    android:textStyle="bold"
                     android:textSize="@dimen/_12sdp"
-                    android:layout_toEndOf="@id/payment"
+                   android:layout_marginStart="@dimen/_46sdp"
                     android:layout_below="@id/payment"
                     />
                 <TextView
                     android:id="@+id/T_payment_method"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_marginStart="@dimen/_46sdp"
                     android:layout_marginEnd="@dimen/_3sdp"
                     android:layout_marginTop="@dimen/_2sdp"
-                    android:text="cash"
                     android:textColor="#939292"
                     android:textSize="@dimen/_12sdp"
-                    android:layout_toEndOf="@id/payment"
+
                     android:layout_below="@id/payment_method"
                     android:layout_marginBottom="@dimen/_10sdp"/>
             </RelativeLayout>
@@ -261,7 +260,6 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:textSize="@dimen/_12sdp"
                     android:textColor="#747474"
-                    android:text="1000$"
                     android:textStyle="bold"
                     />
                 <TextView
@@ -271,7 +269,6 @@
                     android:layout_marginStart="@dimen/_3sdp"
                     android:textSize="@dimen/_12sdp"
                     android:textColor="#939292"
-                    android:text="taxes"
                     android:textStyle="bold"
                     android:layout_below="@id/T_sub_total"
                     />
@@ -282,7 +279,6 @@
                     android:layout_marginStart="@dimen/_3sdp"
                     android:textSize="@dimen/_12sdp"
                     android:textColor="#939292"
-                    android:text="fees"
                     android:textStyle="bold"
                     android:layout_below="@id/T_tax"
                     android:layout_marginBottom="@dimen/_10sdp"

@@ -45,6 +45,19 @@ public class DetailsMyOrdersFragment extends Fragment implements OnClickRateProd
 
     @BindView(R.id.recycler_details_list_my_orders)
     RecyclerView recycler_details_list_my_orders;
+    @BindView(R.id.T_delivery_address)
+    TextView T_delivery_address;
+    @BindView(R.id.T_payment_method)
+    TextView T_payment_method;
+
+    @BindView(R.id.T_sub_total)
+    TextView T_sub_total;
+    @BindView(R.id.T_tax)
+    TextView T_tax;
+    @BindView(R.id.T_delivery_fees)
+    TextView T_delivery_fees;
+
+
 
     Unbinder unbinder;
     String userTokenValue;
@@ -75,6 +88,13 @@ View view;
         if (bundle!= null) {
             myOrdersData = bundle.getParcelable("MyOrdersItem");
             MyOrderId=String.valueOf(myOrdersData.getOrderId());
+
+            T_delivery_address.setText(myOrdersData.getCustomerStreet()+" "
+                    +myOrdersData.getCustomerCity()+" "+ myOrdersData.getCustomerCountry());
+            T_payment_method.setText(myOrdersData.getPaymentMethod());
+            T_sub_total.setText(getResources().getString(R.string.sub_total)+" "+myOrdersData.getOrderTotalPrice()+" $");
+            T_tax.setText(getResources().getString(R.string.Tax)+" "+String.valueOf(myOrdersData.getTax())+" $");
+            T_delivery_fees.setText(getResources().getString(R.string.Delivery_fees)+" "+myOrdersData.getDeleveryFees()+" $");
             getListMyOrdersDetails();
             // Toast.makeText(getContext(), "PID "+productId, Toast.LENGTH_SHORT).show();
         }

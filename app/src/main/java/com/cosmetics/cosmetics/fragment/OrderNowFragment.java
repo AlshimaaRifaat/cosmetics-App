@@ -161,7 +161,8 @@ public class OrderNowFragment extends Fragment implements OnMapReadyCallback, co
         forgotPasswordTxt.setTypeface( customFontRegular );
     }*/
                 //check parameters
-                orderNowViewModel.getOrderNow("5", ET_address.getText().toString()
+                //Toast.makeText(getContext(), CartFragment.TotalPrice, Toast.LENGTH_SHORT).show();
+                orderNowViewModel.getOrderNow(CartFragment.TotalPrice, ET_address.getText().toString()
                         , ET_phone.getText().toString(), String.valueOf(longitude), String.valueOf(latitude), "1", "1"
                         , ET_some_notes.getText().toString(), ET_city.getText().toString()
                         , ET_country.getText().toString(), ET_street.getText().toString(), "0", userTokenValue, getContext()).observe(OrderNowFragment.this, new Observer<PlusQuantityCartResponse>() {
