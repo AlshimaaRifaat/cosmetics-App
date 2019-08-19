@@ -42,7 +42,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull FavoriteAdapter.ViewHolder holder, final int position) {
         Glide.with(context).load("http://titco-industry.com"+listFavoriteProductDataList.get(position).getImage()).into(holder.imageView);
-        holder.textView.setText(listFavoriteProductDataList.get(position).getProductName());
+        holder.textView.setText(listFavoriteProductDataList.get(position).getName());
        /* holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

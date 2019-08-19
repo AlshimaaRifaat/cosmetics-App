@@ -162,7 +162,7 @@ CartViewModel cartViewModel;
     public void getFeatureProducts() {
         latestProductsViewModel = ViewModelProviders.of(this).get(LatestProductsViewModel.class);
         //check "ar"
-        latestProductsViewModel.getFeaturedProducts("ar",getContext()).observe(this, new Observer<List<LatestProductsData>>() {
+        latestProductsViewModel.getFeaturedProducts("en",userTokenValue,getContext()).observe(this, new Observer<List<LatestProductsData>>() {
             @Override
             public void onChanged(@Nullable List<LatestProductsData> latestProductsData) {
                 if (latestProductsData!=null) {

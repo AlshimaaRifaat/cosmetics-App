@@ -34,11 +34,11 @@ public class LatestProductsViewModel extends ViewModel{
         return listLatestProductsMutableLiveData;
 
     }
-    public LiveData<List<LatestProductsData>> getFeaturedProducts( String Lang, Context context) {
+    public LiveData<List<LatestProductsData>> getFeaturedProducts( String Lang,String userTokenAuth, Context context) {
 
             listFeaturedProductsMutableLiveData = new MutableLiveData<List<LatestProductsData>>();
             this.context=context;
-            getFeaturedProductsValues(Lang);
+            getFeaturedProductsValues(Lang,userTokenAuth);
 
         return listFeaturedProductsMutableLiveData;
     }
@@ -76,11 +76,11 @@ public class LatestProductsViewModel extends ViewModel{
         });
     }
 
-    private void getFeaturedProductsValues(String lang) {
+    private void getFeaturedProductsValues(String lang,String userTokenAuth) {
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("lang", lang);
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<LatestProductsResponse> call = apiInterface.getfeatureProducts(hashMap);
+        Call<LatestProductsResponse> call = apiInterface.getfeatureProducts(hashMap,"Bearer "+userTokenAuth);
         call.enqueue(new Callback<LatestProductsResponse>() {
             @Override
             public void onResponse(Call<LatestProductsResponse> call, Response<LatestProductsResponse> response) {
