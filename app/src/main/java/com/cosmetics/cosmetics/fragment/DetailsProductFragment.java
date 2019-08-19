@@ -148,12 +148,19 @@ public class DetailsProductFragment extends Fragment implements OnClickProductCo
         }else if (bundle != null&&fromValue.equals("homeLatestProductPage")) {
             latestProductsData = bundle.getParcelable("LatestProductsItem");
             productId=String.valueOf(latestProductsData.getId());
-           // wishListState=String.valueOf()
+            wishListState=String.valueOf(latestProductsData.getWishlistState());
             T_title.setText(latestProductsData.getTitle());
             T_price.setText("$" + String.valueOf(latestProductsData.getPriceGeneral()));
             T_description.setText(latestProductsData.getDescription());
             T_label_title.setText(latestProductsData.getTitle());
             getDetailsProductSlider();
+            checkWishListState();
+            rel_ic_favorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    performFavoriteProduct();
+                }
+            });
             getDetailsProductColors();
             getListComments();
         }

@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.cosmetics.cosmetics.NetworkConnection;
 import com.cosmetics.cosmetics.R;
+import com.cosmetics.cosmetics.SharedPrefManager;
 import com.cosmetics.cosmetics.adapter.FeatureProductsAdapter;
 import com.cosmetics.cosmetics.adapter.HomeSliderAdapter;
 import com.cosmetics.cosmetics.adapter.LatestProductsAdapter;
@@ -83,6 +84,7 @@ public class HomeFragment extends Fragment implements DetailsHomeLatestProductsV
 
     View view;
 NetworkConnection networkConnection;
+String userTokenValue;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -94,6 +96,7 @@ NetworkConnection networkConnection;
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.fragment_home, container, false);
         unbinder= ButterKnife.bind(this,view);
+        userTokenValue= SharedPrefManager.getInstance(getContext()).getUserToken();
         networkConnection=new NetworkConnection(getContext());
         getLatestProducts();
         getFeatureProducts();
@@ -111,7 +114,7 @@ NetworkConnection networkConnection;
     public void getLatestProducts() {
         latestProductsViewModel = ViewModelProviders.of(this).get(LatestProductsViewModel.class);
         //check "ar"
-        latestProductsViewModel.getlatestProducts("ar",getContext()).observe(this, new Observer<List<LatestProductsData>>() {
+        latestProductsViewModel.getlatestProducts("ar",userTokenValue,getContext()).observe(this, new Observer<List<LatestProductsData>>() {
             @Override
             public void onChanged(@Nullable List<LatestProductsData> latestProductsData) {
                 if (latestProductsData!=null) {

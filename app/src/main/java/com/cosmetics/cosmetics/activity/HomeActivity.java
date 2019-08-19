@@ -40,6 +40,7 @@ public class HomeActivity extends AppCompatActivity {
 
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
+
         tabLayout.setRotationX(180);
         onSelectedTab();
         /*cardPresenter=new CardPresenter(this,this);

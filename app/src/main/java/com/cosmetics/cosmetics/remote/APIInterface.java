@@ -31,8 +31,9 @@ public interface APIInterface {
     @POST("register")
     Call<RegisterResponse> register(@QueryMap Map<String, String> map);
 
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("latest_products")
-    Call<LatestProductsResponse> getLatestProducts(@QueryMap Map<String, String> map);
+    Call<LatestProductsResponse> getLatestProducts(@QueryMap Map<String, String> map,@Header("Authorization") String auth);
 
     @POST("feature_products")
     Call<LatestProductsResponse> getfeatureProducts(@QueryMap Map<String, String> map);

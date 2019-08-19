@@ -46,13 +46,13 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.ViewHo
         holder.T_order_id.setText("#"+String.valueOf(myOrdersDataList.get(position).getOrderId()));
         String orderStatusValue=String.valueOf(myOrdersDataList.get(position).getOrderStat());
 
-        if (orderStatusValue.equals("1"))
+        if (orderStatusValue.equals("0"))
         {
             holder.T_order_status.setText(context.getResources().getString(R.string.InProgress));
-        }else if (orderStatusValue.equals("2"))
+        }else if (orderStatusValue.equals("1"))
         {
             holder.T_order_status.setText(context.getResources().getString(R.string.Delivered));
-        }else if (orderStatusValue.equals("3"))
+        }else if (orderStatusValue.equals("2"))
         {
             holder.T_order_status.setText(context.getResources().getString(R.string.Canceled));
         }

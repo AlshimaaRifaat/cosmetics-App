@@ -13,6 +13,12 @@ public class LatestProductsData implements Serializable, Parcelable
     @SerializedName("id")
     @Expose
     private int id;
+    @SerializedName("rates")
+    @Expose
+    private double rates;
+    @SerializedName("Wishlist_state")
+    @Expose
+    private int wishlistState;
     @SerializedName("title")
     @Expose
     private String title;
@@ -24,10 +30,10 @@ public class LatestProductsData implements Serializable, Parcelable
     private String description;
     @SerializedName("price_general")
     @Expose
-    private int priceGeneral;
+    private String priceGeneral;
     @SerializedName("sale_price")
     @Expose
-    private int salePrice;
+    private String salePrice;
     @SerializedName("image")
     @Expose
     private String image;
@@ -47,15 +53,17 @@ public class LatestProductsData implements Serializable, Parcelable
 
     }
             ;
-    private final static long serialVersionUID = 7517626684767119324L;
+    private final static long serialVersionUID = -3046132208241696230L;
 
     protected LatestProductsData(Parcel in) {
         this.id = ((int) in.readValue((int.class.getClassLoader())));
+        this.rates = ((double) in.readValue((double.class.getClassLoader())));
+        this.wishlistState = ((int) in.readValue((int.class.getClassLoader())));
         this.title = ((String) in.readValue((String.class.getClassLoader())));
         this.shortDescription = ((String) in.readValue((String.class.getClassLoader())));
         this.description = ((String) in.readValue((String.class.getClassLoader())));
-        this.priceGeneral = ((int) in.readValue((int.class.getClassLoader())));
-        this.salePrice = ((int) in.readValue((int.class.getClassLoader())));
+        this.priceGeneral = ((String) in.readValue((String.class.getClassLoader())));
+        this.salePrice = ((String) in.readValue((String.class.getClassLoader())));
         this.image = ((String) in.readValue((String.class.getClassLoader())));
     }
 
@@ -68,6 +76,22 @@ public class LatestProductsData implements Serializable, Parcelable
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public double getRates() {
+        return rates;
+    }
+
+    public void setRates(double rates) {
+        this.rates = rates;
+    }
+
+    public int getWishlistState() {
+        return wishlistState;
+    }
+
+    public void setWishlistState(int wishlistState) {
+        this.wishlistState = wishlistState;
     }
 
     public String getTitle() {
@@ -94,19 +118,19 @@ public class LatestProductsData implements Serializable, Parcelable
         this.description = description;
     }
 
-    public int getPriceGeneral() {
+    public String getPriceGeneral() {
         return priceGeneral;
     }
 
-    public void setPriceGeneral(int priceGeneral) {
+    public void setPriceGeneral(String priceGeneral) {
         this.priceGeneral = priceGeneral;
     }
 
-    public int getSalePrice() {
+    public String getSalePrice() {
         return salePrice;
     }
 
-    public void setSalePrice(int salePrice) {
+    public void setSalePrice(String salePrice) {
         this.salePrice = salePrice;
     }
 
@@ -120,6 +144,8 @@ public class LatestProductsData implements Serializable, Parcelable
 
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(id);
+        dest.writeValue(rates);
+        dest.writeValue(wishlistState);
         dest.writeValue(title);
         dest.writeValue(shortDescription);
         dest.writeValue(description);
