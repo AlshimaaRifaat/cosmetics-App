@@ -14,17 +14,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cosmetics.cosmetics.NetworkConnection;
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.SharedPrefManager;
+import com.cosmetics.cosmetics.adapter.CartAdapter;
 import com.cosmetics.cosmetics.adapter.FeatureProductsAdapter;
 import com.cosmetics.cosmetics.adapter.HomeSliderAdapter;
 import com.cosmetics.cosmetics.adapter.LatestProductsAdapter;
+import com.cosmetics.cosmetics.model.GetListCartData;
 import com.cosmetics.cosmetics.model.HomeSliderData;
 import com.cosmetics.cosmetics.model.LatestProductsData;
+import com.cosmetics.cosmetics.model.TotalResultGetListCartData;
 import com.cosmetics.cosmetics.view.DetailsHomeLatestProductsView;
+import com.cosmetics.cosmetics.view.NotificationNumsView;
+import com.cosmetics.cosmetics.viewmodel.CartViewModel;
 import com.cosmetics.cosmetics.viewmodel.LatestProductsViewModel;
 
 import java.util.ArrayList;
@@ -39,7 +45,8 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment implements DetailsHomeLatestProductsView {
+public class HomeFragment extends Fragment implements DetailsHomeLatestProductsView
+{
     @BindView(R.id.icon_cart)
     ImageView iconCart;
     Unbinder unbinder;
@@ -85,6 +92,9 @@ public class HomeFragment extends Fragment implements DetailsHomeLatestProductsV
     View view;
 NetworkConnection networkConnection;
 String userTokenValue;
+CartViewModel cartViewModel;
+    @BindView(R.id.T_notification_num)
+    TextView T_notification_num;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -98,9 +108,14 @@ String userTokenValue;
         unbinder= ButterKnife.bind(this,view);
         userTokenValue= SharedPrefManager.getInstance(getContext()).getUserToken();
         networkConnection=new NetworkConnection(getContext());
+        cartViewModel = ViewModelProviders.of(this).get(CartViewModel.class);
+        getNotificationNums();
+        performGettingTotalResultListCart();
         getLatestProducts();
         getFeatureProducts();
         getHomeSlider();
+
+
         iconCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,7 +123,19 @@ String userTokenValue;
                         .addToBackStack(null).commit();
             }
         });
+
         return view;
+    }
+
+   private void performGettingTotalResultListCart() {
+        cartViewModel.getTotalResultListCart("en",userTokenValue,getContext()).observe(this, new Observer<TotalResultGetListCartData>() {
+            @Override
+            public void onChanged(@Nullable TotalResultGetListCartData totalResultGetListCartData) {
+                if (totalResultGetListCartData!=null) {
+
+                }
+            }
+        });
     }
 
     public void getLatestProducts() {
@@ -191,4 +218,27 @@ public void getHomeSlider()
          getFragmentManager().beginTransaction().replace(R.id.relative_home,detailsItemProductsFragment)
                  .addToBackStack(null).commit();
     }
+
+    public void getNotificationNums() {
+        cartViewModel.getListCart("en",userTokenValue,getContext()).observe(this, new Observer<List<GetListCartData>>() {
+            @Override
+            public void onChanged(@Nullable List<GetListCartData> getListCartData) {
+                if(getListCartData!=null) {
+                    if (getListCartData.size() > 0) {
+
+                        T_notification_num.setVisibility(View.VISIBLE);
+                        //Toast.makeText(getContext(), String.valueOf(notificationsDataList.size()), Toast.LENGTH_SHORT).show();
+                        T_notification_num.setText(getListCartData.size() + "");
+
+                    }
+                }else{
+                    T_notification_num.setVisibility(View.VISIBLE);
+                    //Toast.makeText(getContext(), String.valueOf(notificationsDataList.size()), Toast.LENGTH_SHORT).show();
+                    T_notification_num.setText("0" + "");
+                }
+            }
+        });
+    }
+
+
 }
