@@ -1,6 +1,7 @@
 package com.cosmetics.cosmetics.fragment;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cosmetics.cosmetics.R;
 import com.cosmetics.cosmetics.SharedPrefManager;
@@ -51,15 +53,35 @@ View view;
         favoriteTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.relative_more,new FavoriteFragment())
-                        .addToBackStack(null).commit();
+                if (userTokenValue==null)
+                {
+                    Toast.makeText(getContext(), getResources().getString(R.string.Pleaseloginfirst), Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(i);
+                    ((Activity) getActivity()).overridePendingTransition(0,0);
+                    getActivity().finish();
+                }else {
+                    getFragmentManager().beginTransaction().replace(R.id.relative_more, new FavoriteFragment())
+                            .addToBackStack(null).commit();
+                }
             }
         });
         profileTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.relative_more,new ProfileFragment())
-                        .addToBackStack(null).commit();
+                if (userTokenValue==null)
+                {
+                    Toast.makeText(getContext(), getResources().getString(R.string.Pleaseloginfirst), Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(i);
+                    ((Activity) getActivity()).overridePendingTransition(0,0);
+                    getActivity().finish();
+                }else
+                {
+                    getFragmentManager().beginTransaction().replace(R.id.relative_more,new ProfileFragment())
+                            .addToBackStack(null).commit();
+                }
+
             }
         });
         logOut();

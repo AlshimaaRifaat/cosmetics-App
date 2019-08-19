@@ -130,6 +130,7 @@ public class CartFragment extends Fragment implements PlusQuantityCartView,MinQu
                 }else
                 {
                    rel_total_result_cart.setVisibility(View.GONE);
+                   btn_check_out.setVisibility(View.GONE);
                     Toast.makeText(getContext(), getResources().getString(R.string.Cart_is_impty), Toast.LENGTH_SHORT).show();
                 }
             }
