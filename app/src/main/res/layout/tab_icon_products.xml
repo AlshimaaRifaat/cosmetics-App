@@ -7,7 +7,7 @@
     <ImageView
         android:layout_width="@dimen/_22sdp"
         android:layout_height="@dimen/_22sdp"
-        android:id="@+id/cart_img"
+        android:id="@+id/productsIconTab"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/_3sdp"
         android:layout_marginBottom="@dimen/_3sdp"
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_5sdp"
         android:text="@string/Products"
-        android:id="@+id/T_myUnits"
+        android:id="@+id/T_products"
         android:textSize="@dimen/_9sdp"
         android:textColor="#b3b3b3"
         android:layout_gravity="center_horizontal"

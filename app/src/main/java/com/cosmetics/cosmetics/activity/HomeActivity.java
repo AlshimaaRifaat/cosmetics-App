@@ -1,5 +1,6 @@
 package com.cosmetics.cosmetics.activity;
 
+import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,6 +9,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.cosmetics.cosmetics.Language;
 import com.cosmetics.cosmetics.NetworkConnection;
@@ -30,7 +33,7 @@ public class HomeActivity extends AppCompatActivity {
     String UserToken=SplashActivity.Login;
 
     public TextView textView;*/
-
+   View view,view1,view2,view3,view4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class HomeActivity extends AppCompatActivity {
         onSelectedTab();
         /*cardPresenter=new CardPresenter(this,this);
         cardPresenter.getCardList(UserToken);*/
+        RefreshTabs();
         setupTabIcons();
 
         if(Language.isRTL()) {
@@ -54,14 +58,93 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    private void setupTabIcons() {
-      View view1=getLayoutInflater().inflate( R.layout.tab_icon_home,null );
+    private void RefreshTabs() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                FragmentManager fm = getSupportFragmentManager(); // or 'getSupportFragmentManager();'
+                int count = fm.getBackStackEntryCount();
+                if(count!=0) {
+                    for (int i = 0; i < count; ++i) {
+                        fm.popBackStack();
+                    }
+                }
+                Selected_Postion(tab.getPosition());
 
-        View view2=getLayoutInflater().inflate( R.layout.tab_icon_products,null );
+
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+    }
+
+    private void Selected_Postion(int position) {
+        ImageView homeIconTab=view1.findViewById(R.id.homeIconTab);
+        ImageView productsIconTab=view2.findViewById(R.id.productsIconTab);
+        ImageView MyOrdersIconTab=view3.findViewById(R.id.MyOrdersIconTab);
+        ImageView moreIconTab=view4.findViewById(R.id.moreIconTab);
+        TextView T_home=view1.findViewById(R.id.T_home);
+        TextView  T_products=view2.findViewById(R.id.T_products);
+        TextView  T_MyOrders=view3.findViewById(R.id.T_MyOrders);
+        TextView  T_more=view4.findViewById(R.id.T_more);
+
+        if (position == 0) {
+            homeIconTab.setImageResource(R.drawable.home_icon_pink);
+            T_home.setTextColor(Color.parseColor("#C6488E"));
+            T_products.setTextColor(Color.parseColor("#b3b3b3"));
+            T_MyOrders.setTextColor(Color.parseColor("#b3b3b3"));
+            T_more.setTextColor(Color.parseColor("#b3b3b3"));
+            productsIconTab.setImageResource(R.drawable.cosmetics);
+            MyOrdersIconTab.setImageResource(R.drawable.padnote);
+            moreIconTab.setImageResource(R.drawable.more_button_of_three_dots);
+        }
+        if (position == 1) {
+            productsIconTab.setImageResource(R.drawable.cosmetics_pink);
+            MyOrdersIconTab.setImageResource(R.drawable.padnote);
+            homeIconTab.setImageResource(R.drawable.home_icon_silhouette);
+            moreIconTab.setImageResource(R.drawable.more_button_of_three_dots);
+            T_products.setTextColor(Color.parseColor("#C6488E"));
+            T_more.setTextColor(Color.parseColor("#b3b3b3"));
+            T_home.setTextColor(Color.parseColor("#b3b3b3"));
+            T_MyOrders.setTextColor(Color.parseColor("#b3b3b3"));
+
+        }
+        if (position == 2) {
+            MyOrdersIconTab.setImageResource(R.drawable.padnote_pink);
+            homeIconTab.setImageResource(R.drawable.home_icon_silhouette);
+            productsIconTab.setImageResource(R.drawable.cosmetics);
+            moreIconTab.setImageResource(R.drawable.more_button_of_three_dots);
+            T_MyOrders.setTextColor(Color.parseColor("#C6488E"));
+            T_home.setTextColor(Color.parseColor("#b3b3b3"));
+            T_more.setTextColor(Color.parseColor("#b3b3b3"));
+            T_products.setTextColor(Color.parseColor("#b3b3b3"));
+
+        }
+        if (position == 3) {
+            moreIconTab.setImageResource(R.drawable.more_button_pink);
+            homeIconTab.setImageResource(R.drawable.home_icon_silhouette);
+            productsIconTab.setImageResource(R.drawable.cosmetics);
+            MyOrdersIconTab.setImageResource(R.drawable.padnote);
+            T_more.setTextColor(Color.parseColor("#C6488E"));
+            T_home.setTextColor(Color.parseColor("#b3b3b3"));
+            T_MyOrders.setTextColor(Color.parseColor("#b3b3b3"));
+            T_products.setTextColor(Color.parseColor("#b3b3b3"));
+        }
+    }
+
+    private void setupTabIcons() {
+      view1=getLayoutInflater().inflate( R.layout.tab_icon_home,null );
+
+        view2=getLayoutInflater().inflate( R.layout.tab_icon_products,null );
         //cartNotification=view2.findViewById( R.id.cart_notification );
 
-        View view3=getLayoutInflater().inflate( R.layout.tab_icon_my_orders,null );
-        View view4=getLayoutInflater().inflate( R.layout.tab_icon_more,null );
+        view3=getLayoutInflater().inflate( R.layout.tab_icon_my_orders,null );
+        view4=getLayoutInflater().inflate( R.layout.tab_icon_more,null );
 
 
       if(Language.isRTL()){

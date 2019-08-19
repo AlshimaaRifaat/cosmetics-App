@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
+        android:id="@+id/homeIconTab"
         android:layout_width="@dimen/_22sdp"
         android:layout_height="@dimen/_22sdp"
         android:src="@drawable/home_icon_silhouette"
@@ -17,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_5sdp"
         android:text="@string/Home"
-        android:id="@+id/T_myUnits"
+        android:id="@+id/T_home"
         android:textSize="@dimen/_9sdp"
         android:textColor="#b3b3b3"
         android:layout_gravity="center_horizontal"
